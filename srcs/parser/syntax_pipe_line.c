@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:04:26 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 02:39:13 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/11 21:16:33 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 */
 static void	init_syntax_pipe_line(t_ast **ast_pipe_line)
 {
-	*ast_pipe_line = sh_calloc(1, sizeof(t_ast));
+	*ast_pipe_line = ft_calloc(1, sizeof(t_ast));
 	(*ast_pipe_line)->type = AST_PIPELINE;
-	(*ast_pipe_line)->data = sh_calloc(1, sizeof(t_pipe_line));
+	(*ast_pipe_line)->data = ft_calloc(1, sizeof(t_pipe_line));
 }
 
 /**
@@ -41,11 +41,24 @@ static void	init_syntax_pipe_line(t_ast **ast_pipe_line)
 int	syntax_pipe_line(t_ast **ast_pipe_line)
 {
 	t_pipe_line	*pipe_line;
-	
+	t_token		token;
+	char		*pipe;
+
+	token = fetch_token(GET);
+	if (!(token.type == T_WORD || token.type == T_REDIRECT))
+		return (throw_error_syntax(token));
 	init_syntax_pipe_line(ast_pipe_line);
 	pipe_line = (*ast_pipe_line)->data;
-	fetch_token(UPDATE);
 	if (syntax_command(&pipe_line->command))
 		return (ERROR_FLAG);
+	if (fetch_token(GET).type == T_PIPE)
+	{
+		pipe = match(T_PIPE);
+		if (pipe == NULL)
+			return (ERROR_FLAG);
+		free(pipe);
+		if (syntax_pipe_line(&pipe_line->pipe_line))
+			return (ERROR_FLAG);
+	}
 	return (SUCCESS_FLAG);
 }

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 17:05:34 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 09:47:18 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/11 21:02:50 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include <sys/stat.h>
 # include <sys/ioctl.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>

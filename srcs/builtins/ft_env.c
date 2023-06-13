@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 11:29:08 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:12:28 by datran           ###   ########.fr       */
+/*   Created: 2023/06/09 16:53:51 by datran            #+#    #+#             */
+/*   Updated: 2023/06/09 16:54:13 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+int	ft_env(char **argv)
+{
+	t_env	*ptr;
 
-int				is_builtin(char *exec_path);
-int				check_option(char *argv);
-int				ft_echo(char **argv);
-int				ft_cd(char **argv);
-int				ft_pwd(char **argv);
-int				ft_env(char **argv);
-int				ft_exit(char **argv);
-int				ft_export(char **argv);
-int				ft_unset(char **argv);
-unsigned char	check_exit_arg(char *arg);
-
-#endif
+	ptr = g_manager.env;
+	if (*(argv + 1))
+		return (throw_error_usage("env", *(argv + 1)));
+	while (ptr)
+	{
+		if (ptr->value)
+		{
+			ft_putstr_fd(ptr->name, STDOUT_FILENO);
+			write(STDOUT_FILENO, "=", 1);
+			ft_putstr_fd(ptr->value, STDOUT_FILENO);
+			write(STDOUT_FILENO, "\n", 1);
+		}
+		ptr = ptr->next;
+	}
+	return (EXIT_SUCCESS);
+}

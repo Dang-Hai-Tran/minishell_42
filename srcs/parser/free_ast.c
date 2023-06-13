@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:10:28 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 00:55:02 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/12 22:57:02 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	free_command(t_command *command)
 		free_simple_command(command->simple_command);
 	if (command->redirects)
 		free_ast(command->redirects);
-	if (command->pipe_line)
-		free_ast(command->pipe_line);
 	free(command);
 }
 
@@ -36,6 +34,8 @@ void	free_pipe_line(t_pipe_line *pipe_line)
 {
 	if (pipe_line->command)
 		free_ast(pipe_line->command);
+	if (pipe_line->pipe_line)
+		free_ast(pipe_line->pipe_line);
 	free(pipe_line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:12:55 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 09:47:43 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/09 17:13:08 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define TRASH_PATH "/dev/null"
 # define BACKUP_FD 255
 
+int	redirect_out_trash(void);
 int	redirect_in_file(char *file_path);
 int	redirect_out_file(char *file_path);
 int	redirect_append_file(char *file_path);

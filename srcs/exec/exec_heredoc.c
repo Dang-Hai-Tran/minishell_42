@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:15:57 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 00:51:10 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/12 23:08:13 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	exec_redirect_heredoc(t_ast **ast)
 		if (io_redirect->end_text == NULL)
 			return (throw_error_syntax(token));
 		io_redirect->file_path = create_heredoc_path();
-		flag = redirect_heredoc(io_redirect->end_text, io_redirect->file_path);
+		flag |= redirect_heredoc(io_redirect->end_text, io_redirect->file_path);
 	}
 	if (redirects->redirects)
 		flag |= exec_redirect_heredoc(&redirects->redirects);
@@ -61,14 +61,22 @@ static int	exec_redirect_heredoc(t_ast **ast)
 
 int	exec_heredoc(t_ast **ast)
 {
-	int			flag;
-	t_command	*command;
+	int				flag;
+	t_pipe_line		*pipe_line;
+	t_command		*command;
 
 	flag = SUCCESS_FLAG;
+	pipe_line = NULL;
 	command = NULL;
-	if (*ast && (*ast)->type == AST_COMMAND)
-		command = (*ast)->data;
+	if (*ast && (*ast)->type == AST_PIPELINE)
+		pipe_line = (*ast)->data;
+	if (pipe_line && pipe_line->command->type == AST_COMMAND)
+		command = pipe_line->command->data;
 	if (command && command->redirects)
-		flag = exec_redirect_heredoc(&command->redirects);
+		flag |= exec_redirect_heredoc(&command->redirects);
+	if (flag == ERROR_FLAG)
+		return (ERROR_FLAG);
+	if (pipe_line && pipe_line->pipe_line)
+		flag |= exec_heredoc(&pipe_line->pipe_line);
 	return (flag);
 }

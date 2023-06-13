@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:45:28 by datran            #+#    #+#             */
-/*   Updated: 2023/06/05 16:45:57 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:21:41 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	syntax_io_redirect(t_io_redirect **io_redirect)
 {
 	char	*redirect_op;
 
-	*io_redirect = sh_calloc(1, sizeof(t_io_redirect));
+	*io_redirect = ft_calloc(1, sizeof(t_io_redirect));
 	redirect_op = match(T_REDIRECT);
 	if (!ft_strncmp(redirect_op, "<", 2))
 		(*io_redirect)->redirect_op = R_IN;

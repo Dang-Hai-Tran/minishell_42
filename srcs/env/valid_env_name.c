@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   valid_env_name.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 11:29:08 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:12:28 by datran           ###   ########.fr       */
+/*   Created: 2023/06/09 17:05:33 by datran            #+#    #+#             */
+/*   Updated: 2023/06/09 17:05:48 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+int	valid_env_name(char *identifier)
+{
+	char	*ptr;
 
-int				is_builtin(char *exec_path);
-int				check_option(char *argv);
-int				ft_echo(char **argv);
-int				ft_cd(char **argv);
-int				ft_pwd(char **argv);
-int				ft_env(char **argv);
-int				ft_exit(char **argv);
-int				ft_export(char **argv);
-int				ft_unset(char **argv);
-unsigned char	check_exit_arg(char *arg);
-
-#endif
+	ptr = identifier;
+	if (((*identifier < 'a' || *identifier > 'z') && (*identifier < 'A'
+				|| *identifier > 'Z')) && *identifier != '_')
+		return (EXIT_FAILURE);
+	while (*ptr && *ptr != '=')
+	{
+		if (((*ptr < 'a' || *ptr > 'z') && (*ptr < 'A' || *ptr > 'Z'))
+			&& (*ptr != '_') && ((*ptr < '0' || *ptr > '9')))
+			return (EXIT_FAILURE);
+		ptr++;
+	}
+	return (EXIT_SUCCESS);
+}

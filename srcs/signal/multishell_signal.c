@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_calloc.c                                        :+:      :+:    :+:   */
+/*   multishell_signal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 16:35:55 by datran            #+#    #+#             */
-/*   Updated: 2023/06/05 00:12:21 by datran           ###   ########.fr       */
+/*   Created: 2023/06/09 17:48:07 by datran            #+#    #+#             */
+/*   Updated: 2023/06/09 17:48:22 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
-# include "minishell.h"
-
-void	*sh_calloc(size_t count, size_t size)
+static void	handle_sigint_multishell(int signum)
 {
-	size_t	i;
-	void	*res;
+	if (signum != SIGINT)
+		return ;
+}
 
-	res = (void *)malloc(size * count);
-	if (!(res))
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (i < size * count)
-	{
-		*((char *)res + i) = '\0';
-		i++;
-	}
-	return (res);
+/* do nothing */
+static void	handle_sigquit_multishell(int signum)
+{
+	if (signum != SIGQUIT)
+		return ;
+}
+
+void	multishell_signal(void)
+{
+	signal(SIGINT, handle_sigint_multishell);
+	signal(SIGQUIT, handle_sigquit_multishell);
 }

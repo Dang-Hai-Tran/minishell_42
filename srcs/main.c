@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 00:41:24 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/13 08:46:08 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,40 +50,6 @@ static void	init_minishell(int argc, char **argv, char **envp, int std_fd[3])
 		add_env(get_env_name(*envp), get_env_value(*envp));
 		envp++;
 	}
-	oldpwd = get_env("OLDPWD");
-	if (oldpwd)
-	{
-		if (oldpwd->value)
-			free(oldpwd->value);
-		oldpwd->value = NULL;
-	}
-}
-
-void	print_ast(t_ast *ast)
-{
-	t_ast *tmp;
-	tmp = ast;
-	if (tmp == NULL)
-		return ;
-	if (tmp->type == AST_PIPELINE)
-	{
-		printf("Pipe->\n");
-		t_pipe_line *tmp_pipe_line = tmp->data;
-		print_ast(tmp_pipe_line->command);
-	}
-	else if (tmp->type == AST_COMMAND)
-	{
-		printf("Command->\n");
-		t_command *tmp_command = tmp->data;
-		print_ast(tmp_command->redirects);
-		print_ast(tmp_command->pipe_line);
-	}
-	else if (tmp->type == AST_REDIRECTS)
-	{
-		printf("Redirect->\n");
-		t_redirects *tmp_redirects = tmp->data;
-		print_ast(tmp_redirects->redirects);
-	}
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -103,11 +69,10 @@ int	main(int argc, char **argv, char **envp)
 			add_history(command_line);
 			init_manager(command_line);
 			ast = syntax_analyzer();
-			print_ast(ast);
-			// if (ast && g_manager.exit_code == EXIT_SUCCESS)
-			// 	exec_command_line(&ast);
-			// else if (fetch_token(GET).value)
-			// 	free(fetch_token(GET).value);
+			if (ast && g_manager.exit_code == EXIT_SUCCESS)
+				exec_command_line(&ast);
+			else if (fetch_token(GET).value)
+				free(fetch_token(GET).value);
 			reset_minishell(ast, std_fd);
 		}
 		free(command_line);

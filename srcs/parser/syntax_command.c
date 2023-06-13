@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:26:07 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 02:51:38 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/11 21:08:12 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 */
 static void	init_syntax_command(t_ast **ast_command)
 {
-	*ast_command = sh_calloc(1, sizeof(t_ast));
+	*ast_command = ft_calloc(1, sizeof(t_ast));
 	(*ast_command)->type = AST_COMMAND;
-	(*ast_command)->data = sh_calloc(1, sizeof(t_command));
+	(*ast_command)->data = ft_calloc(1, sizeof(t_command));
 }
 
 /**
@@ -38,18 +38,13 @@ int	syntax_command(t_ast **ast_command)
 {
 	t_command	*command;
 	t_ast		**ast_redirects;
-	t_ast		**ast_pipe_line;
 	t_token		token;
-
+	
 	token = fetch_token(GET);
-	printf("%s\n", token.value);
-	if (!(token.type == T_WORD || token.type == T_REDIRECT))
-		return (throw_error_syntax(token));
 	init_syntax_command(ast_command);
 	command = (*ast_command)->data;
 	ast_redirects = &command->redirects;
-	ast_pipe_line = &command->pipe_line;
-	while (token.type == T_WORD || token.type == T_REDIRECT || token.type == T_PIPE)
+	while (token.type == T_WORD || token.type == T_REDIRECT)
 	{
 		if (token.type == T_WORD)
 		{
@@ -61,14 +56,7 @@ int	syntax_command(t_ast **ast_command)
 			if (syntax_redirects(ast_redirects))
 				return (ERROR_FLAG);
 		}
-		else if (token.type == T_PIPE)
-		{
-			if (syntax_pipe_line(ast_pipe_line))
-				return (ERROR_FLAG);
-		}
 		token = fetch_token(GET);
-		if (token.value)
-			printf("%s\n", token.value);
 	}
 	return (SUCCESS_FLAG);
 }

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 11:29:08 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:12:28 by datran           ###   ########.fr       */
+/*   Created: 2023/06/09 16:56:07 by datran            #+#    #+#             */
+/*   Updated: 2023/06/09 16:56:24 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+int	ft_pwd(char **argv)
+{
+	char	*cwd;
 
-int				is_builtin(char *exec_path);
-int				check_option(char *argv);
-int				ft_echo(char **argv);
-int				ft_cd(char **argv);
-int				ft_pwd(char **argv);
-int				ft_env(char **argv);
-int				ft_exit(char **argv);
-int				ft_export(char **argv);
-int				ft_unset(char **argv);
-unsigned char	check_exit_arg(char *arg);
-
-#endif
+	if (*(argv + 1) && check_option(*(argv + 1)) == EXIT_FAILURE)
+		return (throw_error_usage("pwd", *(argv + 1)));
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+		return (throw_error("pwd", NULL, strerror(errno)));
+	ft_putstr_fd(cwd, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+	free(cwd);
+	return (EXIT_SUCCESS);
+}

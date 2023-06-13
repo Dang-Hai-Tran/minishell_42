@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:17:38 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 00:32:35 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/11 20:32:16 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ typedef struct s_ast
 	void						*data;
 }	t_ast;
 
-/* <pipe_line>   -> <command> { '|' <pipe_line> } */
+/* <pipe_line>   -> <command> */
 typedef struct s_pipe_line
 {
 	t_ast						*command;
+	t_ast						*pipe_line;
 }	t_pipe_line;
 
-/* <command> -> [ <simple_command> ][ <redirects> ][pipe_line] */
+/* <command> -> [ <simple_command> ][ <redirects> ]*/
 typedef struct s_command
 {
 	struct s_simple_command		*simple_command;

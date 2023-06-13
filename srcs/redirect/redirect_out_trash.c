@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   redirect_out_trash.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 11:29:08 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:12:28 by datran           ###   ########.fr       */
+/*   Created: 2023/06/09 16:42:02 by datran            #+#    #+#             */
+/*   Updated: 2023/06/12 23:17:51 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+int	redirect_out_trash(void)
+{
+	int	fd;
 
-int				is_builtin(char *exec_path);
-int				check_option(char *argv);
-int				ft_echo(char **argv);
-int				ft_cd(char **argv);
-int				ft_pwd(char **argv);
-int				ft_env(char **argv);
-int				ft_exit(char **argv);
-int				ft_export(char **argv);
-int				ft_unset(char **argv);
-unsigned char	check_exit_arg(char *arg);
-
-#endif
+	fd = open(TRASH_PATH, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd < 0)
+		return (throw_error(TRASH_PATH, NULL, strerror(errno)));
+	if (dup2(fd, STDERR_FILENO) == -1)
+		return (throw_error("dup2", NULL, strerror(errno)));
+	if (close(fd) == -1)
+		return (throw_error("close", NULL, strerror(errno)));
+	return (SUCCESS_FLAG);
+}

@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   free_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 11:29:08 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:12:28 by datran           ###   ########.fr       */
+/*   Created: 2023/06/09 17:07:58 by datran            #+#    #+#             */
+/*   Updated: 2023/06/09 17:08:18 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+void	free_env(void)
+{
+	t_env	*tmp;
 
-int				is_builtin(char *exec_path);
-int				check_option(char *argv);
-int				ft_echo(char **argv);
-int				ft_cd(char **argv);
-int				ft_pwd(char **argv);
-int				ft_env(char **argv);
-int				ft_exit(char **argv);
-int				ft_export(char **argv);
-int				ft_unset(char **argv);
-unsigned char	check_exit_arg(char *arg);
-
-#endif
+	while (g_manager.env)
+	{
+		tmp = g_manager.env;
+		g_manager.env = g_manager.env->next;
+		if (tmp->name)
+			free(tmp->name);
+		if (tmp->value)
+			free(tmp->value);
+		free(tmp);
+	}
+}

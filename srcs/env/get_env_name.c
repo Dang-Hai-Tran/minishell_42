@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:33:53 by datran            #+#    #+#             */
-/*   Updated: 2023/06/05 00:12:21 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:59:40 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_env_name(char *argv)
 		len = ft_strlen(argv) + 1;
 	else
 		len = ft_strchr(argv, '=') - argv + 1;
-	name = (char *)sh_calloc(len, sizeof(char));
+	name = (char *)ft_calloc(len, sizeof(char));
 	if (!name)
 		exit(EXIT_FAILURE);
 	ft_strlcpy(name, argv, len);

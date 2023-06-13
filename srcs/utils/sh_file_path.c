@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:36:00 by datran            #+#    #+#             */
-/*   Updated: 2023/06/05 15:33:16 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:59:00 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	**split_path(void)
 		path = ft_split(get_env(PATHENV)->value, ':');
 	else
 	{
-		path = (char **)sh_calloc(2, sizeof(char *));
+		path = (char **)ft_calloc(2, sizeof(char *));
 		*path = ft_strdup(".");
 	}
 	return (path);

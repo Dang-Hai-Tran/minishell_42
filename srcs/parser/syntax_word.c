@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/06/05 15:43:13 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:59:19 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*extract_env_name(char *token)
 	int		nc;
 
 	nc = 0;
-	name = sh_calloc(1, sizeof(char));
+	name = ft_calloc(1, sizeof(char));
 	while (ft_isalnum(*token))
 	{
 		name = sh_realloc(name, nc + 2);

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:06:16 by datran            #+#    #+#             */
-/*   Updated: 2023/06/07 23:55:44 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/12 23:20:09 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	redirect_heredoc(char *end_text, char *heredoc_path)
 	char	*line;
 
 	heredoc_signal();
-	fd = open(heredoc_path, O_WRONLY | O_CREAT | O_EXCL | O_TRUNC, 0644);
+	fd = open(heredoc_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		throw_error_exit("open", strerror(errno), EXIT_FAILURE);
 	while (!g_manager.exit_code)

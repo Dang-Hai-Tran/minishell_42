@@ -6,12 +6,17 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:51 by datran            #+#    #+#             */
-/*   Updated: 2023/06/07 12:13:15 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:55:06 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Update the value of the PWD environment variable with the current working directory of the shell.
+ * @param pwd A pointer to an environment variable structure representing the PWD environment variable.
+ * @return An integer value that represents the exit status of the function. If the function is successful, it returns EXIT_SUCCESS. Otherwise, it returns a non-zero value.
+*/
 static int	change_pwd(t_env *pwd)
 {
 	char	*tmp;
@@ -27,13 +32,16 @@ static int	change_pwd(t_env *pwd)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * Change the current working directory of the shell to the user's home directory.
+ * @return An integer value that represents the exit status of the function. If the function is successful, it returns EXIT_SUCCESS. Otherwise, it returns a non-zero value.
+*/
 static int	cd_home(void)
 {
 	t_env	*ptr;
 	char	*home;
 	int		exit_code;
 
-	exit_code = change_pwd(get_env("OLDPWD"));
 	ptr = get_env("HOME");
 	if (!ptr)
 		return (throw_error("cd", NULL, strerror(errno)));
@@ -45,11 +53,15 @@ static int	cd_home(void)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * Change the current working directory of the shell. The function takes an array of strings as an argument that contains the command and its arguments.
+ * @param argv A pointer to a null-terminated array of strings that contains the command and its arguments
+ * @return An integer value that represents the exit status of the function. If the function is successful, it returns 0. Otherwise, it returns a non-zero value.
+*/
 int	ft_cd(char **argv)
 {
 	int	exit_code;
 
-	exit_code = change_pwd(get_env("OLDPWD"));
 	if (!*(argv + 1))
 		return (cd_home());
 	if (check_option(*(argv + 1)) == EXIT_FAILURE)

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:47:37 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:31:27 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:34:54 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ static int	error_execve(char *argv)
 	return (exit_code);
 }
 
+/**
+ * Executes the given command. It checks if the command is present in the system path or not, and then executes it using the execve() system call.
+ * @param argv A pointer to a char array that contains the command and its arguments
+ * @return An integer value indicating the success or failure of the execution
+*/
 int	exec_general(char **argv)
 {
 	char	**envp;
@@ -85,5 +90,6 @@ int	exec_general(char **argv)
 	if (!argv[0][0])
 		throw_error_exit(argv[0], "command not found", EXIT_ENOENT);
 	execve(filename, argv, envp);
+	free(filename);
 	return (error_execve(*argv));
 }

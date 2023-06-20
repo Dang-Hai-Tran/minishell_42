@@ -6,12 +6,15 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:42:02 by datran            #+#    #+#             */
-/*   Updated: 2023/06/12 23:17:51 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 12:18:10 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/**
+ * Redirect output from the standard error stream to a trash file. The function creates a new file or truncates an existing one, writes all output to the file and then closes it. The function returns an integer flag indicating whether the operation was successful or not.
+ * @return An integer flag indicating whether the operation was successful or not. If the function completes successfully, it returns SUCCESS_FLAG, which is defined as 0. If an error occurs during the operation, the function prints an error message using the throw_error function and returns -1
+*/
 int	redirect_out_trash(void)
 {
 	int	fd;

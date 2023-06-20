@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 17:05:34 by datran            #+#    #+#             */
-/*   Updated: 2023/06/11 21:02:50 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:34:21 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_manager
 	int					rc;
 	int					quote_error;
 	int					exit_code;
+	t_ast				*ast;
 }	t_manager;
 
 extern t_manager		g_manager;

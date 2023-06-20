@@ -6,12 +6,15 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:15:57 by datran            #+#    #+#             */
-/*   Updated: 2023/06/12 23:08:13 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 13:59:41 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/**
+ * Create a path for the here-document file. The function generates a unique path by appending a counter at the end of the temporary directory path.
+ * @return A pointer to a string that contains the path for the here-document file
+*/
 char	*create_heredoc_path(void)
 {
 	static unsigned int	cnt;
@@ -31,6 +34,12 @@ char	*create_heredoc_path(void)
 	return (heredoc_path);
 }
 
+/**
+ * Execute the redirection of a here-document. The function checks if an input/output redirection node in the abstract syntax tree contains a here-document and creates a file to store the here-document contents.
+ * @param ast A double pointer to the current node in the abstract syntax tree
+ * @return An integer value that represents the success or failure of the redirection operation
+
+*/
 static int	exec_redirect_heredoc(t_ast **ast)
 {
 	int				flag;
@@ -59,6 +68,11 @@ static int	exec_redirect_heredoc(t_ast **ast)
 	return (flag);
 }
 
+/**
+ * Execute the heredoc redirection for a given abstract syntax tree (AST).
+ * @param ast A double pointer to the AST that needs to be executed
+ * @return A flag which indicates the success or failure of the heredoc redirection execution. If the execution is successful, the flag will have a value of SUCCESS_FLAG. If there is any error during the execution, the flag will have a value of ERROR_FLAG.
+*/
 int	exec_heredoc(t_ast **ast)
 {
 	int				flag;

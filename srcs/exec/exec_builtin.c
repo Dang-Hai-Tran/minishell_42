@@ -6,12 +6,17 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:46:55 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 16:47:10 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 12:27:25 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Execute built-in commands of a shell.
+ * @param argv An array of strings containing the command and its arguments
+ * @return An integer value representing the exit status of the command. If the command is executed successfully, the function returns EXIT_SUCCESS. If there is an error during execution, the function returns EXIT_FAILURE
+*/
 int	exec_builtin(char **argv)
 {
 	if (!ft_strncmp(*argv, "echo", 5))

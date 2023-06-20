@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/06/13 08:46:08 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:37:08 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static void	init_manager(char *command_line)
 */
 static void	init_minishell(int argc, char **argv, char **envp, int std_fd[3])
 {
-	t_env	*oldpwd;
-
 	if (argc > 1)
 		throw_error_exit(argv[1], strerror(ENOENT), EXIT_ENOENT);
 	backup_std_fd(std_fd);
@@ -56,7 +54,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	int				std_fd[3];
 	char			*command_line;
-	t_ast			*ast;
 
 	init_minishell(argc, argv, envp, std_fd);
 	while (true)
@@ -68,14 +65,16 @@ int	main(int argc, char **argv, char **envp)
 		{
 			add_history(command_line);
 			init_manager(command_line);
-			ast = syntax_analyzer();
-			if (ast && g_manager.exit_code == EXIT_SUCCESS)
-				exec_command_line(&ast);
+			g_manager.ast = syntax_analyzer();
+			if (g_manager.ast && g_manager.exit_code == EXIT_SUCCESS)
+				exec_command_line(&g_manager.ast);
 			else if (fetch_token(GET).value)
 				free(fetch_token(GET).value);
-			reset_minishell(ast, std_fd);
+			reset_minishell(g_manager.ast, std_fd);
 		}
 		free(command_line);
 	}
+	free_env();
+	free_ast(g_manager.ast);
 	return (EXIT_SUCCESS);
 }

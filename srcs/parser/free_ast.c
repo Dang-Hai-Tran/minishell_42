@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:10:28 by datran            #+#    #+#             */
-/*   Updated: 2023/06/12 22:57:02 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 12:24:54 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	free_command(t_command *command)
 		free_ast(command->redirects);
 	free(command);
 }
-
+/**
+ * Free the memory allocated for a pipeline data structure created by a shell.
+ * @param pipe_line A pointer to the pipeline data structure that needs to be freed
+*/
 void	free_pipe_line(t_pipe_line *pipe_line)
 {
 	if (pipe_line->command)
@@ -39,6 +42,10 @@ void	free_pipe_line(t_pipe_line *pipe_line)
 	free(pipe_line);
 }
 
+/**
+ * Free the memory allocated for an abstract syntax tree (AST) created by a shell.
+ * @param ast A pointer to the root node of the abstract syntax tree that needs to be freed.
+*/
 void	free_ast(t_ast *ast)
 {
 	if (ast == AST_NULL)

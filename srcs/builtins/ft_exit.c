@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:30:00 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:10:08 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:38:00 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	ft_exit(char **argv)
 			return (throw_error("exit", NULL, "too many arguments"));
 	}
 	free_env();
+	free_ast(g_manager.ast);
 	exit(exit_code);
 	return (EXIT_FAILURE);
 }

@@ -1,3 +1,7 @@
 - Write documentations for all functions
-- Fix memory leak in get_env_name and get_env_value
+- Fix memory leak  ok
 - Fix expansion in heredoc
+- echo $$
+- cd plusieur arguments
+- echo +100
+- 

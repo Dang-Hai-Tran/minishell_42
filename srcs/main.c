@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 16:37:08 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/20 18:20:24 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	main(int argc, char **argv, char **envp)
 			g_manager.ast = syntax_analyzer();
 			if (g_manager.ast && g_manager.exit_code == EXIT_SUCCESS)
 				exec_command_line(&g_manager.ast);
-			else if (fetch_token(GET).value)
-				free(fetch_token(GET).value);
 			reset_minishell(g_manager.ast, std_fd);
 		}
 		free(command_line);

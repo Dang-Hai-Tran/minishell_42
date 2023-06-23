@@ -6,17 +6,19 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:24:19 by datran            #+#    #+#             */
-/*   Updated: 2023/06/19 09:25:33 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:12:12 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 /**
- * Reallocates memory for a null-terminated array of strings (i.e., an array of pointers to characters).
+ * Reallocates memory for a null-terminated array of strings (i.e., an array of 
+ * pointers to characters).
  * @param buf A pointer to the current array of strings.
- * @parma before_size The current size of the array, in terms of the number of elements.
- * @param after_size The desired new size of the array, in terms of the number of elements.
- * 
+ * @parma before_size The current size of the array, in terms of the number of 
+ * elements.
+ * @param after_size The desired new size of the array, in terms of the number 
+ * of elements.
 */
 void	*sh_ptrrealloc(void *buf, int before_size, int after_size)
 {

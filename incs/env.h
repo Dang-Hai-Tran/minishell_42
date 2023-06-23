@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:12:31 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:08:48 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 11:50:59 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char				*get_env_value(char *argv);
 void				add_env(char *name, char *value);
 int					valid_env_name(char *identifier);
 void				remove_env(t_env *target);
-void				free_env(void);
+void				free_env(t_env *env);
 
 #endif

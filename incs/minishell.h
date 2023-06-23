@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 17:05:34 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 16:34:21 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 09:29:12 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,16 @@ typedef struct s_env	t_env;
 typedef struct s_manager
 {
 	t_env				*env;
+	t_ast				*ast;
+	t_token				token;
 	char				*command_line;
 	int					rc;
 	int					quote_error;
 	int					exit_code;
-	t_ast				*ast;
 }	t_manager;
 
 extern t_manager		g_manager;
+
+void free_manager();
 
 #endif

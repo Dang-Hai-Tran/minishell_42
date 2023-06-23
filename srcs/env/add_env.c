@@ -6,16 +6,19 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:47:39 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 14:59:40 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:01:31 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Add a new environment variable to the linked list data structure that stores the environment variables for the shell program.
- * @param name A string representing the name of the environment variable to be added.
- * @param value A string representing the value of the environment variable to be added.
+ * Add a new environment variable to the linked list data structure that stores 
+ * the environment variables for the shell program.
+ * @param name A string representing the name of the environment variable to be 
+ * added.
+ * @param value A string representing the value of the environment variable to 
+ * be added.
 */
 void	add_env(char *name, char *value)
 {

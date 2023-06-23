@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:04 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 14:59:06 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:48:38 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,15 @@ t_token	get_token(void)
  * @param type An enum value of type t_fetch_type determines whether the 
  * function should return the current token or fetch the next token from the 
  * input stream.
- * @return A t_token struct that represents the current token in the input stream if the type parameter is GET. If the type parameter is UPDATE, the function returns the previous token that was fetched from the input stream.
+ * @return A t_token struct that represents the current token in the input 
+ * stream if the type parameter is GET. If the type parameter is UPDATE, the 
+ * function update the token stream with the next token and return this token.
 */
 t_token	fetch_token(t_fetch_type type)
 {
-	static t_token	token;
-	t_token			prev_token;
-
-	prev_token = token;
 	if (type == GET)
-		return (token);
+		return (g_manager.token);
 	else if (type == UPDATE)
-		token = get_token();
-	return (prev_token);
+		g_manager.token = get_token();
+	return (g_manager.token);
 }

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:26:07 by datran            #+#    #+#             */
-/*   Updated: 2023/06/11 21:08:12 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:48:02 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	syntax_command(t_ast **ast_command)
 	t_command	*command;
 	t_ast		**ast_redirects;
 	t_token		token;
-	
+
 	token = fetch_token(GET);
 	init_syntax_command(ast_command);
 	command = (*ast_command)->data;

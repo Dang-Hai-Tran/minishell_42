@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 14:59:19 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:45:29 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*extract_env_name(char *token)
 
 	nc = 0;
 	name = ft_calloc(1, sizeof(char));
-	while (ft_isalnum(*token))
+	while (ft_isalnum(*token) || (*token) == '_')
 	{
 		name = sh_realloc(name, nc + 2);
 		name[nc] = *token;
@@ -50,6 +50,8 @@ char	*replace_env_sc(char *token, char *env_ptr)
 
 	if (*(env_ptr + 1) == '?')
 		sc = ft_itoa(g_manager.exit_code);
+	else if (*(env_ptr + 1) == '$')
+		sc = ft_itoa((int)getpid());
 	else
 		return (ft_strdup(token));
 	prev = ft_substr(token, 0, env_ptr - token);
@@ -102,7 +104,8 @@ char	*replace_env_name(char *token, char *env_ptr)
 }
 
 /**
- * Takes a string as input and replaces any environment variables in the string with their values.
+ * Takes a string as input and replaces any environment variables in the string 
+ * with their values.
  * @param token A pointer to a string representing the token to be processed.
  * @return A pointer to a string representing the processed token.
 */
@@ -113,11 +116,11 @@ char	*replace_env(char *token)
 
 	env_ptr = ft_strchr(token, '$');
 	while (env_ptr && *(env_ptr + 1) && !(*(env_ptr + 1) == '?'
-			|| ft_isalpha(*(env_ptr + 1))))
+			|| ft_isalpha(*(env_ptr + 1)) || *(env_ptr + 1) == '$'))
 		env_ptr = ft_strchr(env_ptr + 1, '$');
 	if (!env_ptr)
 		return (ft_strdup(token));
-	if (*(env_ptr + 1) == '?')
+	if (*(env_ptr + 1) == '?' || *(env_ptr + 1) == '$')
 		word = replace_env_sc(token, env_ptr);
 	else if (ft_isalpha(*(env_ptr + 1)))
 		word = replace_env_name(token, env_ptr);

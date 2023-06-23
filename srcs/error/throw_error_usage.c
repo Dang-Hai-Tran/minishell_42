@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:13:30 by datran            #+#    #+#             */
-/*   Updated: 2023/06/08 00:14:02 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/21 18:19:30 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	throw_error_usage(char *cmd, char *argv)
 	ft_putstr_fd(": usage: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
+	g_manager.exit_code = 1;
 	return (EXIT_FAILURE);
 }

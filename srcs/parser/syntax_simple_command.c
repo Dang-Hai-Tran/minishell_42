@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:58:21 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 15:50:50 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:44:47 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static char	**init_simple_command(t_simple_command **simple_command, int *ac)
 	}
 	return (argv);
 }
+
 int	syntax_simple_command(t_simple_command **simple_command)
 {
 	int		ac;

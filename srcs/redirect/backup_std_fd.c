@@ -6,14 +6,19 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 12:25:03 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 12:02:59 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:49:24 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 /**
- * Backup the standard input, output, and error file descriptors of a process. It takes in an array of integers that represent the standard file descriptors for reading (STDIN_FILENO), writing (STDOUT_FILENO), and error reporting (STDERR_FILENO). The function returns a flag indicating whether the operation was successful or not.
- * @param std_fd[3] An integer array of size 3 that contains the standard file descriptors for reading, writing, and error reporting.
+ * Backup the standard input, output, and error file descriptors of a process. 
+ * It takes in an array of integers that represent the standard file 
+ * descriptors for reading (STDIN_FILENO), writing (STDOUT_FILENO), and error 
+ * reporting (STDERR_FILENO). The function returns a flag indicating whether 
+ * the operation was successful or not.
+ * @param std_fd[3] An integer array of size 3 that contains the standard file 
+ * descriptors for reading, writing, and error reporting.
 */
 int	backup_std_fd(int std_fd[3])
 {

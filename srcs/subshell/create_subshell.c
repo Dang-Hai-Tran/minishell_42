@@ -6,14 +6,15 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:06:41 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 11:30:04 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:10:04 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 /**
  * Closes both ends of the pipe.
- * @param pipe_fd[2] An integer array containing the file descriptors for the read and write ends of the pipe.
+ * @param pipe_fd[2] An integer array containing the file descriptors for the 
+ * read and write ends of the pipe.
 */
 void	close_pipe_fd(int pipe_fd[2])
 {
@@ -22,10 +23,15 @@ void	close_pipe_fd(int pipe_fd[2])
 	if (close(pipe_fd[1]) == -1)
 		throw_error_exit("close", strerror(errno), EXIT_FAILURE);
 }
+
 /**
- * Connects the read or write end of a pipe to the appropriate file descriptor for input or output of a command.
- * @param pipe_fd[2] An integer array containing the file descriptors for the read and write ends of the pipe.
- * @param pipe_type An integer value indicating whether to connect the read or write end of the pipe. The value READ is used to connect the read end, while the value WRITE is used to connect the write end.
+ * Connects the read or write end of a pipe to the appropriate file descriptor 
+ * for input or output of a command.
+ * @param pipe_fd[2] An integer array containing the file descriptors for the 
+ * read and write ends of the pipe.
+ * @param pipe_type An integer value indicating whether to connect the read or 
+ * write end of the pipe. The value READ is used to connect the read end, while 
+ * the value WRITE is used to connect the write end.
 */
 void	connect_pipe(int pipe_fd[2], int pipe_type)
 {
@@ -35,8 +41,13 @@ void	connect_pipe(int pipe_fd[2], int pipe_type)
 }
 
 /**
- * Creates a subshell process by calling the fork() system call. It also sets up a pipe between the parent and child processes using the pipe() system call. The function then connects the appropriate end of the pipe to the input or output of the command being executed depending on whether it is the first or last command in the pipeline.
- * @param pipe_line A pointer to a structure containing information about the pipeline of commands to be executed.
+ * Creates a subshell process by calling the fork() system call. It also sets 
+ * up a pipe between the parent and child processes using the pipe() system 
+ * call. The function then connects the appropriate end of the pipe to the 
+ * input or output of the command being executed depending on whether it is the 
+ * first or last command in the pipeline.
+ * @param pipe_line A pointer to a structure containing information about the 
+ * pipeline of commands to be executed.
  * @return The PID (process ID) of the newly created child process.
 */
 pid_t	create_subshell(t_pipe_line *pipe_line)

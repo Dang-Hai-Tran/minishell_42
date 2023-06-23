@@ -6,20 +6,20 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:07:58 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:08:18 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 11:50:00 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_env(void)
+void	free_env(t_env *env)
 {
 	t_env	*tmp;
 
-	while (g_manager.env)
+	while (env)
 	{
-		tmp = g_manager.env;
-		g_manager.env = g_manager.env->next;
+		tmp = env;
+		env = env->next;
 		if (tmp->name)
 			free(tmp->name);
 		if (tmp->value)

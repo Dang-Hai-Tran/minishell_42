@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:03:34 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 13:53:44 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:47:42 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*match(t_type type)
 {
 	t_token	token;
 
-	token = fetch_token(UPDATE);
+	token = fetch_token(GET);
+	fetch_token(UPDATE);
 	if (token.type == type)
 		return (token.value);
 	else
@@ -34,8 +35,10 @@ char	*match(t_type type)
 }
 
 /**
- * Fetches the first token from the input and then calls the syntax_pipe_line function to parse the rest of the input into an abstract syntax tree (AST).
- * @return A pointer to the root node of the AST that represents the parsed input, or NULL if there was an error during parsing.
+ * Fetches the first token from the input and then calls the syntax_pipe_line 
+ * function to parse the rest of the input into an abstract syntax tree (AST).
+ * @return A pointer to the root node of the AST that represents the parsed 
+ * input, or NULL if there was an error during parsing.
 */
 t_ast	*syntax_analyzer(void)
 {
@@ -47,8 +50,8 @@ t_ast	*syntax_analyzer(void)
 	token = fetch_token(GET);
 	if (token.type == T_NULL)
 		return (ast);
-	if (syntax_pipe_line(&ast) == SUCCESS_FLAG
-		&& g_manager.quote_error == SUCCESS_FLAG)
+	if (syntax_pipe_line(&ast) == SUCCESS_FLAG \
+	&& g_manager.quote_error == SUCCESS_FLAG)
 		g_manager.exit_code = EXIT_SUCCESS;
 	return (ast);
 }

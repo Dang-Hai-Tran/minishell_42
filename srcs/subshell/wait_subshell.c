@@ -6,13 +6,15 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:19:19 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 11:43:00 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:09:41 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Sets the exit code of the shell process based on the status information of the terminated child process.
+ * Sets the exit code of the shell process based on the status information of 
+ * the terminated child process.
  * @param status The status information of the terminated child process.
 */
 void	set_exit_code(int status)
@@ -31,7 +33,8 @@ void	set_exit_code(int status)
 
 /**
  * Waits for all child processes to terminate.
- * @param last_pid The process ID of the last child process spawned by the shell.
+ * @param last_pid The process ID of the last child process spawned by the 
+ * shell.
 */
 void	wait_subshell(pid_t last_pid)
 {

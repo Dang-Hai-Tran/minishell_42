@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:08 by datran            #+#    #+#             */
-/*   Updated: 2023/06/09 17:12:28 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/21 12:36:28 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int				ft_env(char **argv);
 int				ft_exit(char **argv);
 int				ft_export(char **argv);
 int				ft_unset(char **argv);
-unsigned char	check_exit_arg(char *arg);
+int				check_exit_arg(char *arg);
 
 #endif

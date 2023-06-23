@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:26:35 by datran            #+#    #+#             */
-/*   Updated: 2023/06/06 14:50:12 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 09:24:39 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ char	*get_combined_heredoc_word(void)
 	char	*combined_word;
 	char	*word;
 	char	*tmp;
+	char	*token;
 	char	next;
 
 	next = g_manager.command_line[g_manager.rc];
-	if (fetch_token(GET).type != T_WORD)
+	token = match(T_WORD);
+	if (!token)
 		return (NULL);
-	combined_word = syntax_heredoc_word(match(T_WORD));
+	combined_word = syntax_heredoc_word(token);
 	while (!ft_isspace(next) && fetch_token(GET).type == T_WORD)
 	{
 		next = g_manager.command_line[g_manager.rc];

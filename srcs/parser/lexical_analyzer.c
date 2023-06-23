@@ -6,13 +6,15 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:02:22 by datran            #+#    #+#             */
-/*   Updated: 2023/06/05 10:00:20 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:46:35 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Retrieves a word from the input stream and updates a t_token struct with information about the word.
+ * Retrieves a word from the input stream and updates a t_token struct with 
+ * information about the word.
  * @param token A pointer to a t_token struct that will be updated with 
  * information about the current token in the input stream.
  * @param end A pointer to a pointer that points to the current position in the 
@@ -22,9 +24,10 @@
 static void	get_word(t_token *token, char **end)
 {
 	token->type = T_WORD;
-	while (**end && (!ft_isspace(**end)) && !ft_strchr("<>|\"'", **end))
+	while (**end && (!ft_isspace(**end)) && !ft_strchr("<>|\"\'", **end))
 		(*end)++;
 }
+
 /**
  * Retrieves a quoted string from the input stream and updates a t_token struct 
  * with information about the string.
@@ -47,6 +50,7 @@ static void	get_quote(t_token *token, char **end)
 	else
 		(*end)++;
 }
+
 /**
  * Retrieves a pipe character from the input stream and updates a t_token 
  * struct with information about the character.
@@ -61,11 +65,15 @@ static void	get_pipe(t_token *token, char **end)
 	token->type = T_PIPE;
 	(*end)++;
 }
+
 /**
  * Retrieves a redirection operator from the input stream and updates a t_token 
  * struct with information about the operator.
- * @param token A pointer to a t_token struct that will be updated with information about the current token in the input stream.
- * @param end A pointer to a pointer that points to the current position in the input stream. The end pointer will be updated to point to the character immediately after the redirection operator.
+ * @param token A pointer to a t_token struct that will be updated with 
+ * information about the current token in the input stream.
+ * @param end A pointer to a pointer that points to the current position in the 
+ * input stream. The end pointer will be updated to point to the character 
+ * immediately after the redirection operator.
 */
 static void	get_redirect_op(t_token *token, char **end)
 {

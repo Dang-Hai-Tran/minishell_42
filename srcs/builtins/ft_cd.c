@@ -6,16 +6,20 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:51 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 14:55:06 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/23 11:59:32 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Update the value of the PWD environment variable with the current working directory of the shell.
- * @param pwd A pointer to an environment variable structure representing the PWD environment variable.
- * @return An integer value that represents the exit status of the function. If the function is successful, it returns EXIT_SUCCESS. Otherwise, it returns a non-zero value.
+ * Update the value of the PWD environment variable with the current working 
+ * directory of the shell.
+ * @param pwd A pointer to an environment variable structure representing the 
+ * PWD environment variable.
+ * @return An integer value that represents the exit status of the function. If 
+ * the function is successful, it returns EXIT_SUCCESS. Otherwise, it returns a 
+ * non-zero value.
 */
 static int	change_pwd(t_env *pwd)
 {
@@ -33,8 +37,11 @@ static int	change_pwd(t_env *pwd)
 }
 
 /**
- * Change the current working directory of the shell to the user's home directory.
- * @return An integer value that represents the exit status of the function. If the function is successful, it returns EXIT_SUCCESS. Otherwise, it returns a non-zero value.
+ * Change the current working directory of the shell to the user's home 
+ * directory.
+ * @return An integer value that represents the exit status of the function. If 
+ * the function is successful, it returns EXIT_SUCCESS. Otherwise, it returns a 
+ * non-zero value.
 */
 static int	cd_home(void)
 {
@@ -54,14 +61,20 @@ static int	cd_home(void)
 }
 
 /**
- * Change the current working directory of the shell. The function takes an array of strings as an argument that contains the command and its arguments.
- * @param argv A pointer to a null-terminated array of strings that contains the command and its arguments
- * @return An integer value that represents the exit status of the function. If the function is successful, it returns 0. Otherwise, it returns a non-zero value.
+ * Change the current working directory of the shell. The function takes an 
+ * array of strings as an argument that contains the command and its arguments.
+ * @param argv A pointer to a null-terminated array of strings that contains 
+ * the command and its arguments
+ * @return An integer value that represents the exit status of the function. If 
+ * the function is successful, it returns 0. Otherwise, it returns a non-zero 
+ * value.
 */
 int	ft_cd(char **argv)
 {
 	int	exit_code;
 
+	if (*(argv + 2))
+		return (throw_error("cd", NULL, "too many arguments"));
 	if (!*(argv + 1))
 		return (cd_home());
 	if (check_option(*(argv + 1)) == EXIT_FAILURE)

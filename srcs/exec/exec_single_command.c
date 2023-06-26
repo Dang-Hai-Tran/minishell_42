@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:46:40 by datran            #+#    #+#             */
-/*   Updated: 2023/06/21 17:10:13 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 15:25:38 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static int	exec_single_general(t_simple_command *simple_command)
 		exit(g_manager.exit_code);
 	}
 	else
-	{
 		wait_subshell(pid);
-	}
 	return (SUCCESS_FLAG);
 }
 

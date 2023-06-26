@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:39:31 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:12:27 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 18:01:27 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*sh_realloc(void *ptr, size_t size)
 
 	i = 0;
 	src = (char *)ptr;
-	dst = (char *)malloc(size);
+	dst = (char *)ft_calloc(size, sizeof(char));
 	while (src[i])
 	{
 		dst[i] = src[i];

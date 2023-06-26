@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:19:19 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:09:41 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 14:08:10 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_exit_code(int status)
 	{
 		g_manager.exit_code = 128 + WTERMSIG(status);
 		if (g_manager.exit_code == 131)
-			ft_putendl_fd("Quit: 3", STDERR_FILENO);
+			ft_putendl_fd("Quit: ", STDERR_FILENO);
 	}
 	else
 		g_manager.exit_code = EXIT_FAILURE;

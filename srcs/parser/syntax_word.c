@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:45:29 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 17:52:48 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*extract_env_name(char *token)
 	int		nc;
 
 	nc = 0;
-	name = ft_calloc(1, sizeof(char));
+	name = ft_strdup("");
 	while (ft_isalnum(*token) || (*token) == '_')
 	{
 		name = sh_realloc(name, nc + 2);
@@ -55,12 +55,11 @@ char	*replace_env_sc(char *token, char *env_ptr)
 	else
 		return (ft_strdup(token));
 	prev = ft_substr(token, 0, env_ptr - token);
-	env_ptr += ft_strlen(sc);
 	word = ft_strjoin(prev, sc);
 	free(sc);
 	free(prev);
 	prev = word;
-	next = replace_env(env_ptr + 1);
+	next = replace_env(env_ptr + 2);
 	word = ft_strjoin(word, next);
 	free(prev);
 	free(next);

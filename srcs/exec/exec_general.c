@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:47:37 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:18:13 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 11:23:23 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,6 @@ int	exec_general(char **argv)
 	char	*filename;
 
 	envp = sh_get_string_env();
-	while (argv[0][0] == 0)
-	{
-		if (*(argv + 1))
-			argv++;
-		else
-			return (EXIT_SUCCESS);
-	}
 	if (ft_strchr(*argv, '/') == NULL)
 	{
 		if (get_env(PATHENV))

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:06:16 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:49:54 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 16:52:15 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	redirect_heredoc(char *end_text, char *heredoc_path)
 		line = readline("heredoc> ");
 		if (!line || !sh_strcmp(line, end_text))
 			return (end_of_heredoc(line, fd));
-		ft_putendl_fd(line, fd);
+		sh_putline_heredoc(line, fd);
 		free(line);
 	}
 	if (close(fd) == -1)

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:24:19 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:12:12 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 18:03:43 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*sh_ptrrealloc(void *buf, int before_size, int after_size)
 	char	**dst;
 
 	src = (char **)buf;
-	dst = (char **)malloc(sizeof(char *) * after_size);
+	dst = (char **)ft_calloc(after_size, sizeof(char *));
 	idx = 0;
 	while (idx < before_size)
 	{

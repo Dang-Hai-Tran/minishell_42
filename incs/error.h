@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:12:36 by datran            #+#    #+#             */
-/*   Updated: 2023/06/21 17:29:42 by datran           ###   ########.fr       */
+/*   Updated: 2023/06/26 14:18:12 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # define SUCCESS_FLAG 0
 # define EXIT_EACCES 126
 # define EXIT_ENOENT 127
-# define EXIT_MAX 255
-# define EXIT_SYNTAXERR 258
+# define EXIT_SYNTAXERR 2
 
 int	throw_error(char *cmd, char *argv, char *err);
 int	throw_error_env(char *cmd, char *argv);

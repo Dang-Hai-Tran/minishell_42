@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_io_redirect.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:45:28 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 09:12:43 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:25:41 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Parses an IO redirection. It initializes an IO redirect node, matches the redirection operator,
+ * and sets the redirect op field of the node accordingly. If the redirection operator is a heredoc, 
+ * it gets the combined heredoc word, otherwise, it gets the combined word. If any of these steps fail,
+ * it returns an error flag.
+ *
+ * @param io_redirect Pointer to the IO redirect node.
+ *
+ * @return SUCCESS_FLAG if the parsing is successful, ERROR_FLAG otherwise.
+ */
 int	syntax_io_redirect(t_io_redirect **io_redirect)
 {
 	char	*redirect_op;

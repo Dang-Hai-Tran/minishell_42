@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   free_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:10:28 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:45:46 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:16:19 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Frees the memory allocated for a `t_redirects` structure.
+ *
+ * @param redirects Pointer to a `t_redirects` structure to be freed.
+ */
 void	free_redirects(t_redirects *redirects)
 {
 	if (redirects->io_redirect)
@@ -21,6 +26,11 @@ void	free_redirects(t_redirects *redirects)
 	free(redirects);
 }
 
+/**
+ * Frees the memory allocated for a `t_command` structure.
+ *
+ * @param command Pointer to a `t_command` structure to be freed.
+ */
 void	free_command(t_command *command)
 {
 	if (command->simple_command)
@@ -31,10 +41,10 @@ void	free_command(t_command *command)
 }
 
 /**
- * Free the memory allocated for a pipeline data structure created by a shell.
- * @param pipe_line A pointer to the pipeline data structure that needs to be 
- * freed
-*/
+ * Frees the memory allocated for a `t_pipe_line` structure.
+ *
+ * @param pipe_line Pointer to a `t_pipe_line` structure to be freed.
+ */
 void	free_pipe_line(t_pipe_line *pipe_line)
 {
 	if (pipe_line->command)
@@ -45,11 +55,10 @@ void	free_pipe_line(t_pipe_line *pipe_line)
 }
 
 /**
- * Free the memory allocated for an abstract syntax tree (AST) created by a 
- * shell.
- * @param ast A pointer to the root node of the abstract syntax tree that needs 
- * to be freed.
-*/
+ * Frees the memory allocated for a `t_ast` structure.
+ *
+ * @param ast Pointer to a `t_ast` structure to be freed.
+ */
 void	free_ast(t_ast *ast)
 {
 	if (ast == AST_NULL)

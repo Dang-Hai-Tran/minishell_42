@@ -3,25 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_in_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:00:11 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:50:06 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:39:13 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Redirect input from a file to the standard input stream. The function takes 
- * in a single parameter, which is a string representing the path to the input 
- * file. The function returns an integer flag indicating whether the operation 
- * was successful or not.
- * @param file_path A string representing the path to the input file
- * @return An integer flag indicating whether the operation was successful or 
- * not. If the function completes successfully, it returns SUCCESS_FLAG, which 
- * is defined as 0. If an error occurs during the operation, the function 
- * prints an error message using the throw_error function and returns -1
-*/
+ * Opens a file in read mode and redirects STDIN to it. If any of the operations fail, it throws an error.
+ *
+ * @param file_path The path of the file to redirect STDIN from.
+ *
+ * @return SUCCESS_FLAG if the redirection is successful, ERROR_FLAG otherwise.
+ */
 int	redirect_in_file(char *file_path)
 {
 	int	fd;

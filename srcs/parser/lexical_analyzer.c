@@ -3,24 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   lexical_analyzer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:02:22 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:46:35 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:18:20 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Retrieves a word from the input stream and updates a t_token struct with 
- * information about the word.
- * @param token A pointer to a t_token struct that will be updated with 
- * information about the current token in the input stream.
- * @param end A pointer to a pointer that points to the current position in the 
- * input stream. The end pointer will be updated to point to the end of the 
- * current token.
-*/
+ * Processes the command line to get a word token. It moves the `end` pointer to the end of the word token.
+ *
+ * @param token Pointer to a `t_token` structure where the word token will be stored.
+ * @param end Pointer to a char pointer that points to the end of the token in the command line string.
+ */
 static void	get_word(t_token *token, char **end)
 {
 	token->type = T_WORD;
@@ -29,14 +26,11 @@ static void	get_word(t_token *token, char **end)
 }
 
 /**
- * Retrieves a quoted string from the input stream and updates a t_token struct 
- * with information about the string.
- * @param token A pointer to a t_token struct that will be updated with 
- * information about the current token in the input stream.
- * @param end A pointer to a pointer that points to the current position in the 
- * input stream. The end pointer will be updated to point to the end of the 
- * current token.
-*/
+ * Processes the command line to get a quoted token. It moves the `end` pointer to the end of the quoted token.
+ *
+ * @param token Pointer to a `t_token` structure where the quoted token will be stored.
+ * @param end Pointer to a char pointer that points to the end of the token in the command line string.
+ */
 static void	get_quote(t_token *token, char **end)
 {
 	token->type = T_WORD;
@@ -52,14 +46,11 @@ static void	get_quote(t_token *token, char **end)
 }
 
 /**
- * Retrieves a pipe character from the input stream and updates a t_token 
- * struct with information about the character.
- * @param token A pointer to a t_token struct that will be updated with 
- * information about the current token in the input stream.
- * @param end A pointer to a pointer that points to the current position in the 
- * input stream. The end pointer will be updated to point to the character 
- * immediately after the pipe character.
-*/
+ * Processes the command line to get a pipe token. It moves the `end` pointer to the end of the pipe token.
+ *
+ * @param token Pointer to a `t_token` structure where the pipe token will be stored.
+ * @param end Pointer to a char pointer that points to the end of the token in the command line string.
+ */
 static void	get_pipe(t_token *token, char **end)
 {
 	token->type = T_PIPE;
@@ -67,14 +58,11 @@ static void	get_pipe(t_token *token, char **end)
 }
 
 /**
- * Retrieves a redirection operator from the input stream and updates a t_token 
- * struct with information about the operator.
- * @param token A pointer to a t_token struct that will be updated with 
- * information about the current token in the input stream.
- * @param end A pointer to a pointer that points to the current position in the 
- * input stream. The end pointer will be updated to point to the character 
- * immediately after the redirection operator.
-*/
+ * Processes the command line to get a redirect operator token. It moves the `end` pointer to the end of the redirect operator token.
+ *
+ * @param token Pointer to a `t_token` structure where the redirect operator token will be stored.
+ * @param end Pointer to a char pointer that points to the end of the token in the command line string.
+ */
 static void	get_redirect_op(t_token *token, char **end)
 {
 	token->type = T_REDIRECT;
@@ -89,12 +77,14 @@ static void	get_redirect_op(t_token *token, char **end)
 }
 
 /**
- * Identifying the type of the current token in the input stream and setting 
- * the appropriate values in a t_token struct.
- * @return An integer flag indicating whether the lexical analysis was 
- * successful or not. If the function encounters an error during lexical 
- * analysis, it returns ERROR_FLAG. Otherwise, it returns SUCCESS_FLAG.
-*/
+ * The lexical analyzer function. It takes a segment of the command line and generates a token.
+ *
+ * @param token Pointer to a `t_token` structure where the generated token will be stored.
+ * @param begin Pointer to a char pointer that points to the beginning of the segment in the command line string.
+ * @param end Pointer to a char pointer that points to the end of the segment in the command line string.
+ *
+ * @return SUCCESS_FLAG if the token is generated successfully, ERROR_FLAG otherwise.
+ */
 int	lexical_analyzer(t_token *token, char **begin, char **end)
 {
 	while (ft_isspace(g_manager.command_line[g_manager.rc]))

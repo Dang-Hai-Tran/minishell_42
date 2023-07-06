@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:26:07 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:48:02 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:25:11 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Initializes a new AST node of type AST_COMMAND and sets its associated data 
- * to a t_command struct.
- * @param ast_command A pointer to a pointer to a t_ast struct that will be 
- * initialized as a new command node in the AST.
-*/
+ * Initializes a new syntax command. It allocates memory for the AST command node 
+ * and sets the node type to AST_COMMAND. It also allocates memory for the command data.
+ *
+ * @param ast_command Pointer to the AST command node to be initialized.
+ */
 static void	init_syntax_command(t_ast **ast_command)
 {
 	*ast_command = ft_calloc(1, sizeof(t_ast));
@@ -25,15 +26,15 @@ static void	init_syntax_command(t_ast **ast_command)
 }
 
 /**
- * Parses a command in the input stream and creates an AST node to represent 
- * it. It calls other functions to parse individual components of the command, 
- * such as simple commands and redirects.
- * @param ast_command A pointer to a pointer to a t_ast struct that will be 
- * updated with information about the current command in the input stream. The 
- * ast_command pointer will be updated to point to the root node of the command 
- * AST.
- * 
-*/
+ * Parses a command. It keeps fetching tokens until it finds a token that is not of 
+ * type T_WORD or T_REDIRECT. For each token of type T_WORD, it parses a simple command,
+ * and for each token of type T_REDIRECT, it parses redirects. If any of the parsing fails,
+ * it returns an error flag.
+ *
+ * @param ast_command Pointer to the AST command node.
+ *
+ * @return SUCCESS_FLAG if the parsing is successful, ERROR_FLAG otherwise.
+ */
 int	syntax_command(t_ast **ast_command)
 {
 	t_command	*command;

@@ -3,24 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:55:38 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:01:46 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 21:26:54 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Retrieve an environment variable from the linked list data structure that 
- * stores the environment variables for the shell program.
- * @param identifier A string representing the name of the environment variable 
- * to be retrieved.
- * @return A pointer to the node in the linked list that contains the 
- * environment variable with the specified identifier. If no such environment 
- * variable is found, the function returns NULL.
-*/
+ * Retrieves an environment variable from the shell's environment by its name.
+ *
+ * @param identifier The name of the variable to retrieve.
+ *
+ * @return A pointer to the environment variable, or NULL if no such variable exists.
+ */
 t_env	*get_env(char *identifier)
 {
 	t_env			*ptr;

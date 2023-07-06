@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   wait_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:19:19 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 14:08:10 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:54:36 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Sets the exit code of the shell process based on the status information of 
- * the terminated child process.
- * @param status The status information of the terminated child process.
-*/
+ * Sets the global exit code depending on the termination status of a process. It handles normal termination, 
+ * signal termination, and all other termination cases.
+ *
+ * @param status The termination status of the process.
+ */
 void	set_exit_code(int status)
 {
 	if (WIFEXITED(status))
@@ -32,10 +33,11 @@ void	set_exit_code(int status)
 }
 
 /**
- * Waits for all child processes to terminate.
- * @param last_pid The process ID of the last child process spawned by the 
- * shell.
-*/
+ * Waits for all child processes to terminate and sets the global exit code based on the termination status 
+ * of the last process specified by the last_pid.
+ *
+ * @param last_pid The PID of the last process in the pipeline.
+ */
 void	wait_subshell(pid_t last_pid)
 {
 	pid_t	pid;

@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:06:16 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 16:52:15 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:38:34 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Handle the end of a heredoc input.The function takes in two parameters: a 
- * string representing the last user input line and an integer file descriptor 
- * representing the file where the input should be stored. The function returns 
- * an integer flag indicating whether the operation was successful or not.
- * @param line A string representing the last line of user input before the end 
- * text
- * @param fd An integer file descriptor representing the file where the user 
- * input should be stored
-*/
+ * Frees a line and closes a file descriptor. If the close operation fails, it throws an error and exits.
+ *
+ * @param line The line to be freed.
+ * @param fd The file descriptor to be closed.
+ *
+ * @return SUCCESS_FLAG if the close operation is successful, else it throws an error and exits.
+ */
 static int	end_of_heredoc(char *line, int fd)
 {
 	free(line);
@@ -30,15 +29,15 @@ static int	end_of_heredoc(char *line, int fd)
 }
 
 /**
- * Redirect the standard output (STDOUT_FILENO) of a process to append data to 
- * a specified file. It takes in a string representing the path to the file to 
- * which the output should be redirected. The function returns a flag 
- * indicating whether the operation was successful or not.
- * @param end_text A string representing the text that signals the end of the 
- * user input
- * @param heredoc_path A string representing the path to the file where the 
- * user input should be stored.
-*/
+ * Creates a heredoc file, prompts the user to enter lines until a line matches the end text or the user 
+ * enters EOF (Ctrl-D), and redirects the entered lines to the heredoc file. If any of the operations fail, 
+ * it throws an error and exits.
+ *
+ * @param end_text The text that ends the heredoc input.
+ * @param heredoc_path The path of the heredoc file.
+ *
+ * @return SUCCESS_FLAG if the heredoc is created successfully, EXIT_FAILURE otherwise.
+ */
 int	redirect_heredoc(char *end_text, char *heredoc_path)
 {
 	int		fd;

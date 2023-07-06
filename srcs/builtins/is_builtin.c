@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:44:29 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 11:54:09 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 21:25:16 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Determine if a given command is a built-in command or not. The function 
- * takes the path of the command as an argument and checks if it matches any of 
- * the supported built-in commands.
- * @param exec_path A pointer to a character array that stores the path of the 
- * command being checked
- * @return An integer value that represents whether the command is a built-in 
- * command or not. If the command is a built-in command, the function returns 
- * true (1). Otherwise, it returns false (0).
-*/
+ * Checks if a command is a shell built-in command. 
+ *
+ * @param exec_path The name of the command to check.
+ *
+ * @return true if the command is a shell built-in command.
+ * @return false otherwise.
+ */
 int	is_builtin(char *exec_path)
 {
 	if (!sh_strcmp(exec_path, "cd"))

@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_combined_word.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:26:35 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 15:16:00 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:17:22 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Combines the heredoc word tokens into a single string.
+ *
+ * @return A pointer to a combined heredoc word string. If there are no word tokens, it will return NULL.
+ */
 char	*get_combined_heredoc_word(void)
 {
 	char	*combined_word;
@@ -38,11 +43,10 @@ char	*get_combined_heredoc_word(void)
 }
 
 /**
- * Combines multiple words into a single string, by iterating through the input 
- * and concatenating each word together.
- * @return A pointer to a newly allocated string containing the combined words. 
- * If an error occurs or no words are found, it returns NULL.
-*/
+ * Combines the word tokens into a single string.
+ *
+ * @return A pointer to a combined word string. If there are no word tokens, it will return NULL.
+ */
 char	*get_combined_word(void)
 {
 	char	*combined_word;

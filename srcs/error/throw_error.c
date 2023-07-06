@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   throw_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 12:05:36 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:02:43 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 21:33:49 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Print an error message to the standard error output stream (stderr) in the 
- * following format: msh: <cmd>: <argv>: <err>
- * @param cmd A string representing the name of the command that caused the 
- * error.
- * @param argv A string representing the arguments passed to the command that 
- * caused the error. This parameter can be NULL if no arguments were passed.
- * @param err A string representing the error message.
- * @return An integer value of EXIT_FAILURE, which indicates that an error has 
- * occurred.
-*/
+ * Prints an error message to the standard error output,
+ * and sets the exit code of the shell to 1.
+ *
+ * @param cmd The command that caused the error.
+ * @param argv The argument that caused the error.
+ * @param err The error message.
+ *
+ * @return EXIT_FAILURE always.
+ */
 int	throw_error(char *cmd, char *argv, char *err)
 {
 	ft_putstr_fd("msh: ", STDERR_FILENO);

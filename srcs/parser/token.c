@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:04 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:48:38 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:36:48 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Retrieve each token in the input stream.
- * @return A t_token struct that contains information about the current token 
- * in the input stream. If an error occurs during lexical analysis, the 
- * function sets the exit code to EXIT_SYNTAXERR.
-*/
+ * Fetches the next token from the command line stored in the global manager. It passes the token to the 
+ * lexical analyzer which determines its type and value, and also identifies the begin and end positions 
+ * of the token in the command line.
+ *
+ * @return The fetched token.
+ */
 t_token	get_token(void)
 {
 	char	*begin;
@@ -42,16 +43,14 @@ t_token	get_token(void)
 }
 
 /**
- * Retrieving the next token from the input stream and returning it to the 
- * caller. It can be used to either get the current token or to update the 
- * token stream with the next token.
- * @param type An enum value of type t_fetch_type determines whether the 
- * function should return the current token or fetch the next token from the 
- * input stream.
- * @return A t_token struct that represents the current token in the input 
- * stream if the type parameter is GET. If the type parameter is UPDATE, the 
- * function update the token stream with the next token and return this token.
-*/
+ * Fetches a token based on the fetch type. If the type is GET, it returns the current token stored in 
+ * the global manager. If the type is UPDATE, it fetches the next token and updates the current token 
+ * stored in the global manager.
+ *
+ * @param type The type of fetch operation to perform, either GET or UPDATE.
+ *
+ * @return The fetched token.
+ */
 t_token	fetch_token(t_fetch_type type)
 {
 	if (type == GET)

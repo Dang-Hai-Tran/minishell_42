@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   free_io_redirect.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:20:06 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:20:09 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:16:38 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Free the memory allocated for an input/output (IO) redirection structure
- * @param io_redirect A pointer to an IO redirection structure that needs to be 
- * freed
-*/
+ * Frees the memory allocated for a `t_io_redirect` structure.
+ *
+ * @param io_redirect Pointer to a `t_io_redirect` structure to be freed.
+ */
 void	free_io_redirect(t_io_redirect *io_redirect)
 {
 	if (io_redirect->redirect_op == R_HEREDOC)

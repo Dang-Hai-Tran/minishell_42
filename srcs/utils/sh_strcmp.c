@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   sh_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:35:09 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:17:51 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:59:02 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Compares the two strings character by character until a difference is found 
- * or one of the strings ends. It then returns an integer value indicating the 
- * relationship between the strings.
- * @param s1 The first string to compare.
- * @param s2 The second string to compare.
- * @return If the two strings are equal, it returns 0. If the first string is 
- * greater than the second string, it returns a positive integer. If the second 
- * string is greater than the first string, it returns a negative integer.
-*/
+ * Compares two strings.
+ *
+ * @param s1 The first string.
+ * @param s2 The second string.
+ * @return Returns an integer greater than, equal to, or less than 0, according as the string s1 is greater than, 
+ * equal to, or less than the string s2.
+ */
 int	sh_strcmp(char *s1, char *s2)
 {
 	size_t	n;

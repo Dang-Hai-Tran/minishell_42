@@ -3,24 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   exec_io_redirect.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:58:49 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:05:40 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:10:18 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Execute an input/output redirection operation. The function checks the type 
- * of redirection operation specified in the io_redirect structure and calls 
- * the appropriate function to perform the redirection.
- * @param io_redirect A pointer to a t_io_redirect struct that stores 
- * information about the input/output redirection being performed
- * @return An integer value that represents the success or failure of the 
- * redirection operation
-*/
+ * Executes an IO redirection based on the type of the redirection operation.
+ *
+ * @param io_redirect Pointer to a t_io_redirect object representing the IO redirection.
+ *
+ * @return A flag indicating success if the redirection is executed successfully, otherwise returns an error flag.
+ */
 int	exec_io_redirect(t_io_redirect *io_redirect)
 {
 	t_redirect_op	redirect_op;

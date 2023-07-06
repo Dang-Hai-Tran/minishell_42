@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   change_signal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:11:22 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:06:10 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:47:58 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Checks if the signal number passed to it matches the SIGINT signal number 
- * and writes a newline character to standard output if it does.
- * @param signum An integer representing the signal number.
-*/
+ * Handles the SIGINT signal while a command is being executed. It writes a newline character to the 
+ * standard output if the signal is SIGINT, otherwise, it does nothing.
+ *
+ * @param signum The signal number.
+ */
 static void	handle_sigint_change(int signum)
 {
 	if (signum != SIGINT)
@@ -24,10 +26,11 @@ static void	handle_sigint_change(int signum)
 }
 
 /**
- * Checks if the signal number passed to it matches the SIGQUIT signal number 
- * and returns if it does not match.
- * @param signum An integer representing the signal number.
-*/
+ * Handles the SIGQUIT signal while a command is being executed. It simply returns if the signal is 
+ * not SIGQUIT, effectively ignoring the signal.
+ *
+ * @param signum The signal number.
+ */
 static void	handle_sigquit_change(int signum)
 {
 	if (signum != SIGQUIT)
@@ -35,9 +38,9 @@ static void	handle_sigquit_change(int signum)
 }
 
 /**
- * Changes the signal handlers for the SIGINT and SIGQUIT signals to custom 
- * handler functions.
-*/
+ * Changes the SIGINT and SIGQUIT signal handlers to handle_sigint_change and handle_sigquit_change 
+ * respectively. This is typically used to change the default signal behavior during the execution of a command.
+ */
 void	change_signal(void)
 {
 	signal(SIGINT, handle_sigint_change);

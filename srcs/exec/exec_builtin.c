@@ -3,37 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:46:55 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:02:58 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/06 00:42:36 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Execute built-in commands of a shell.
- * @param argv An array of strings containing the command and its arguments
- * @return An integer value representing the exit status of the command. If the 
- * command is executed successfully, the function returns EXIT_SUCCESS. If 
- * there is an error during execution, the function returns EXIT_FAILURE
-*/
+ * Executes a built-in command by comparing the given command name with a list 
+ * of known built-in commands, and calling the corresponding function.
+ *
+ * @param argv An array of strings representing the command line arguments.
+ *
+ * @return 1 if the built-in command is executed successfully, otherwise returns the exit failure code.
+ */
 int	exec_builtin(char **argv)
 {
 	if (!ft_strncmp(*argv, "echo", 5))
-		return (ft_echo(argv));
+		return (echo_command(argv));
 	if (!ft_strncmp(*argv, "cd", 3))
-		return (ft_cd(argv));
+		return (change_directory(argv));
 	if (!ft_strncmp(*argv, "pwd", 4))
-		return (ft_pwd(argv));
+		return (perform_pwd(argv));
 	if (!ft_strncmp(*argv, "env", 4))
-		return (ft_env(argv));
+		return (env_command(argv));
 	if (!ft_strncmp(*argv, "export", 7))
-		return (ft_export(argv));
+		return (perform_export(argv));
 	if (!ft_strncmp(*argv, "unset", 6))
-		return (ft_unset(argv));
+		return (perform_unset(argv));
 	if (!ft_strncmp(*argv, "exit", 5))
-		ft_exit(argv);
+		exit_command(argv);
 	return (EXIT_FAILURE);
 }

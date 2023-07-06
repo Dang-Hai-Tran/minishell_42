@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   sh_get_string_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:16:15 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:17:12 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:56:58 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Counts the number of environment variables in the global environment list.
+ *
+ * @return Returns the number of environment variables.
+ */
 static int	get_count(void)
 {
 	t_env	*ptr;
@@ -27,6 +32,11 @@ static int	get_count(void)
 	return (count);
 }
 
+/**
+ * Converts the global environment list into an array of strings.
+ *
+ * @return Returns an array of environment variables, each represented as a string in the form "name=value".
+ */
 char	**sh_get_string_env(void)
 {
 	t_env	*ptr;

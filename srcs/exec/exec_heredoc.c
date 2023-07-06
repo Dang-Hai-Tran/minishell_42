@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:15:57 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:05:29 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:10:06 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Create a path for the here-document file. The function generates a unique 
- * path by appending a counter at the end of the temporary directory path.
- * @return A pointer to a string that contains the path for the here-document 
- * file
-*/
+ * Generates a unique file path for a heredoc by concatenating a temporary directory 
+ * and a count to a base string.
+ *
+ * @return The generated file path.
+ */
 char	*create_heredoc_path(void)
 {
 	static unsigned int	cnt;
@@ -37,14 +38,13 @@ char	*create_heredoc_path(void)
 }
 
 /**
- * Execute the redirection of a here-document. The function checks if an input/
- * output redirection node in the abstract syntax tree contains a here-document 
- * and creates a file to store the here-document contents.
- * @param ast A double pointer to the current node in the abstract syntax tree
- * @return An integer value that represents the success or failure of the 
- * redirection operation
-
-*/
+ * Executes a redirection to a heredoc by creating a new file path for the heredoc and 
+ * redirecting the input to the heredoc.
+ *
+ * @param ast Double pointer to a t_ast object representing the redirections.
+ *
+ * @return A flag indicating success if the heredoc is executed successfully, otherwise returns an error flag.
+ */
 static int	exec_redirect_heredoc(t_ast **ast)
 {
 	int				flag;
@@ -74,13 +74,13 @@ static int	exec_redirect_heredoc(t_ast **ast)
 }
 
 /**
- * Execute the heredoc redirection for a given abstract syntax tree (AST).
- * @param ast A double pointer to the AST that needs to be executed
- * @return A flag which indicates the success or failure of the heredoc 
- * redirection execution. If the execution is successful, the flag will have a 
- * value of SUCCESS_FLAG. If there is any error during the execution, the flag 
- * will have a value of ERROR_FLAG.
-*/
+ * Executes all heredocs in a command line represented as an AST. It executes the heredoc 
+ * for each command and pipeline in the AST.
+ *
+ * @param ast Double pointer to a t_ast object representing the command line.
+ *
+ * @return A flag indicating success if all heredocs are executed successfully, otherwise returns an error flag.
+ */
 int	exec_heredoc(t_ast **ast)
 {
 	int				flag;

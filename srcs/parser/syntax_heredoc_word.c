@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_heredoc_word.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:18:29 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 15:47:37 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:25:26 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Extracts the word for a heredoc redirection. If the first character of the token is a quote,
+ * it extracts the substring between the quotes. Otherwise, it duplicates the token.
+ *
+ * @param token The token from which to extract the word.
+ *
+ * @return The extracted word.
+ */
 char	*syntax_heredoc_word(char *token)
 {
 	char	*word;

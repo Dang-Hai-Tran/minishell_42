@@ -3,44 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   init_signal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:09:03 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:53:13 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/06 01:53:45 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <readline/readline.h>
 
 /**
- * Handle the SIGINT signal (generated when the user presses Ctrl+C) in the 
- * shell program. The function takes as input the signal number (signum). If 
- * the signum argument is not equal to SIGINT, the function returns without 
- * doing anything. Otherwise, the function writes a newline character to the 
- * standard output, replaces the current command line with an empty string, 
- * moves the cursor to a new line, and redisplay the prompt. It also sets the 
- * exit code of the shell program to 1.
- * @param signum An integer representing the signal number.
-*/
+ * Handles the SIGINT signal while a command line is being read. If the signal is SIGINT, it writes a 
+ * newline character to the standard output, resets the readline, and sets the exit code to 1. 
+ * Otherwise, it does nothing.
+ *
+ * @param signum The signal number.
+ */
 static void	handle_sigint(int signum)
 {
 	if (signum != SIGINT)
 		return ;
 	write(1, "\n", 1);
-	rl_replace_line("", 1);
+	// rl_replace_line("", 1);
 	rl_on_new_line();
 	rl_redisplay();
 	g_manager.exit_code = 1;
 }
 
 /**
- * Set up the signal handlers for the shell program. The function sets up two 
- * signal handlers:
- * - The SIGINT signal handler is set to handle_sigint, which is a function that
- * handles the interrupt signal (generated when the user presses Ctrl+C).
- * - The SIGQUIT signal handler is set to ignore the signal, using the SIG_IGN 
- * constant.
-*/
+ * Changes the SIGINT signal handler to handle_sigint and ignores the SIGQUIT signal. This is typically 
+ * used to change the default signal behavior during the reading of a command line.
+ */
 void	init_signal(void)
 {
 	signal(SIGINT, handle_sigint);

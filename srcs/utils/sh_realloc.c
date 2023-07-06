@@ -3,26 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   sh_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:39:31 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 18:01:27 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:58:48 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Dynamically allocates a block of memory of the specified size. It then 
- * copies the contents of the old memory block pointed to by ptr to the new 
- * memory block. Finally, it frees the old memory block and returns a pointer 
- * to the new memory block.
- * @param ptr A pointer to the memory block previously allocated with malloc, 
- * calloc or realloc.
- * @param size The new size for the memory block.
- * @return If the function succeeds in allocating the required memory, it 
- * returns a pointer to the newly allocated memory block. If the function fails 
- * to allocate the required memory, it returns NULL.
-*/
+ * Reallocates a buffer with a new size. The function copies the existing data into the new buffer and 
+ * then frees the old buffer.
+ *
+ * @param ptr The old buffer to reallocate.
+ * @param size The size of the new buffer.
+ * @return Returns a pointer to the new buffer.
+ */
 void	*sh_realloc(void *ptr, size_t size)
 {
 	int		i;

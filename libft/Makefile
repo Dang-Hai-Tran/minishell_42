@@ -1,61 +1,74 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: datran <datran@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/14 12:12:32 by datran            #+#    #+#              #
-#    Updated: 2023/06/02 17:37:25 by datran           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+PROJECT_NAME := Libft
+BIN_NAME  := libft.a
+CC        := clang
+AR        := ar rcs
+ROOTDIR   := ../
+SRCDIR    := srcs
+HEADERDIR := incs
+LIBDIR    := lib
+BUILDDIR  := build
+BINDIR    := bin
+TARGET    := $(BINDIR)/$(BIN_NAME)
+SOURCES   := $(shell find $(SRCDIR) -type f -name *.c*)
+HEADERS   := $(shell find $(HEADERDIR) -type f -name *.h*)
+LIB       := 
+LIBS      := $(shell find $(ROOTDIR) -type f -name *.a*)
+OBJECTS   := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(addsuffix .o,$(basename $(SOURCES))))
+DEPS      := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(addsuffix .d,$(basename $(SOURCES))))
+CFLAGS    := -Wall -Werror -Wextra
+INC       := -Iincs -Isrcs
 
-NAME		=	libft.a
+all: debug
+debug: CFLAGS += -g
+debug: $(TARGET)
+release: $(TARGET)
+release: CFLAGS += -O3
 
-SRCS		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
-				ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memcpy.c \
-				ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
-				ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
-				ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
-				ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
-				ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
-				ft_toupper.c ft_itoa_base.c ft_isspace.c\
-				ft_printf.c ft_is_argument.c ft_formats.c ft_char_format.c \
-				ft_string_format.c ft_pointer_format.c ft_decimal_format.c \
-				ft_unsigned_decimal_format.c ft_hexadecimal_format.c \
-				ft_upper_case_hexadecimal_format.c ft_percent_format.c ft_input_parser.c \
-				get_next_line.c get_next_line_utils.c
+GREEN=`tput setaf 2`
+RED=`tput setaf 1`
+RESET=`tput sgr0`
 
-B_SRCS	=	ft_lstsize.c ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
-				ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c
+define print_green
+	@echo "$(GREEN)$(1)$(RESET)"
+endef
 
-OBJS		=	$(SRCS:%.c=%.o)
+define print_red
+	@echo "$(RED)$(1)$(RESET)"
+endef
 
-BOBJS	=	$(BSRCS:%.c=%.o)
+all: $(TARGET)
 
-CFLAGS		=	-Wall -Wextra -Werror
+clean:
+	$(call print_red,"Deleting the $(BUILDDIR) directory in $(PROJECT_NAME)...")
+	@rm -rf $(BUILDDIR) 
 
-CC			=	gcc
+fclean: clean
+	$(call print_red,"Deleting the $(BINDIR) directory in $(PROJECT_NAME)...")
+	@rm -rf $(BINDIR)
 
-RM			=	rm -f
+re: fclean all
 
-all			:	$(NAME)
+$(TARGET): $(BINDIR) $(BUILDDIR) $(OBJECTS)
+	$(call print_green,"Linking object files...")
+	@$(AR) $(TARGET) $(OBJECTS)
+	$(call print_green,"$(TARGET) has been created!")
 
-%.o:		%.c
-			$(CC) $(CFLAGS) -c $< -o $@
-			
-$(NAME)		:	$(OBJS)
-			ar rc $(NAME) $(OBJS)
+$(BUILDDIR) :
+	@mkdir -p $(BUILDDIR)
 
-bonus		:	$(NAME) $(BOBJS)
-			ar rc $(NAME) $(BOBJS)
+$(BINDIR):
+	@mkdir -p $(BINDIR)
+	
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c*
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(INC) -M $< -MT $@ > $(@:.o=.td)
+	@cp $(@:.o=.td) $(@:.o=.d); 
+	@sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+	-e '/^$$/ d' -e 's/$$/ :/' < $(@:.o=.td) >> $(@:.o=.d); 
+	@rm -f $(@:.o=.td)
 
-clean		:
-			$(RM) $(OBJS) $(BOBJS)
 
-fclean		:	clean
-			$(RM) $(NAME)
+-include $(DEPS)
 
-re			:	fclean all
-
-.PHONY 		: all bonus clean fclean re
+.PHONY: clean fclean all

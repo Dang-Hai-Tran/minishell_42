@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command_line.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:14:53 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:11:15 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:07:56 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Checks for input/output redirects and redirects that modify file descriptors 
- * in the redirect structure and then executes them accordingly.
- * @param redirects A pointer to a t_redirects structure that contains the 
- * redirects to be executed
- * @return Returns an integer value indicating the success or failure of the 
- * execution
-*/
+ * Executes the redirections in a given t_redirects object by executing the
+ * IO redirections and AST redirections if they are present.
+ *
+ * @param redirects Pointer to a t_redirects object containing the redirections to execute.
+ *
+ * @return A flag indicating success if all redirections are executed successfully, otherwise returns an error flag.
+ */
 int	exec_redirects(t_redirects *redirects)
 {
 	int	flag;
@@ -34,14 +35,13 @@ int	exec_redirects(t_redirects *redirects)
 }
 
 /**
- * Executes the given command based on the type of command. It checks for 
- * redirects and simple commands in the command structure and then executes 
- * them accordingly.
- * @param command A pointer to a t_command structure that contains the command 
- * to be executed
- * @return Returns an integer value indicating the success or failure of the 
- * execution
-*/
+ * Executes a command stored in a t_command object by executing the
+ * command's redirects and simple command if they are present.
+ *
+ * @param command Pointer to a t_command object containing the command to execute.
+ *
+ * @return A flag indicating success if all components of the command are executed successfully, otherwise returns an error flag.
+ */
 int	exec_command(t_command *command)
 {
 	int	flag;
@@ -57,13 +57,13 @@ int	exec_command(t_command *command)
 }
 
 /**
- * Execute a single pipeline command or a subshell.
- * @param pipe_line A pointer to a t_pipe_line struct containing information 
- * about the command to be executed
- * @return An integer value representing the exit status of the command. If the 
- * command is executed successfully, the function returns SUCCESS_FLAG. If 
- * there is an error during execution, the function returns ERROR_FLAG
-*/
+ * Executes a pipeline stored in a t_pipe_line object by executing a subshell
+ * or a single command based on the type of the pipeline.
+ *
+ * @param pipe_line Pointer to a t_pipe_line object containing the pipeline to execute.
+ *
+ * @return A flag indicating success if the pipeline is executed successfully, otherwise returns an error flag.
+ */
 int	exec_pipe_line(t_pipe_line *pipe_line)
 {
 	int	flag;
@@ -79,14 +79,13 @@ int	exec_pipe_line(t_pipe_line *pipe_line)
 }
 
 /**
- * Execute a command or pipeline represented by an abstract syntax tree (AST).
- * @param ast A pointer to an AST node representing a command or pipeline to be 
- * executed
- * @return an integer value representing the exit status of the command or 
- * pipeline. If the command or pipeline is executed successfully, the function 
- * returns SUCCESS_FLAG. If there is an error during execution, the function 
- * returns ERROR_FLAG
-*/
+ * Executes an abstract syntax tree (AST) by executing a pipeline, a command, 
+ * or redirects based on the type of the AST.
+ *
+ * @param ast Pointer to a t_ast object representing the abstract syntax tree to execute.
+ *
+ * @return A flag indicating success if the AST is executed successfully, otherwise returns an error flag.
+ */
 int	exec_ast(t_ast *ast)
 {
 	if (ast->type == AST_PIPELINE)
@@ -100,14 +99,13 @@ int	exec_ast(t_ast *ast)
 }
 
 /**
- * Execute a command line.
- * @param ast A pointer to a pointer to an ast struct containing information 
- * about the command line to be executed
- * @return An integer value representing the exit status of the command line. 
- * If the command line is executed successfully, the function returns 
- * SUCCESS_FLAG. If there is an error during execution, the function returns 
- * ERROR_FLAG
-*/
+ * Executes a command line represented as an AST. It starts by executing 
+ * heredoc if it exists, then it executes the AST.
+ *
+ * @param ast Double pointer to a t_ast object representing the command line to execute.
+ *
+ * @return A flag indicating success if the command line is executed successfully, otherwise returns an error flag.
+ */
 int	exec_command_line(t_ast **ast)
 {
 	if (exec_heredoc(ast))

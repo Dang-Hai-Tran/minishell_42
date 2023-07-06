@@ -1,37 +1,102 @@
-NAME = minishell
-CC = gcc
-FLAGS = -Werror -Wextra -Wall -g
-SRCDIR = srcs/
-BUILDDIR  := build/
-SRCS = $(shell find $(SRCDIR) -type f -name '*.c')
-OBJS = $(patsubst $(SRCDIR)%,$(BUILDDIR)%,$(addsuffix .o,$(basename $(SRCS))))
+PROJECT_NAME := Minishell
+BIN_NAME  := minishell
+CC        := clang
+ROOTDIR   := .
+SRCDIR    := srcs
+HEADERDIR := incs
+LIBDIR    := lib
+BUILDDIR  := build
+BINDIR    := bin
+TARGET    := $(BINDIR)/$(BIN_NAME)
+SOURCES   := $(shell find $(SRCDIR) -type f -name '*.c' | grep -v tests)
+HEADERS   := $(shell find $(HEADERDIR) -type f -name '*.h' | grep -v tests)
+LIB       := -L./lib -lft -lreadline -lncurses
+LIBS      := $(shell find $(ROOTDIR) -type f -name '*.a')
+OBJECTS   := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(addsuffix .o,$(basename $(SOURCES))))
+DEPS      := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(addsuffix .d,$(basename $(SOURCES))))
+CFLAGS    := -Wall -Werror -Wextra -g
+INC       := -Iincs -Isrcs
 
-LIB = libft/libft.a
-LIBFLAGS = -Llibft -lft
-RLFLAGS = -lreadline -Iincs/
+GREEN=`tput setaf 2`
+RED=`tput setaf 1`
+RESET=`tput sgr0`
 
-RM = rm -rf
+define print_green
+	@echo "$(GREEN)$(1)$(RESET)"
+endef
 
-all : $(NAME)
+define print_red
+	@echo "$(RED)$(1)$(RESET)"
+endef
 
-$(BUILDDIR)%.o : $(SRCDIR)%.c
+all: libs $(BINDIR) $(BUILDDIR) $(OBJECTS)
+	$(call print_green,"Linking object files...")
+	@$(CC) -o $(TARGET) $(OBJECTS) $(LIB)
+	$(call print_green,"$(TARGET) has been created!")
+
+lib/$(PROJECT_NAME).flag: $(LIBS)
+	@make -C libft
+	@find . -type f -name *.a* -exec gmv -t lib {} +
+	@touch $@
+	@rm -rf libft/$(BINDIR)
+libs: $(LIBDIR) lib/$(PROJECT_NAME).flag
+
+clean:
+	$(call print_red,"Deleting the $(BUILDDIR) directory in $(PROJECT_NAME)...")
+	@rm -rf $(BUILDDIR) 
+	@make -C libft clean
+
+fclean: clean
+	$(call print_red,"Deleting the $(BINDIR) directory in $(PROJECT_NAME)...")
+	@rm -rf $(BINDIR)
+
+re: fclean all
+
+prod: fclean
+	$(call print_red,"Deleting the $(LIBDIR) directory in $(PROJECT_NAME)...")
+	@rm -rf $(LIBDIR)
+
+$(LIBDIR) :
+	@mkdir -p $(LIBDIR)
+
+$(BUILDDIR) :
+	@mkdir -p $(BUILDDIR)
+
+$(BINDIR):
+	@mkdir -p $(BINDIR)
+	
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(FLAGS) -c $< -o $@ $(RLFLAGS)
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(INC) -M $< -MT $@ > $(@:.o=.td)
+	@cp $(@:.o=.td) $(@:.o=.d); 
+	@sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+	-e '/^$$/ d' -e 's/$$/ :/' < $(@:.o=.td) >> $(@:.o=.d); 
+	@rm -f $(@:.o=.td)
 
-$(NAME) : $(OBJS) $(LIB)
-	$(CC) $(FLAGS) $(OBJS) $(LIBFLAGS) -o $@ $(RLFLAGS)
+-include $(DEPS)
 
-$(LIB) :
-	make -C libft
+.PHONY: clean fclean all libs
 
-clean :
-	make -C libft clean
-	$(RM) $(BUILDDIR)
+# valgrind --log-file=logs/val.log --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_leak_rl ./bin/msh
+# Remove all comments in a file : \/\*(?:[^*]|[\r\n]|(\*+(?:[^*/]|[\r\n])))*\*\/
 
-fclean : clean
-	$(RM) $(LIB)
-	$(RM) $(NAME)
+# Sur Linux
+# lib/$(PROJECT_NAME).flag: $(LIBS)
+# 	@make -C ../gnl
+# 	@make -C ../libft
+# 	@find ../ -type f -name *.a* -exec mv -t ../minishell/lib {} +
+# 	@touch $@
+# 	@rm -rf ../gnl/$(BINDIR)
+# 	@rm -rf ../libft/$(BINDIR)
+# libs: $(LIBDIR) lib/$(PROJECT_NAME).flag
 
-re : fclean all
-
-.PHONY: all clean fclean re
+# Sur Mac
+# lib/$(PROJECT_NAME).flag: $(LIBS)
+# 	@make -C ../gnl
+# 	@make -C ../libft
+# 	@find ../ -type f -name *.a* -exec gmv -t ../minishell/lib {} +
+# 	@touch $@
+# 	@rm -rf ../gnl/$(BINDIR)
+# 	@rm -rf ../libft/$(BINDIR)
+# libs: $(LIBDIR) lib/$(PROJECT_NAME).flag

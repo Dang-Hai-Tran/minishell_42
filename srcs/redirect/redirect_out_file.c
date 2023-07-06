@@ -3,26 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_out_file.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:02:28 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:50:23 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:39:27 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Redirect output from the standard output stream to a file. The function 
- * takes in a single parameter, which is a string representing the path to the 
- * output file. The function returns an integer flag indicating whether the 
- * operation was successful or not.
- * @param file_path A string representing the path to the output file
- * @return Returns an integer flag indicating whether the operation was 
- * successful or not. If the function completes successfully, it returns 
- * SUCCESS_FLAG, which is defined as 0. If an error occurs during the 
- * operation, the function prints an error message using the throw_error 
- * function and returns -1.
-*/
+ * Opens a file in write mode, truncates it, and redirects STDOUT to it. If any of the operations fail, 
+ * it throws an error.
+ *
+ * @param file_path The path of the file to redirect STDOUT to.
+ *
+ * @return SUCCESS_FLAG if the redirection is successful, ERROR_FLAG otherwise.
+ */
 int	redirect_out_file(char *file_path)
 {
 	int	fd;

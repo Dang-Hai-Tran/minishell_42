@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_name.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:33:53 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 12:01:22 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 21:26:15 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Extract the name of an environment variable from a command-line argument 
- * that contains it.
- * @param argv A string representing the command-line argument that contains an 
- * environment variable.
- * @return A dynamically allocated string representing the name of the 
- * environment variable contained in the argv argument.
-*/
+ * Extracts the name part of an environment variable definition.
+ *
+ * @param argv A string containing the environment variable definition in the form 'name=value'.
+ *
+ * @return A newly allocated string containing the name of the variable.
+ * The caller is responsible for freeing this string.
+ */
 char	*get_env_name(char *argv)
 {
 	char	*name;

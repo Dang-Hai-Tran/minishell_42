@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_signal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:05:15 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:06:21 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:48:49 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Checks if the signal number passed to it matches the SIGINT signal number 
- * and writes a newline character to the input buffer using the ioctl() system 
- * call with the TIOCSTI command. It also sets the exit code of the shell to 1.
- * @param signum An integer representing the signal number.
-*/
+ * Handles the SIGINT signal while a heredoc is being read. If the signal is SIGINT, it simulates a newline 
+ * input and sets the exit code to 1, effectively ending the heredoc input. Otherwise, it does nothing.
+ *
+ * @param signum The signal number.
+ */
 static void	handle_sigint_heredoc(int signum)
 {
 	if (signum != SIGINT)
@@ -27,13 +28,9 @@ static void	handle_sigint_heredoc(int signum)
 }
 
 /**
- * Sets up signal handlers for the SIGINT and SIGQUIT signals during a heredoc 
- * input operation. In this function, the SIGINT signal is handled by the 
- * handle_sigint_heredoc function, which writes a newline character to the 
- * input buffer and sets the exit code of the shell to 1. The SIGQUIT signal is 
- * ignored, which means that if it is received during a heredoc input 
- * operation, it will be ignored and the operation will continue.
-*/
+ * Changes the SIGINT signal handler to handle_sigint_heredoc and ignores the SIGQUIT signal. This is 
+ * typically used to change the default signal behavior during the reading of a heredoc.
+ */
 void	heredoc_signal(void)
 {
 	signal(SIGINT, handle_sigint_heredoc);

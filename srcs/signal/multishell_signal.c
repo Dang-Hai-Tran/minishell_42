@@ -3,29 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   multishell_signal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:48:07 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:03:37 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:50:30 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* do nothing */
+/**
+ * Handles the SIGINT signal while multiple shell commands are being executed concurrently. It simply 
+ * returns if the signal is not SIGINT, effectively ignoring the signal.
+ *
+ * @param signum The signal number.
+ */
 static void	handle_sigint_multishell(int signum)
 {
 	if (signum != SIGINT)
 		return ;
 }
 
-/* do nothing */
+/**
+ * Handles the SIGQUIT signal while multiple shell commands are being executed concurrently. It simply 
+ * returns if the signal is not SIGQUIT, effectively ignoring the signal.
+ *
+ * @param signum The signal number.
+ */
 static void	handle_sigquit_multishell(int signum)
 {
 	if (signum != SIGQUIT)
 		return ;
 }
 
+/**
+ * Changes the SIGINT and SIGQUIT signal handlers to handle_sigint_multishell and handle_sigquit_multishell 
+ * respectively. This is typically used to change the default signal behavior during the concurrent execution 
+ * of multiple shell commands.
+ */
 void	multishell_signal(void)
 {
 	signal(SIGINT, handle_sigint_multishell);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 17:05:34 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 09:29:12 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/05 23:53:17 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "subshell.h"
 # include "utils.h"
 # include "builtin.h"
-# include "../libft/libft.h"
+# include "../libft/incs/libft.h"
 
 /* BUILTIN HEADER FILE */
 # include <stdio.h>

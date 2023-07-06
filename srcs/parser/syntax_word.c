@@ -3,17 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_word.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 17:52:48 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:29:58 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Extracts the name of an environment variable from a given token.
-*/
+ * Extracts the name of an environment variable from a token. It copies the alphanumeric characters
+ * from the token until it finds a character that is not alphanumeric or an underscore.
+ *
+ * @param token The token from which to extract the name.
+ *
+ * @return The name of the environment variable.
+ */
 char	*extract_env_name(char *token)
 {
 	char	*name;
@@ -33,14 +39,14 @@ char	*extract_env_name(char *token)
 }
 
 /**
- * Takes a string representing an exit code environment variable and its 
- * location within the input string, and replaces it with the actual exit code 
- * value.
- * @param token A pointer to a string representing the token to be processed.
- * @param env_ptr A pointer to a character representing the location of the 
- * exit code environment variable within the input string.
- * @return Returns a pointer to a string representing the processed token.
-*/
+ * Replaces a special character environment variable in a token with its value. If the environment variable
+ * is $? or $$, it replaces it with the exit code or the process ID, respectively.
+ *
+ * @param token The token in which to replace the environment variable.
+ * @param env_ptr Pointer to the position of the environment variable in the token.
+ *
+ * @return The token with the environment variable replaced.
+ */
 char	*replace_env_sc(char *token, char *env_ptr)
 {
 	char	*sc;
@@ -67,13 +73,14 @@ char	*replace_env_sc(char *token, char *env_ptr)
 }
 
 /**
- * Takes a string representing an environment variable and its location within 
- * the input string, and replaces it with its corresponding value.
- * @param token A pointer to a string representing the token to be processed.
- * @param env_ptr A pointer to a character representing the location of the 
- * environment variable within the input string.
- * @return a pointer to a string representing the processed token.
-*/
+ * Replaces a named environment variable in a token with its value. It extracts the name of the environment variable,
+ * fetches its value from the environment, and replaces the environment variable in the token with its value.
+ *
+ * @param token The token in which to replace the environment variable.
+ * @param env_ptr Pointer to the position of the environment variable in the token.
+ *
+ * @return The token with the environment variable replaced.
+ */
 char	*replace_env_name(char *token, char *env_ptr)
 {
 	char	*name;
@@ -103,11 +110,13 @@ char	*replace_env_name(char *token, char *env_ptr)
 }
 
 /**
- * Takes a string as input and replaces any environment variables in the string 
- * with their values.
- * @param token A pointer to a string representing the token to be processed.
- * @return A pointer to a string representing the processed token.
-*/
+ * Replaces all environment variables in a token with their values. It replaces both special character
+ * environment variables and named environment variables.
+ *
+ * @param token The token in which to replace the environment variables.
+ *
+ * @return The token with the environment variables replaced.
+ */
 char	*replace_env(char *token)
 {
 	char	*word;
@@ -129,11 +138,12 @@ char	*replace_env(char *token)
 }
 
 /**
- * Takes a string as input and processes it to remove quotes, replace 
- * environment variables with their values and return the resulting string.
- * @param token A pointer to a string representing the token to be processed.
- * @return A pointer to a string representing the processed token.
-*/
+ * Parses a word. It replaces all environment variables in the word and duplicates it.
+ *
+ * @param word The word to parse.
+ *
+ * @return The parsed word.
+ */
 char	*syntax_word(char *token)
 {
 	char	*word;

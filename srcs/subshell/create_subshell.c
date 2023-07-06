@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   create_subshell.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:06:41 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 13:10:04 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:54:12 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Closes both ends of the pipe.
- * @param pipe_fd[2] An integer array containing the file descriptors for the 
- * read and write ends of the pipe.
-*/
+ * Closes both read and write ends of a pipe. Throws an error and exits if any of the close operations fail.
+ *
+ * @param pipe_fd An array containing the file descriptors of the pipe ends.
+ */
 void	close_pipe_fd(int pipe_fd[2])
 {
 	if (close(pipe_fd[0]) == -1)
@@ -25,14 +26,12 @@ void	close_pipe_fd(int pipe_fd[2])
 }
 
 /**
- * Connects the read or write end of a pipe to the appropriate file descriptor 
- * for input or output of a command.
- * @param pipe_fd[2] An integer array containing the file descriptors for the 
- * read and write ends of the pipe.
- * @param pipe_type An integer value indicating whether to connect the read or 
- * write end of the pipe. The value READ is used to connect the read end, while 
- * the value WRITE is used to connect the write end.
-*/
+ * Duplicates the specified pipe file descriptor to the specified type (STDIN_FILENO or STDOUT_FILENO). Then it 
+ * closes both ends of the pipe. Throws an error and exits if any of the operations fail.
+ *
+ * @param pipe_fd An array containing the file descriptors of the pipe ends.
+ * @param pipe_type The type of pipe (read or write end).
+ */
 void	connect_pipe(int pipe_fd[2], int pipe_type)
 {
 	if (dup2(pipe_fd[pipe_type], pipe_type) == -1)
@@ -41,15 +40,12 @@ void	connect_pipe(int pipe_fd[2], int pipe_type)
 }
 
 /**
- * Creates a subshell process by calling the fork() system call. It also sets 
- * up a pipe between the parent and child processes using the pipe() system 
- * call. The function then connects the appropriate end of the pipe to the 
- * input or output of the command being executed depending on whether it is the 
- * first or last command in the pipeline.
- * @param pipe_line A pointer to a structure containing information about the 
- * pipeline of commands to be executed.
- * @return The PID (process ID) of the newly created child process.
-*/
+ * Creates a child process that runs a command. It sets up a pipe between the parent and the child process 
+ * if there's more command in the pipeline. Throws an error and exits if any of the operations fail.
+ *
+ * @param pipe_line The command to run in the child process.
+ * @return Returns the PID of the child process, or ERROR_FLAG if an error occurs.
+ */
 pid_t	create_subshell(t_pipe_line *pipe_line)
 {
 	static int	pipe_fd[2];

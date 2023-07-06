@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   sh_cmd_is_dir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 10:53:48 by datran            #+#    #+#             */
-/*   Updated: 2023/06/23 10:59:59 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:54:48 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Checks if a command is a directory.
+ *
+ * @param cmd The command to check.
+ * @return Returns true if the command is a directory, otherwise false.
+ */
 bool	sh_cmd_is_dir(char *cmd)
 {
 	struct stat	cmd_stat;

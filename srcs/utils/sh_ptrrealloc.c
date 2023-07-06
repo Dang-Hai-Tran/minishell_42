@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   sh_ptrrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:24:19 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 18:03:43 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:57:37 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 /**
- * Reallocates memory for a null-terminated array of strings (i.e., an array of 
- * pointers to characters).
- * @param buf A pointer to the current array of strings.
- * @parma before_size The current size of the array, in terms of the number of 
- * elements.
- * @param after_size The desired new size of the array, in terms of the number 
- * of elements.
-*/
+ * Reallocates a buffer with a new size. The function copies the existing data into the new buffer and 
+ * then frees the old buffer.
+ *
+ * @param buf The old buffer to reallocate.
+ * @param before_size The size of the old buffer.
+ * @param after_size The size of the new buffer.
+ * @return Returns a pointer to the new buffer.
+ */
 void	*sh_ptrrealloc(void *buf, int before_size, int after_size)
 {
 	int		idx;

@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   sh_putline_heredoc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:55:31 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 16:54:04 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:58:21 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Gets the first word from a line string.
+ *
+ * @param line The line string.
+ * @return Returns the first word in the line.
+ */
 static char	*get_word(char *line)
 {
 	int		len;
@@ -24,6 +30,12 @@ static char	*get_word(char *line)
 	return (word);
 }
 
+/**
+ * Writes a line to a file descriptor, replacing any environment variables with their corresponding values.
+ *
+ * @param line The line to write.
+ * @param fd The file descriptor to write to.
+ */
 void	sh_putline_heredoc(char *line, int fd)
 {
 	char	*word;

@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   free_simple_command.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:20:51 by datran            #+#    #+#             */
-/*   Updated: 2023/06/20 15:38:29 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/04 23:16:53 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * Frees the memory allocated for a `t_simple_command` structure.
+ *
+ * @param simple_command Pointer to a `t_simple_command` structure to be freed.
+ */
 void	free_simple_command(t_simple_command *simple_command)
 {
 	int	ac;

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perform_unset.c                                         :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:56:46 by datran            #+#    #+#             */
-/*   Updated: 2023/07/05 11:26:48 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:58:36 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Implements the 'unset' shell command, which removes environment variables. 
+ * Implements the 'unset' shell command, which removes environment variables.
  * The function supports multiple arguments, which are the names of the
  * variables to remove.
  *
@@ -24,10 +24,10 @@
  * @return EXIT_SUCCESS if all arguments are processed successfully.
  * @return An error code if any of the arguments is invalid.
  */
-int perform_unset(char **arguments)
+int	perform_unset(char **arguments)
 {
-	t_env *target;
-	int exit_code;
+	t_env	*target;
+	int		exit_code;
 
 	exit_code = EXIT_SUCCESS;
 	if (!*(arguments + 1))

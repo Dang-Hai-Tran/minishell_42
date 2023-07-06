@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:38:46 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:00:23 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 /**
  * Extracts the value part of an environment variable definition.
  *
- * @param argv A string containing the environment variable definition in the form 'name=value'.
+ * @param argv A string containing the environment variable definition in the
+ * 	form 'name=value'.
  *
- * @return A newly allocated string containing the value of the variable, or NULL if no value is defined.
+ * @return A newly allocated string containing the value of the variable, or
+ * 	NULL if no value is defined.
  * The caller is responsible for freeing this string.
  */
 char	*get_env_value(char *argv)

@@ -6,14 +6,15 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 12:02:38 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:01:22 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Prints an error message, sets the exit code of the shell, and terminates the shell.
+ * Prints an error message, sets the exit code of the shell, and terminates the
+ * 	shell.
  *
  * @param cmd The command that caused the error.
  * @param err The error message.

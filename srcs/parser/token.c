@@ -6,16 +6,17 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:04 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:22:40 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Fetches the next token from the command line stored in the global manager. It passes the token to the 
- * lexical analyzer which determines its type and value, and also identifies the begin and end positions 
- * of the token in the command line.
+ * Fetches the next token from the command line stored in the global manager.
+ * It passes the token to the lexical analyzer which determines its type and 
+ * value, and also identifies the begin and end positions of the token in the
+ * command line.
  *
  * @return The fetched token.
  */
@@ -43,8 +44,9 @@ t_token	get_token(void)
 }
 
 /**
- * Fetches a token based on the fetch type. If the type is GET, it returns the current token stored in 
- * the global manager. If the type is UPDATE, it fetches the next token and updates the current token 
+ * Fetches a token based on the fetch type. If the type is GET, it returns
+ * the current token stored in the global manager. If the type is UPDATE,
+ * it fetches the next token and updates the current token 
  * stored in the global manager.
  *
  * @param type The type of fetch operation to perform, either GET or UPDATE.

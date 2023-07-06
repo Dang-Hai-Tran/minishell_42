@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:46:55 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:09:19 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
  *
  * @param argv An array of strings representing the command line arguments.
  *
- * @return 1 if the built-in command is executed successfully, otherwise returns the exit failure code.
+ * @return 1 if the built-in command is executed successfully, otherwise
+ * 	returns the exit failure code.
  */
 int	exec_builtin(char **argv)
 {

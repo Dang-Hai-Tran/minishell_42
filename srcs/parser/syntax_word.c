@@ -6,15 +6,16 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:11:52 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Extracts the name of an environment variable from a token. It copies the alphanumeric characters
- * from the token until it finds a character that is not alphanumeric or an underscore.
+ * Extracts the name of an environment variable from a token.
+ * It copies the alphanumeric characters from the token until it finds a
+ * character that is not alphanumeric or an underscore.
  *
  * @param token The token from which to extract the name.
  *
@@ -39,11 +40,13 @@ char	*extract_env_name(char *token)
 }
 
 /**
- * Replaces a special character environment variable in a token with its value. If the environment variable
- * is $? or $$, it replaces it with the exit code or the process ID, respectively.
+ * Replaces a special character environment variable in a token with its value.
+ * If the environment variable is $? or $$, it replaces it with the exit code
+ * or the process ID, respectively.
  *
  * @param token The token in which to replace the environment variable.
- * @param env_ptr Pointer to the position of the environment variable in the token.
+ * @param env_ptr Pointer to the position of the environment variable in the
+ * 	token.
  *
  * @return The token with the environment variable replaced.
  */
@@ -73,11 +76,14 @@ char	*replace_env_sc(char *token, char *env_ptr)
 }
 
 /**
- * Replaces a named environment variable in a token with its value. It extracts the name of the environment variable,
- * fetches its value from the environment, and replaces the environment variable in the token with its value.
+ * Replaces a named environment variable in a token with its value.
+ * It extracts the name of the environment variable, fetches its value
+ * from the environment, and replaces the environment variable in the token
+ * with its value.
  *
  * @param token The token in which to replace the environment variable.
- * @param env_ptr Pointer to the position of the environment variable in the token.
+ * @param env_ptr Pointer to the position of the environment variable in the
+ * token.
  *
  * @return The token with the environment variable replaced.
  */
@@ -110,8 +116,9 @@ char	*replace_env_name(char *token, char *env_ptr)
 }
 
 /**
- * Replaces all environment variables in a token with their values. It replaces both special character
- * environment variables and named environment variables.
+ * Replaces all environment variables in a token with their values.
+ * It replaces both special character environment variables and
+ * named environment variables.
  *
  * @param token The token in which to replace the environment variables.
  *
@@ -138,7 +145,8 @@ char	*replace_env(char *token)
 }
 
 /**
- * Parses a word. It replaces all environment variables in the word and duplicates it.
+ * Parses a word. It replaces all environment variables in the word and
+ * duplicates it.
  *
  * @param word The word to parse.
  *

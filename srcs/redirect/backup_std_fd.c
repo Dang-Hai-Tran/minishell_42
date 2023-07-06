@@ -6,19 +6,22 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 12:25:03 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:33:31 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Backs up the standard file descriptors by duplicating them and storing the duplicates in an array.
- * If any of the duplications fail, it throws an error and exits.
+ * Backs up the standard file descriptors by duplicating them and storing the
+ * duplicates in an array.If any of the duplications fail, it throws an error
+ * and exits.
  *
- * @param std_fd An array where the backups of the standard file descriptors are stored.
+ * @param std_fd An array where the backups of the standard file descriptors are
+ * 	stored.
  *
- * @return SUCCESS_FLAG if the backups are successful, else it throws an error and exits.
+ * @return SUCCESS_FLAG if the backups are successful, else it throws an error
+ * 	and exits.
  */
 int	backup_std_fd(int std_fd[3])
 {

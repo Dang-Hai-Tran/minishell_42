@@ -6,14 +6,15 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:00:11 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:32:11 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Opens a file in read mode and redirects STDIN to it. If any of the operations fail, it throws an error.
+ * Opens a file in read mode and redirects STDIN to it.
+ * If any of the operations fail, it throws an error.
  *
  * @param file_path The path of the file to redirect STDIN from.
  *

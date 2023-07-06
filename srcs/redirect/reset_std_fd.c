@@ -6,19 +6,21 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:11:58 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:37:40 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Restores the standard file descriptors from their backups. If any of the restorations fail, it throws 
- * an error and exits.
+ * Restores the standard file descriptors from their backups.
+ * If any of the restorations fail, it throws an error and exits.
  *
- * @param std_fd An array containing the backups of the standard file descriptors.
+ * @param std_fd An array containing the backups of the standard file
+ * 	descriptors.
  *
- * @return SUCCESS_FLAG if the restorations are successful, else it throws an error and exits.
+ * @return SUCCESS_FLAG if the restorations are successful, else it throws an
+ * 	error and exits.
  */
 int	reset_std_fd(int std_fd[3])
 {

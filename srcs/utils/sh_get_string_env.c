@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:16:15 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:29:45 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static int	get_count(void)
 /**
  * Converts the global environment list into an array of strings.
  *
- * @return Returns an array of environment variables, each represented as a string in the form "name=value".
+ * @return Returns an array of environment variables, each represented
+ * as a string in the form "name=value".
  */
 char	**sh_get_string_env(void)
 {

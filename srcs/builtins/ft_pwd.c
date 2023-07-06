@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perform_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:56:07 by datran            #+#    #+#             */
-/*   Updated: 2023/07/05 11:24:40 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:57:53 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@
  * @return An error code if the command is followed by an argument
  * 	which is not supported.
  */
-int perform_pwd(char **arguments)
+int	perform_pwd(char **arguments)
 {
-    char *cwd;
-    int exit_code;
+	char	*cwd;
+	int		exit_code;
 
-    exit_code = EXIT_SUCCESS;
-    if (*(arguments + 1) && check_option(*(arguments + 1)) == EXIT_FAILURE)
-        return (throw_error_usage("pwd", *(arguments + 1)));
-    cwd = getcwd(NULL, 0);
-    if (!cwd)
-        return (throw_error("pwd", NULL, strerror(errno)));
-    ft_putstr_fd(cwd, STDOUT_FILENO);
-    ft_putstr_fd("\n", STDOUT_FILENO);
-    free(cwd);
-    return (exit_code);
+	exit_code = EXIT_SUCCESS;
+	if (*(arguments + 1) && check_option(*(arguments + 1)) == EXIT_FAILURE)
+		return (throw_error_usage("pwd", *(arguments + 1)));
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+		return (throw_error("pwd", NULL, strerror(errno)));
+	ft_putstr_fd(cwd, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+	free(cwd);
+	return (exit_code);
 }

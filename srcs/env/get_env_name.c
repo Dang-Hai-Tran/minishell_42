@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:33:53 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:00:54 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /**
  * Extracts the name part of an environment variable definition.
  *
- * @param argv A string containing the environment variable definition in the form 'name=value'.
+ * @param argv A string containing the environment variable definition in the
+ * 	form 'name=value'.
  *
  * @return A newly allocated string containing the name of the variable.
  * The caller is responsible for freeing this string.

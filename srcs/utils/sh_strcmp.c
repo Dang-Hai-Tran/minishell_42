@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:35:09 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:30:09 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
  *
  * @param s1 The first string.
  * @param s2 The second string.
- * @return Returns an integer greater than, equal to, or less than 0, according as the string s1 is greater than, 
- * equal to, or less than the string s2.
+ * @return Returns an integer greater than, equal to, or less than 0,
+ *	according as the string s1 is greater than, equal to, or less than the
+ *	string s2.
  */
 int	sh_strcmp(char *s1, char *s2)
 {

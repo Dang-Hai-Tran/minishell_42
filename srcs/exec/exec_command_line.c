@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:14:53 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:08:37 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
  * Executes the redirections in a given t_redirects object by executing the
  * IO redirections and AST redirections if they are present.
  *
- * @param redirects Pointer to a t_redirects object containing the redirections to execute.
+ * @param redirects Pointer to a t_redirects object containing the redirections
+ * 	to execute.
  *
- * @return A flag indicating success if all redirections are executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if all redirections are executed
+ * 	successfully, otherwise returns an error flag.
  */
 int	exec_redirects(t_redirects *redirects)
 {
@@ -38,9 +40,11 @@ int	exec_redirects(t_redirects *redirects)
  * Executes a command stored in a t_command object by executing the
  * command's redirects and simple command if they are present.
  *
- * @param command Pointer to a t_command object containing the command to execute.
+ * @param command Pointer to a t_command object containing the command to
+ * 	execute.
  *
- * @return A flag indicating success if all components of the command are executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if all components of the command are
+ * 	executed successfully, otherwise returns an error flag.
  */
 int	exec_command(t_command *command)
 {
@@ -60,9 +64,11 @@ int	exec_command(t_command *command)
  * Executes a pipeline stored in a t_pipe_line object by executing a subshell
  * or a single command based on the type of the pipeline.
  *
- * @param pipe_line Pointer to a t_pipe_line object containing the pipeline to execute.
+ * @param pipe_line Pointer to a t_pipe_line object containing the pipeline to
+ * 	execute.
  *
- * @return A flag indicating success if the pipeline is executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if the pipeline is executed successfully,
+ * 	otherwise returns an error flag.
  */
 int	exec_pipe_line(t_pipe_line *pipe_line)
 {
@@ -79,12 +85,14 @@ int	exec_pipe_line(t_pipe_line *pipe_line)
 }
 
 /**
- * Executes an abstract syntax tree (AST) by executing a pipeline, a command, 
+ * Executes an abstract syntax tree (AST) by executing a pipeline, a command,
  * or redirects based on the type of the AST.
  *
- * @param ast Pointer to a t_ast object representing the abstract syntax tree to execute.
+ * @param ast Pointer to a t_ast object representing the abstract syntax tree
+ * 	to execute.
  *
- * @return A flag indicating success if the AST is executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if the AST is executed successfully,
+ * 	otherwise returns an error flag.
  */
 int	exec_ast(t_ast *ast)
 {
@@ -102,9 +110,11 @@ int	exec_ast(t_ast *ast)
  * Executes a command line represented as an AST. It starts by executing 
  * heredoc if it exists, then it executes the AST.
  *
- * @param ast Double pointer to a t_ast object representing the command line to execute.
+ * @param ast Double pointer to a t_ast object representing the command
+ * 	line to execute.
  *
- * @return A flag indicating success if the command line is executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if the command line is executed
+ * 	successfully, otherwise returns an error flag.
  */
 int	exec_command_line(t_ast **ast)
 {

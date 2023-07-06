@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:36:00 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:30:35 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ static char	**split_path(void)
 }
 
 /**
- * Searches for a command in the PATH environment variable. It checks each path in the PATH until it finds 
- * the command, or it has checked all paths.
+ * Searches for a command in the PATH environment variable.
+ * It checks each path in the PATH until it finds the command,
+ * or it has checked all paths.
  *
  * @param cmd The command to search for.
- * @return Returns the full path of the command if it's found, otherwise returns the command itself.
+ * @return Returns the full path of the command if it's found,
+ * 	otherwise returns the command itself.
  */
 char	*sh_find_path(char *cmd)
 {

@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:55:31 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:29:29 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*get_word(char *line)
 {
 	int		len;
 	char	*word;
-	
+
 	len = 0;
 	while (line[len] && !ft_isspace(line[len]))
 		len++;
@@ -31,7 +31,8 @@ static char	*get_word(char *line)
 }
 
 /**
- * Writes a line to a file descriptor, replacing any environment variables with their corresponding values.
+ * Writes a line to a file descriptor, replacing any environment
+ * variables with their corresponding values.
  *
  * @param line The line to write.
  * @param fd The file descriptor to write to.

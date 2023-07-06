@@ -6,15 +6,16 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:19:19 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:27:58 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Sets the global exit code depending on the termination status of a process. It handles normal termination, 
- * signal termination, and all other termination cases.
+ * Sets the global exit code depending on the termination status of a process.
+ * It handles normal termination, signal termination, and all other termination
+ * cases.
  *
  * @param status The termination status of the process.
  */
@@ -33,8 +34,9 @@ void	set_exit_code(int status)
 }
 
 /**
- * Waits for all child processes to terminate and sets the global exit code based on the termination status 
- * of the last process specified by the last_pid.
+ * Waits for all child processes to terminate and sets the global exit code
+ * based on the termination status of the last process specified by the
+ * last_pid.
  *
  * @param last_pid The PID of the last process in the pipeline.
  */

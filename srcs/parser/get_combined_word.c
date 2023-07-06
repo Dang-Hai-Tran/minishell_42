@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:26:35 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:20:11 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /**
  * Combines the heredoc word tokens into a single string.
  *
- * @return A pointer to a combined heredoc word string. If there are no word tokens, it will return NULL.
+ * @return A pointer to a combined heredoc word string.
+ * If there are no word tokens, it will return NULL.
  */
 char	*get_combined_heredoc_word(void)
 {
@@ -45,7 +46,8 @@ char	*get_combined_heredoc_word(void)
 /**
  * Combines the word tokens into a single string.
  *
- * @return A pointer to a combined word string. If there are no word tokens, it will return NULL.
+ * @return A pointer to a combined word string.
+ * 	If there are no word tokens, it will return NULL.
  */
 char	*get_combined_word(void)
 {

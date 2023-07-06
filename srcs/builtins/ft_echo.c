@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo_command.c                                          :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:09 by datran            #+#    #+#             */
-/*   Updated: 2023/07/05 10:58:20 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:53:06 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
  * @return 1 if the option is valid.
  * @return 0 otherwise.
  */
-static int is_echo_option_valid(char *option)
+static int	is_echo_option_valid(char *option)
 {
-	int flag = 0;
-	int index = 2;
+	int	flag;
+	int	index;
 
+	flag = 0;
+	index = 2;
 	if (!ft_strncmp(option, "-n", index))
 	{
 		while (option[index] == 'n')
@@ -34,8 +36,7 @@ static int is_echo_option_valid(char *option)
 		if (!option[index]) 
 			flag = 1;
 	}
-
-	return flag;
+	return (flag);
 }
 
 /**
@@ -49,10 +50,11 @@ static int is_echo_option_valid(char *option)
  *
  * @return EXIT_SUCCESS after printing the arguments to the standard output.
  */
-int echo_command(char **argv)
+int	echo_command(char **argv)
 {
-	int is_newline_suppressed = 0;
+	int	is_newline_suppressed;
 
+	is_newline_suppressed = 0;
 	argv++;
 	while (is_echo_option_valid(*argv))
 	{
@@ -68,5 +70,5 @@ int echo_command(char **argv)
 	}
 	if (!is_newline_suppressed)
 		ft_putstr_fd("\n", STDOUT_FILENO);
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }

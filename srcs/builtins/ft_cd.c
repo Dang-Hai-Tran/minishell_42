@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_directory.c                                            :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/05 10:49:21 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:52:15 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@
  * @return EXIT_SUCCESS if the operation is successful.
  * @return EXIT_FAILURE if the operation fails or if 'pwd' is NULL.
  */
-static int update_current_directory(t_env *pwd)
+static int	update_current_directory(t_env *pwd)
 {
-	char *previous_directory;
-	
+	char	*previous_directory;
+
 	if (!pwd)
-		return EXIT_FAILURE;
+		return (EXIT_FAILURE);
 	previous_directory = pwd->value;
 	pwd->value = getcwd(NULL, 0);
 	if (!pwd->value) 
-		return throw_error_exit("getcwd", strerror(errno), EXIT_FAILURE);
+		return (throw_error_exit("getcwd", strerror(errno), EXIT_FAILURE));
 	if (previous_directory)
 		free(previous_directory);
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }
 
 /**
@@ -50,21 +50,21 @@ static int update_current_directory(t_env *pwd)
  * @return An error code if the operation fails, which includes failing to find
  * the "HOME" environment variable.
  */
-static int change_to_home_directory(void)
+static int	change_to_home_directory(void)
 {
-	t_env *home_env;
-	char  *home_directory;
-	int   exit_code;
+	t_env	*home_env;
+	char	*home_directory;
+	int		exit_code;
 
 	home_env = get_env("HOME");
 	if (!home_env) 
-		return throw_error("cd", NULL, strerror(errno));
+		return (throw_error("cd", NULL, strerror(errno)));
 	home_directory = home_env->value;
 	exit_code = chdir(home_directory);
 	if (exit_code < 0) 
-		return throw_error("cd", NULL, strerror(errno));
+		return (throw_error("cd", NULL, strerror(errno)));
 	exit_code = update_current_directory(get_env("PWD"));
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }
 
 /**
@@ -84,19 +84,19 @@ static int change_to_home_directory(void)
  * @return An error code if the operation fails, which includes invalid
  * 	arguments or an inaccessible target directory.
  */
-int change_directory(char **argv)
+int	change_directory(char **argv)
 {
-	int exit_code;
+	int	exit_code;
 
 	if (*(argv + 2)) 
-		return throw_error("cd", NULL, "too many arguments");
+		return (throw_error("cd", NULL, "too many arguments"));
 	if (!*(argv + 1)) 
-		return change_to_home_directory();
+		return (change_to_home_directory());
 	if (check_option(*(argv + 1)) == EXIT_FAILURE)
-		return throw_error_usage("cd", *(argv + 1));
+		return (throw_error_usage("cd", *(argv + 1)));
 	exit_code = chdir(*(argv + 1));
 	if (exit_code < 0) 
-		return throw_error("cd", *(argv + 1), strerror(errno));
+		return (throw_error("cd", *(argv + 1), strerror(errno)));
 	exit_code = update_current_directory(get_env("PWD"));
-	return exit_code;
+	return (exit_code);
 }

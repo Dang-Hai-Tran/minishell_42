@@ -6,17 +6,18 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:46:40 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:03:30 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Executes a general command (i.e., not a built-in command) by forking a child process
- * and running the command in the child process.
+ * Executes a general command (i.e., not a built-in command) by
+ * forking a child process and running the command in the child process.
  *
- * @param simple_command Pointer to a `t_simple_command` structure containing the command to be executed.
+ * @param simple_command Pointer to a `t_simple_command` structure containing
+ * 	the command to be executed.
  *
  * @return SUCCESS_FLAG if the command is executed successfully.
  */
@@ -44,10 +45,11 @@ static int	exec_single_general(t_simple_command *simple_command)
 }
 
 /**
- * Executes a general command (i.e., not a built-in command) by forking a child process
- * and running the command in the child process.
+ * Executes a general command (i.e., not a built-in command) by forking a 
+ * child process and running the command in the child process.
  *
- * @param simple_command Pointer to a `t_simple_command` structure containing the command to be executed.
+ * @param simple_command Pointer to a `t_simple_command` structure containing
+ * 	the command to be executed.
  *
  * @return SUCCESS_FLAG if the command is executed successfully.
  */
@@ -64,11 +66,14 @@ static int	exec_single_builtin(t_simple_command *simple_command)
 }
 
 /**
- * Executes a built-in command using the `exec_builtin` function and updates the global manager exit code.
+ * Executes a built-in command using the `exec_builtin` function and updates
+ * 	the global manager exit code.
  *
- * @param simple_command Pointer to a `t_simple_command` structure containing the built-in command to be executed.
+ * @param simple_command Pointer to a `t_simple_command` structure containing
+ * 	the built-in command to be executed.
  *
- * @return SUCCESS_FLAG if the command is executed successfully, ERROR_FLAG otherwise.
+ * @return SUCCESS_FLAG if the command is executed successfully,
+ * 	ERROR_FLAG otherwise.
  */
 int	exec_single_command(t_command *command)
 {

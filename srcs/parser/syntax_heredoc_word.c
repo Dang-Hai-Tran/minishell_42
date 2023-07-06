@@ -6,15 +6,16 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:18:29 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:10:04 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Extracts the word for a heredoc redirection. If the first character of the token is a quote,
- * it extracts the substring between the quotes. Otherwise, it duplicates the token.
+ * Extracts the word for a heredoc redirection. If the first character of
+ * the token is a quote, it extracts the substring between the quotes.
+ * Otherwise, it duplicates the token.
  *
  * @param token The token from which to extract the word.
  *

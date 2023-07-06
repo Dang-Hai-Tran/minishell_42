@@ -6,15 +6,15 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:42:02 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:34:11 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Opens a file in write mode, truncates it, and redirects STDERR to it. If any of the operations fail, 
- * it throws an error.
+ * Opens a file in write mode, truncates it, and redirects STDERR to it.
+ * If any of the operations fail, it throws an error.
  *
  * @return SUCCESS_FLAG if the redirection is successful, ERROR_FLAG otherwise.
  */

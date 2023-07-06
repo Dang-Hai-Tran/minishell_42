@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:55:38 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:00:31 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
  *
  * @param identifier The name of the variable to retrieve.
  *
- * @return A pointer to the environment variable, or NULL if no such variable exists.
+ * @return A pointer to the environment variable, or NULL if no such variable
+ * 	exists.
  */
 t_env	*get_env(char *identifier)
 {

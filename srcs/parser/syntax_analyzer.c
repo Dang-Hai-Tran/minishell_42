@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:03:34 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:20:52 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ char	*match(t_type type)
 }
 
 /**
- * Implements the syntax analyzer of the command line interpreter. It fetches a token
- * and checks its type. If the type is T_NULL, it returns the abstract syntax tree (AST).
- * If the parsing of the syntax_pipe_line is successful, it updates the exit code of the manager
- * and returns the AST.
+ * Implements the syntax analyzer of the command line interpreter.
+ * It fetches a token and checks its type. If the type is T_NULL,
+ * it returns the abstract syntax tree (AST).
+ * If the parsing of the syntax_pipe_line is successful, it updates the exit
+ * code of the manager and returns the AST.
  *
  * @return A pointer to the AST.
  */

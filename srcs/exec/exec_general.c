@@ -6,15 +6,15 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:47:37 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:09:06 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Handles an execution error occurred due to system level issue such as file not found 
- * or lack of access permissions and logs an error message.
+ * Handles an execution error occurred due to system level issue such 
+ * as file not found or lack of access permissions and logs an error message.
  *
  * @param argv The command that caused the execution error.
  *
@@ -39,7 +39,7 @@ static int	error_execve_sys(char *argv)
 }
 
 /**
- * Handles an execution error occurred due to a local command not being found 
+ * Handles an execution error occurred due to a local command not being found
  * and logs an appropriate error message.
  *
  * @param argv The command that caused the execution error.
@@ -60,14 +60,15 @@ static int	error_execve_local(char *argv)
 }
 
 /**
- * Executes a file as a command by checking the nature of the file and running it with 
- * the given command line arguments and environment variables.
+ * Executes a file as a command by checking the nature of the file and running
+ * it with the given command line arguments and environment variables.
  *
  * @param filename The name of the file to execute.
  * @param argv An array of strings representing the command line arguments.
  * @param envp An array of strings representing the environment variables.
  *
- * @return The appropriate exit code based on the result of the command execution.
+ * @return The appropriate exit code based on the result of the command
+ * 	execution.
  */
 static int	exec_file_name(char *filename, char **argv, char **envp)
 {
@@ -88,12 +89,14 @@ static int	exec_file_name(char *filename, char **argv, char **envp)
 }
 
 /**
- * Executes a general command by either finding the command in the PATH environment variable 
- * or treating it as a filename. Then it uses exec_file_name to execute it.
+ * Executes a general command by either finding the command in the PATH 
+ * environment variable or treating it as a filename.
+ * Then it uses exec_file_name to execute it.
  *
  * @param argv An array of strings representing the command line arguments.
  *
- * @return The appropriate exit code based on the result of the command execution.
+ * @return The appropriate exit code based on the result of the command
+ * 	execution.
  */
 int	exec_general(char **argv)
 {

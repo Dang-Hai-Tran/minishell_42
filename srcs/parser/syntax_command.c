@@ -6,15 +6,16 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:26:07 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:12:56 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Initializes a new syntax command. It allocates memory for the AST command node 
- * and sets the node type to AST_COMMAND. It also allocates memory for the command data.
+ * Initializes a new syntax command. It allocates memory for the AST
+ * command node and sets the node type to AST_COMMAND.
+ * It also allocates memory for the command data.
  *
  * @param ast_command Pointer to the AST command node to be initialized.
  */
@@ -26,10 +27,10 @@ static void	init_syntax_command(t_ast **ast_command)
 }
 
 /**
- * Parses a command. It keeps fetching tokens until it finds a token that is not of 
- * type T_WORD or T_REDIRECT. For each token of type T_WORD, it parses a simple command,
- * and for each token of type T_REDIRECT, it parses redirects. If any of the parsing fails,
- * it returns an error flag.
+ * Parses a command. It keeps fetching tokens until it finds a token that
+ * is not of type T_WORD or T_REDIRECT. For each token of type T_WORD,
+ * it parses a simple command, and for each token of type T_REDIRECT,
+ * it parses redirects. If any of the parsing fails, it returns an error flag.
  *
  * @param ast_command Pointer to the AST command node.
  *

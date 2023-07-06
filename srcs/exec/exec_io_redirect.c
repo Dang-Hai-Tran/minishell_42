@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:58:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:02:29 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 /**
  * Executes an IO redirection based on the type of the redirection operation.
  *
- * @param io_redirect Pointer to a t_io_redirect object representing the IO redirection.
+ * @param io_redirect Pointer to a t_io_redirect object representing the IO
+ * 	redirection.
  *
- * @return A flag indicating success if the redirection is executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if the redirection is executed
+ * 	successfully, otherwise returns an error flag.
  */
 int	exec_io_redirect(t_io_redirect *io_redirect)
 {

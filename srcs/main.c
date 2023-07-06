@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:23 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:37:20 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_manager	g_manager;
 
 /**
  * Frees resources related to a command execution cycle.
- * Frees abstract syntax tree (AST), token value and resets the standard file descriptors.
+ * Frees abstract syntax tree (AST), token value and resets the standard file
+ * descriptors.
  *
  * @param ast The abstract syntax tree to free.
  * @param std_fd The standard file descriptors to reset.
@@ -29,7 +30,8 @@ static void	reset_minishell(t_ast *ast, int std_fd[3])
 }
 
 /**
- * Initializes the global manager object. Resets command line, return code and quote error flag.
+ * Initializes the global manager object. Resets command line, return code
+ * and quote error flag.
  *
  * @param command_line The command line string.
  */
@@ -42,17 +44,19 @@ static void	init_manager(char *command_line)
 
 /**
  * Frees the resources held by the global manager object.
- * Frees token value, abstract syntax tree (AST) and environment variables list.
+ * Frees token value, abstract syntax tree (AST) and environment variables list
  */
-void free_manager() {
+void	free_manager(void)
+{
 	free(g_manager.token.value);
 	free_ast(g_manager.ast);
 	free_env(g_manager.env);
 }
 
 /**
- * Initializes the shell environment. Backups standard file descriptors, parses environment variables and 
- * throws an error if the shell is run with more than one argument.
+ * Initializes the shell environment. Backups standard file descriptors,
+ * parses environment variables and throws an error if the shell is run
+ * with more than one argument.
  *
  * @param argc The argument count.
  * @param argv The argument vector.
@@ -72,8 +76,9 @@ static void	init_minishell(int argc, char **argv, char **envp, int std_fd[3])
 }
 
 /**
- * The entry point for the minishell program. Initializes the shell environment, reads commands from the user, 
- * parses the commands, executes the commands, and then cleans up the resources. The shell runs in a continuous 
+ * The entry point for the minishell program. Initializes the shell environment
+ * reads commands from the user, parses the commands, executes the commands,
+ * and then cleans up the resources. The shell runs in a continuous 
  * loop until the user exits.
  *
  * @param argc The argument count.

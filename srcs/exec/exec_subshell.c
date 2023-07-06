@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:03:50 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:06:05 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 /**
  * Executes a pipeline of commands by creating a subshell.
  *
- * @param pipe_line Pointer to a `t_pipe_line` structure containing the pipeline of commands.
+ * @param pipe_line Pointer to a `t_pipe_line` structure containing
+ * 	the pipeline of commands.
  *
- * @return SUCCESS_FLAG if the pipeline is executed successfully, ERROR_FLAG otherwise.
+ * @return SUCCESS_FLAG if the pipeline is executed successfully,
+ * 	ERROR_FLAG otherwise.
  */
 int	exec_subshell(t_pipe_line *pipe_line)
 {

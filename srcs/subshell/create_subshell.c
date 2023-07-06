@@ -6,14 +6,15 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:06:41 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:28:51 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Closes both read and write ends of a pipe. Throws an error and exits if any of the close operations fail.
+ * Closes both read and write ends of a pipe. Throws an error and exits if
+ * any of the close operations fail.
  *
  * @param pipe_fd An array containing the file descriptors of the pipe ends.
  */
@@ -26,8 +27,9 @@ void	close_pipe_fd(int pipe_fd[2])
 }
 
 /**
- * Duplicates the specified pipe file descriptor to the specified type (STDIN_FILENO or STDOUT_FILENO). Then it 
- * closes both ends of the pipe. Throws an error and exits if any of the operations fail.
+ * Duplicates the specified pipe file descriptor to the specified type
+ * (STDIN_FILENO or STDOUT_FILENO). Then it closes both ends of the pipe.
+ * Throws an error and exits if any of the operations fail.
  *
  * @param pipe_fd An array containing the file descriptors of the pipe ends.
  * @param pipe_type The type of pipe (read or write end).
@@ -40,11 +42,13 @@ void	connect_pipe(int pipe_fd[2], int pipe_type)
 }
 
 /**
- * Creates a child process that runs a command. It sets up a pipe between the parent and the child process 
- * if there's more command in the pipeline. Throws an error and exits if any of the operations fail.
+ * Creates a child process that runs a command. It sets up a pipe between
+ * the parent and the child process if there's more command in the pipeline.
+ * Throws an error and exits if any of the operations fail.
  *
  * @param pipe_line The command to run in the child process.
- * @return Returns the PID of the child process, or ERROR_FLAG if an error occurs.
+ * @return Returns the PID of the child process, or ERROR_FLAG if an error
+ * occurs.
  */
 pid_t	create_subshell(t_pipe_line *pipe_line)
 {

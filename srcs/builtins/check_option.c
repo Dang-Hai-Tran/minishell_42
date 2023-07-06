@@ -6,7 +6,7 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:59:05 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 12:31:11 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
  * @return EXIT_SUCCESS if the given argument is not an option.
  * @return EXIT_FAILURE if the given argument is an option.
  */
-int check_option(char *arg)
+int	check_option(char *arg)
 {
-    int exit_code;
-    
-    if (*arg == '-')
-        exit_code = EXIT_FAILURE;
-    else
-        exit_code = EXIT_SUCCESS;
+	int	exit_code;
 
-    return exit_code;
+	if (*arg == '-')
+		exit_code = EXIT_FAILURE;
+	else
+		exit_code = EXIT_SUCCESS;
+	return (exit_code);
 }

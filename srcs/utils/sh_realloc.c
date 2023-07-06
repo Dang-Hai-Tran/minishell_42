@@ -6,15 +6,15 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:39:31 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:31:03 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Reallocates a buffer with a new size. The function copies the existing data into the new buffer and 
- * then frees the old buffer.
+ * Reallocates a buffer with a new size. The function copies the existing data
+ * into the new buffer and then frees the old buffer.
  *
  * @param ptr The old buffer to reallocate.
  * @param size The size of the new buffer.

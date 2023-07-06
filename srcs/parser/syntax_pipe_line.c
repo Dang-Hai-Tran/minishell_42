@@ -6,15 +6,16 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:04:26 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:14:52 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Initializes a new syntax pipe line. It allocates memory for the AST pipe line node 
- * and sets the node type to AST_PIPELINE. It also allocates memory for the pipe line data.
+ * Initializes a new syntax pipe line. It allocates memory for the AST
+ * pipe line node and sets the node type to AST_PIPELINE.
+ * It also allocates memory for the pipe line data.
  *
  * @param ast_pipe_line Pointer to the AST pipe line node to be initialized.
  */
@@ -26,9 +27,11 @@ static void	init_syntax_pipe_line(t_ast **ast_pipe_line)
 }
 
 /**
- * Parses a pipe line. It fetches a token and checks its type. If the token type is not T_WORD or T_REDIRECT,
- * it throws a syntax error. Otherwise, it initializes a pipe line node, parses a command and, if the next token
- * type is T_PIPE, it parses a pipe line. If any of these steps fail, it returns an error flag.
+ * Parses a pipe line. It fetches a token and checks its type. If the token
+ * type is not T_WORD or T_REDIRECT, it throws a syntax error.
+ * Otherwise, it initializes a pipe line node, parses a command and, if the
+ * next token type is T_PIPE, it parses a pipe line. If any of these steps
+ * fail, it returns an error flag.
  *
  * @param ast_pipe_line Pointer to the AST pipe line node.
  *

@@ -6,15 +6,15 @@
 /*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:15:57 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/06 13:07:06 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * Generates a unique file path for a heredoc by concatenating a temporary directory 
- * and a count to a base string.
+ * Generates a unique file path for a heredoc by concatenating a temporary
+ * directory and a count to a base string.
  *
  * @return The generated file path.
  */
@@ -38,12 +38,13 @@ char	*create_heredoc_path(void)
 }
 
 /**
- * Executes a redirection to a heredoc by creating a new file path for the heredoc and 
- * redirecting the input to the heredoc.
+ * Executes a redirection to a heredoc by creating a new file path for the
+ * heredoc and redirecting the input to the heredoc.
  *
  * @param ast Double pointer to a t_ast object representing the redirections.
  *
- * @return A flag indicating success if the heredoc is executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if the heredoc is executed successfully
+ * 	otherwise returns an error flag.
  */
 static int	exec_redirect_heredoc(t_ast **ast)
 {
@@ -74,12 +75,13 @@ static int	exec_redirect_heredoc(t_ast **ast)
 }
 
 /**
- * Executes all heredocs in a command line represented as an AST. It executes the heredoc 
- * for each command and pipeline in the AST.
+ * Executes all heredocs in a command line represented as an AST. It executes
+ * the heredoc for each command and pipeline in the AST.
  *
  * @param ast Double pointer to a t_ast object representing the command line.
  *
- * @return A flag indicating success if all heredocs are executed successfully, otherwise returns an error flag.
+ * @return A flag indicating success if all heredocs are executed successfully,
+ * 	otherwise returns an error flag.
  */
 int	exec_heredoc(t_ast **ast)
 {

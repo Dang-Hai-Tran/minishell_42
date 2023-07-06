@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_command.c                                           :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/05 11:03:21 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:59:13 by colin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@
  * @return An error code if the 'env' command is followed by an argument, which
  * is not supported.
  */
-int env_command(char **argv)
+int	env_command(char **argv)
 {
-	t_env *current_env_var;
-	
-	current_env_var = g_manager.env;
+	t_env	*current_env_var;
 
+	current_env_var = g_manager.env;
 	if (*(argv + 1)) 
-		return throw_error_usage("env", *(argv + 1));
+		return (throw_error_usage("env", *(argv + 1)));
 	while (current_env_var)
 	{
 		if (current_env_var->value)
@@ -44,5 +43,5 @@ int env_command(char **argv)
 		}
 		current_env_var = current_env_var->next;
 	}
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }

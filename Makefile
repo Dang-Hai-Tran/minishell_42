@@ -36,7 +36,7 @@ all: libs $(BINDIR) $(BUILDDIR) $(OBJECTS)
 
 lib/$(PROJECT_NAME).flag: $(LIBS)
 	@make -C libft
-	@find . -type f -name *.a* -exec gmv -t lib {} +
+	@find . -type f -name *.a* -exec mv -t lib {} +
 	@touch $@
 	@rm -rf libft/$(BINDIR)
 libs: $(LIBDIR) lib/$(PROJECT_NAME).flag

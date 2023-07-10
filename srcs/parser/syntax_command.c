@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:26:07 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:12:56 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/10 16:19:24 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	syntax_command(t_ast **ast_command)
 	ast_redirects = &command->redirects;
 	while (token.type == T_WORD || token.type == T_REDIRECT)
 	{
+		printf("Token value: %s, token type: %u\n", token.value, token.type);
 		if (token.type == T_WORD)
 		{
 			if (syntax_simple_command(&command->simple_command))

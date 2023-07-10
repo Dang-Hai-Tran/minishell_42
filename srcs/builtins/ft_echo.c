@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:09 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:53:06 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/10 15:20:40 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	is_echo_option_valid(char *option)
 	{
 		while (option[index] == 'n')
 			index++;
-		if (!option[index]) 
+		if (!option[index])
 			flag = 1;
 	}
 	return (flag);
@@ -56,6 +56,11 @@ int	echo_command(char **argv)
 
 	is_newline_suppressed = 0;
 	argv++;
+	if (!*argv || !**argv)
+	{
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		return (EXIT_SUCCESS);
+	}
 	while (is_echo_option_valid(*argv))
 	{
 		is_newline_suppressed = 1;

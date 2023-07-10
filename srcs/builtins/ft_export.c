@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:54:28 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:57:15 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/10 14:34:54 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	print_environment_with_quotes(void)
 	env_current = g_manager.env;
 	while (env_current)
 	{
+		ft_putstr_fd("declare -x ", STDOUT_FILENO);
 		ft_putstr_fd(env_current->name, STDOUT_FILENO);
 		if (env_current->value)
 		{
@@ -94,11 +95,11 @@ int	perform_export(char **arguments)
 	arguments++;
 	while (*arguments)
 	{
-		if (check_option(*arguments) == EXIT_FAILURE) 
+		if (check_option(*arguments) == EXIT_FAILURE)
 			exit_code = throw_error_usage("export", *arguments) + 1;
-		else if (valid_env_name(*arguments) == EXIT_FAILURE) 
+		else if (valid_env_name(*arguments) == EXIT_FAILURE)
 			exit_code = throw_error_env("export", *arguments);
-		else 
+		else
 			execute_export(*arguments);
 		arguments++;
 	}

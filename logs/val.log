@@ -1,20 +1,182 @@
-==60694== Memcheck, a memory error detector
-==60694== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==60694== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==60694== Command: ./minishell
-==60694== Parent PID: 10169
-==60694== 
-==60694== 
-==60694== HEAP SUMMARY:
-==60694==     in use at exit: 208,350 bytes in 235 blocks
-==60694==   total heap usage: 759 allocs, 524 frees, 235,031 bytes allocated
-==60694== 
-==60694== LEAK SUMMARY:
-==60694==    definitely lost: 0 bytes in 0 blocks
-==60694==    indirectly lost: 0 bytes in 0 blocks
-==60694==      possibly lost: 0 bytes in 0 blocks
-==60694==    still reachable: 0 bytes in 0 blocks
-==60694==         suppressed: 208,350 bytes in 235 blocks
-==60694== 
-==60694== For lists of detected and suppressed errors, rerun with: -s
-==60694== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==624653== Memcheck, a memory error detector
+==624653== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==624653== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==624653== Command: ./minishell
+==624653== Parent PID: 595275
+==624653== 
+==624653== Invalid read of size 1
+==624653==    at 0x40631F: ft_strncmp (ft_strncmp.c:20)
+==624653==    by 0x403840: is_echo_option_valid (ft_echo.c:32)
+==624653==    by 0x40376A: echo_command (ft_echo.c:59)
+==624653==    by 0x404D48: exec_builtin (exec_builtin.c:27)
+==624653==    by 0x404C08: exec_single_builtin (exec_single_command.c:60)
+==624653==    by 0x404BA9: exec_single_command (exec_single_command.c:89)
+==624653==    by 0x404AB0: exec_pipe_line (exec_command_line.c:81)
+==624653==    by 0x404965: exec_ast (exec_command_line.c:100)
+==624653==    by 0x404B05: exec_command_line (exec_command_line.c:123)
+==624653==    by 0x401C08: main (main.c:106)
+==624653==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==624653== 
+==624653== 
+==624653== Process terminating with default action of signal 11 (SIGSEGV)
+==624653==  Access not within mapped region at address 0x0
+==624653==    at 0x40631F: ft_strncmp (ft_strncmp.c:20)
+==624653==    by 0x403840: is_echo_option_valid (ft_echo.c:32)
+==624653==    by 0x40376A: echo_command (ft_echo.c:59)
+==624653==    by 0x404D48: exec_builtin (exec_builtin.c:27)
+==624653==    by 0x404C08: exec_single_builtin (exec_single_command.c:60)
+==624653==    by 0x404BA9: exec_single_command (exec_single_command.c:89)
+==624653==    by 0x404AB0: exec_pipe_line (exec_command_line.c:81)
+==624653==    by 0x404965: exec_ast (exec_command_line.c:100)
+==624653==    by 0x404B05: exec_command_line (exec_command_line.c:123)
+==624653==    by 0x401C08: main (main.c:106)
+==624653==  If you believe this happened as a result of a stack
+==624653==  overflow in your program's main thread (unlikely but
+==624653==  possible), you can try to increase the size of the
+==624653==  main thread stack using the --main-stacksize= flag.
+==624653==  The main thread stack size used in this run was 8388608.
+==624653== 
+==624653== HEAP SUMMARY:
+==624653==     in use at exit: 221,139 bytes in 478 blocks
+==624653==   total heap usage: 748 allocs, 270 frees, 237,053 bytes allocated
+==624653== 
+==624653== 5 bytes in 1 blocks are still reachable in loss record 1 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x406CF5: ft_strdup (ft_strdup.c:21)
+==624653==    by 0x4026FE: replace_env (syntax_word.c:137)
+==624653==    by 0x402920: syntax_word (syntax_word.c:170)
+==624653==    by 0x40329C: get_combined_word (get_combined_word.c:64)
+==624653==    by 0x401E1B: init_simple_command (syntax_simple_command.c:33)
+==624653==    by 0x401D5F: syntax_simple_command (syntax_simple_command.c:61)
+==624653==    by 0x4020E9: syntax_command (syntax_command.c:53)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 9 bytes in 1 blocks are still reachable in loss record 8 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x406CF5: ft_strdup (ft_strdup.c:21)
+==624653==    by 0x4026FE: replace_env (syntax_word.c:137)
+==624653==    by 0x4028C6: syntax_word (syntax_word.c:164)
+==624653==    by 0x40329C: get_combined_word (get_combined_word.c:64)
+==624653==    by 0x401FFF: syntax_io_redirect (syntax_io_redirect.c:46)
+==624653==    by 0x40238C: syntax_redirects (syntax_redirects.c:45)
+==624653==    by 0x402116: syntax_command (syntax_command.c:58)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 16 bytes in 1 blocks are still reachable in loss record 16 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x40301A: init_syntax_pipe_line (syntax_pipe_line.c:24)
+==624653==    by 0x402F4A: syntax_pipe_line (syntax_pipe_line.c:49)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 16 bytes in 1 blocks are still reachable in loss record 17 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x403040: init_syntax_pipe_line (syntax_pipe_line.c:26)
+==624653==    by 0x402F4A: syntax_pipe_line (syntax_pipe_line.c:49)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 16 bytes in 1 blocks are still reachable in loss record 18 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x40218A: init_syntax_command (syntax_command.c:24)
+==624653==    by 0x402092: syntax_command (syntax_command.c:46)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 16 bytes in 1 blocks are still reachable in loss record 19 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x401E0C: init_simple_command (syntax_simple_command.c:32)
+==624653==    by 0x401D5F: syntax_simple_command (syntax_simple_command.c:61)
+==624653==    by 0x4020E9: syntax_command (syntax_command.c:53)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 16 bytes in 1 blocks are still reachable in loss record 20 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x401E3E: init_simple_command (syntax_simple_command.c:34)
+==624653==    by 0x401D5F: syntax_simple_command (syntax_simple_command.c:61)
+==624653==    by 0x4020E9: syntax_command (syntax_command.c:53)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 16 bytes in 1 blocks are still reachable in loss record 21 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x40242A: init_syntax_redirects (syntax_redirects.c:24)
+==624653==    by 0x402374: syntax_redirects (syntax_redirects.c:43)
+==624653==    by 0x402116: syntax_command (syntax_command.c:58)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 16 bytes in 1 blocks are still reachable in loss record 22 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x402450: init_syntax_redirects (syntax_redirects.c:26)
+==624653==    by 0x402374: syntax_redirects (syntax_redirects.c:43)
+==624653==    by 0x402116: syntax_command (syntax_command.c:58)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 24 bytes in 1 blocks are still reachable in loss record 32 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x4021B0: init_syntax_command (syntax_command.c:26)
+==624653==    by 0x402092: syntax_command (syntax_command.c:46)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 24 bytes in 1 blocks are still reachable in loss record 33 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x401ECA: syntax_io_redirect (syntax_io_redirect.c:30)
+==624653==    by 0x40238C: syntax_redirects (syntax_redirects.c:45)
+==624653==    by 0x402116: syntax_command (syntax_command.c:58)
+==624653==    by 0x402F62: syntax_pipe_line (syntax_pipe_line.c:51)
+==624653==    by 0x4022AE: syntax_analyzer (syntax_analyzer.c:55)
+==624653==    by 0x401BD0: main (main.c:104)
+==624653== 
+==624653== 996 bytes in 71 blocks are still reachable in loss record 57 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x405D74: get_env_name (get_env_name.c:33)
+==624653==    by 0x401C9A: init_minishell (main.c:73)
+==624653==    by 0x401B7D: main (main.c:94)
+==624653== 
+==624653== 1,704 bytes in 71 blocks are still reachable in loss record 69 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x405C7A: add_env (add_env.c:27)
+==624653==    by 0x401CB6: init_minishell (main.c:73)
+==624653==    by 0x401B7D: main (main.c:94)
+==624653== 
+==624653== 3,564 bytes in 71 blocks are still reachable in loss record 72 of 98
+==624653==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==624653==    by 0x4061AC: ft_calloc (ft_calloc.c:21)
+==624653==    by 0x40610F: get_env_value (get_env_value.c:36)
+==624653==    by 0x401CAA: init_minishell (main.c:73)
+==624653==    by 0x401B7D: main (main.c:94)
+==624653== 
+==624653== LEAK SUMMARY:
+==624653==    definitely lost: 0 bytes in 0 blocks
+==624653==    indirectly lost: 0 bytes in 0 blocks
+==624653==      possibly lost: 0 bytes in 0 blocks
+==624653==    still reachable: 6,438 bytes in 224 blocks
+==624653==         suppressed: 214,701 bytes in 254 blocks
+==624653== 
+==624653== For lists of detected and suppressed errors, rerun with: -s
+==624653== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

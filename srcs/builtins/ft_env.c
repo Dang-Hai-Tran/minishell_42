@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:59:13 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/10 12:55:06 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	env_command(char **argv)
 	t_env	*current_env_var;
 
 	current_env_var = g_manager.env;
-	if (*(argv + 1)) 
+	if (*(argv + 1))
 		return (throw_error_usage("env", *(argv + 1)));
 	while (current_env_var)
 	{

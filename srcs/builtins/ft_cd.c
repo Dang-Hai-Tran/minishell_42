@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:52:15 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/10 12:54:59 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	update_current_directory(t_env *pwd)
 		return (EXIT_FAILURE);
 	previous_directory = pwd->value;
 	pwd->value = getcwd(NULL, 0);
-	if (!pwd->value) 
+	if (!pwd->value)
 		return (throw_error_exit("getcwd", strerror(errno), EXIT_FAILURE));
 	if (previous_directory)
 		free(previous_directory);
@@ -57,11 +57,11 @@ static int	change_to_home_directory(void)
 	int		exit_code;
 
 	home_env = get_env("HOME");
-	if (!home_env) 
+	if (!home_env)
 		return (throw_error("cd", NULL, strerror(errno)));
 	home_directory = home_env->value;
 	exit_code = chdir(home_directory);
-	if (exit_code < 0) 
+	if (exit_code < 0)
 		return (throw_error("cd", NULL, strerror(errno)));
 	exit_code = update_current_directory(get_env("PWD"));
 	return (EXIT_SUCCESS);
@@ -88,14 +88,14 @@ int	change_directory(char **argv)
 {
 	int	exit_code;
 
-	if (*(argv + 2)) 
+	if (*(argv + 2))
 		return (throw_error("cd", NULL, "too many arguments"));
-	if (!*(argv + 1)) 
+	if (!*(argv + 1))
 		return (change_to_home_directory());
 	if (check_option(*(argv + 1)) == EXIT_FAILURE)
 		return (throw_error_usage("cd", *(argv + 1)));
 	exit_code = chdir(*(argv + 1));
-	if (exit_code < 0) 
+	if (exit_code < 0)
 		return (throw_error("cd", *(argv + 1), strerror(errno)));
 	exit_code = update_current_directory(get_env("PWD"));
 	return (exit_code);

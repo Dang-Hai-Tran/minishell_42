@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_redirects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:37:21 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:13:36 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/10 19:18:58 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,10 @@ static void	init_syntax_redirects(t_ast **ast_redirects)
 int	syntax_redirects(t_ast **ast_redirects)
 {
 	t_redirects	*redirects;
-	t_token		token;
 
 	init_syntax_redirects(ast_redirects);
 	redirects = (*ast_redirects)->data;
 	if (syntax_io_redirect(&redirects->io_redirect))
 		return (ERROR_FLAG);
-	token = fetch_token(GET);
-	if (token.type == T_REDIRECT)
-		if (syntax_redirects(&redirects->redirects))
-			return (ERROR_FLAG);
 	return (SUCCESS_FLAG);
 }

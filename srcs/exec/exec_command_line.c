@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command_line.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:14:53 by datran            #+#    #+#             */
-/*   Updated: 2023/07/10 15:58:12 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:36:04 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int	exec_redirects(t_redirects *redirects)
 	if (flag != SUCCESS_FLAG)
 		return (ERROR_FLAG);
 	if (redirects->redirects)
-	{
-		printf("Execute 2nd redirection\n");
 		flag = exec_ast(redirects->redirects);
-	}
 	return (flag);
 }
 

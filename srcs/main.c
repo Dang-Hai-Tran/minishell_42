@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:37:20 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/12 14:05:11 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,17 @@ int	main(int argc, char **argv, char **envp)
 	while (true)
 	{
 		init_signal();
-		command_line = readline(PS1);
+		if (isatty(fileno(stdin)))
+		g_manager.command_line = readline(PS1);
+		else
+		{
+			char *line;
+			line = get_next_line(fileno(stdin));
+			g_manager.command_line = ft_strtrim(line, "\n");
+			free(line);
+		}
+		if (isatty(fileno(stdin)))
+			command_line = readline(PS1);
 		sh_exit_eof(command_line);
 		if (command_line && *command_line)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh_exit_eof.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:05:26 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/12 13:19:12 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sh_exit_eof(char *command_line)
 {
 	if (!command_line)
 	{
-		ft_putstr_fd("exit\n", STDERR_FILENO);
+		//ft_putstr_fd("exit\n", STDERR_FILENO);
 		exit(EXIT_SUCCESS);
 	}
 }

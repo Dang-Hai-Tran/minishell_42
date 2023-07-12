@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:30:00 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:55:19 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/12 13:17:20 by copeugne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	exit_command(char **argv)
 	int	exit_code;
 
 	exit_code = EXIT_SUCCESS;
-	ft_putstr_fd("exit\n", STDERR_FILENO);
+	//ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (*(argv + 1))
 	{
 		if (*(argv + 2))

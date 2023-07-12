@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:06:16 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:32:54 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/12 15:37:06 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	redirect_heredoc(char *end_text, char *heredoc_path)
 		throw_error_exit("open", strerror(errno), EXIT_FAILURE);
 	while (!g_manager.exit_code)
 	{
-		line = readline("heredoc> ");
+		line = readline("> ");
 		if (!line || !sh_strcmp(line, end_text))
 			return (end_of_heredoc(line, fd));
 		sh_putline_heredoc(line, fd);

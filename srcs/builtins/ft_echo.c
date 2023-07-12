@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:09 by datran            #+#    #+#             */
-/*   Updated: 2023/07/10 15:20:40 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:58:01 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,21 @@
 static int	is_echo_option_valid(char *option)
 {
 	int	flag;
-	int	index;
+	int	len;
+	int	i;
 
 	flag = 0;
-	index = 2;
-	if (!ft_strncmp(option, "-n", index))
+	len = ft_strlen(option);
+	i = 2;
+	if (!ft_strncmp(option, "-n", 2))
 	{
-		while (option[index] == 'n')
-			index++;
-		if (!option[index])
-			flag = 1;
+		while (i <= len - 1)
+		{
+			if (option[i] != 'n')
+				return (flag);
+			i++;
+		}
+		flag = 1;
 	}
 	return (flag);
 }
@@ -56,14 +61,16 @@ int	echo_command(char **argv)
 
 	is_newline_suppressed = 0;
 	argv++;
-	if (!*argv || !**argv)
+	if (!*argv)
 	{
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		return (EXIT_SUCCESS);
 	}
-	while (is_echo_option_valid(*argv))
+	if (is_echo_option_valid(*argv))
 	{
 		is_newline_suppressed = 1;
+		if (!*(argv + 1))
+			return (EXIT_SUCCESS);
 		argv++;
 	}
 	while (*argv)

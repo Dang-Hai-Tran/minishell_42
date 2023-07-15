@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/10 12:54:59 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:39:29 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ int	change_directory(char **argv)
 {
 	int	exit_code;
 
-	if (*(argv + 2))
+	if (argv[2])
 		return (throw_error("cd", NULL, "too many arguments"));
-	if (!*(argv + 1))
+	if (!argv[1])
 		return (change_to_home_directory());
 	if (check_option(*(argv + 1)) == EXIT_FAILURE)
 		return (throw_error_usage("cd", *(argv + 1)));

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/07/12 14:50:52 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/14 22:54:28 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,6 @@ char	*replace_env(char *token)
 		env_ptr = ft_strchr(env_ptr + 1, '$');
 	if (!env_ptr)
 		return (ft_strdup(token));
-	if (*(env_ptr + 1) == 0)
-		word = ft_strdup("");
 	else if (*(env_ptr + 1) == '?' || *(env_ptr + 1) == '$')
 		word = replace_env_sc(token, env_ptr);
 	else if (ft_isalpha(*(env_ptr + 1)))

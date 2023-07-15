@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_simple_command.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:58:21 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:15:44 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/15 00:33:52 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ int	syntax_simple_command(t_simple_command **simple_command)
 	{
 		argv = sh_ptrrealloc(argv, ac, ac + 2);
 		argv[ac] = get_combined_word();
+		// if (!ft_strncmp(argv[ac], "~", 2))
+		// {
+		// 	free(argv[ac]);
+		// 	argv[ac] = ft_strdup(get_env("HOME")->value);
+		// }
 		ac++;
 	}
 	argv[ac] = NULL;

@@ -1,0 +1,157 @@
+******* COMPARE PARSING ******
+/bin/echo $"42$"
+/bin/echo $USER$TESTNOTFOUND$HOME$ OK
+
+****** PARSING HELL ******
+cat << $USER OK
+why
+not
+$USER
+
+export T=">>"
+$T lol
+
+cat << "$US"E"R"
+because
+we
+love
+bash
+$USER
+
+export T="-n test1 -n test 2"
+echo $T
+
+export T=nnnnnnnn
+echo "-""$T"nnnnnnnnnnnnn -nnnnnnnn"$T" '-'"$T"
+
+export T=nnnnnnnn
+echo "-""$T"nnnnnnnnnnnnn -nnnnnnnn"$T" '-''$T'
+
+export T="echo segfault | grep segfault"
+$T
+
+export T=-nnnnnnnn"nnnnnnn "
+echo $T
+
+echo "$"$'$'$"$"$"$"$'$'
+
+****** BUILTINS ******
+echo cd ~
+echo $"42$"
+echo $USER$TESTNOTFOUND$HOME$
+echo -n -n test1
+echo -n -n -n -n -n test1
+echo -n -n -nasd
+echo -n -n -n-nnnnn
+cd ../../
+
+pwd
+cd ~
+cd -
+pwd
+
+export
+/bin/env | grep "_="
+
+ls | cat << stop | grep "asd"
+is this good
+stop
+
+ls | cat << stop | ls -la | cat << stop1
+12
+32232
+23
+stop
+awdaw
+daswd
+stop1
+
+ls|cat Makefile|cat<<asd>out
+$USER
+asd
+/bin/rm -f out
+
+ls|cat Makefile|cat<<'asd'>out
+$USER
+asd
+/bin/rm -f out
+
+ls|cat Makefile|cat<<"asd">out
+$USER
+asd
+/bin/rm -f out
+
+****** REDIRS ******
+cat << lim
+ "lim"
+HELLO
+42
+ lim
+testing your minishell
+limm
+lim
+
+<<lim cat
+ "lim"
+HELLO
+42
+ lim
+testing your minishell
+limm
+lim
+
+****** SCMD ******
+touch "
+"
+/bin/rm -f "
+"
+****** VARIABLES ******
+/bin/echo $HOME$NOTHING$USER$
+/bin/echo $
+/bin/echo "$"
+/bin/echo "$""$"
+cd ..$PWD
+
+export tmp_test="/bin/echo 42"
+$tmp_test
+$tmp_test 42
+export tmp_test="/bin/echo"
+$tmp_test 42 42
+
+export X="  A  B  "
+/bin/echo "1"$X'2'
+export X=" A  B  "
+/bin/echo "1"$X'2'
+
+unset PATH
+cd /bin
+ls
+
+unset PATH
+cd /bin/../bin/
+ls
+
+****** PATH FAILS ******
+unset PATH
+echo $PATH
+/bin/ls
+echo 1
+cd -
+echo 42
+
+cd -
+cd ~/Desktop/
+pwd
+
+****** WILD ******
+/bin/echo '\1$42' > tmp_redir_out
+ls -la | grep tmp_redir_out | awk '{print $1 $2}'
+cat -e tmp_redir_out
+rm tmp_redir_out
+
+export test="arg1	arg2"
+echo 'echo $1' > tmp_test_sh
+bash tmp_test_sh $test
+echo 'echo $2' > tmp_test_sh
+bash tmp_test_sh $test
+rm -f tmp_test_sh

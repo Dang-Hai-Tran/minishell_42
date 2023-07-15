@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:04 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:22:40 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/14 23:47:38 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,7 @@ t_token	get_token(void)
 		return (token);
 	if (flag == ERROR_FLAG)
 		g_manager.exit_code = EXIT_SYNTAXERR;
-	token.value = ft_calloc(end - begin + 1, sizeof(char));
-	if (!token.value)
-		return (token);
-	if (!ft_strlcpy(token.value, begin, end - begin + 1))
-		return (token);
+	token.value = ft_substr(begin, 0, end - begin);
 	g_manager.rc += end - begin;
 	return (token);
 }

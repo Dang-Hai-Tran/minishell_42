@@ -78,7 +78,11 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 
 .PHONY: clean fclean all libs
 
-# valgrind --log-file=logs/val.log --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=ignore_leak_rl ./bin/msh
+# Outputs valgrind to the terminal
+# valgrind --log-file=logs/val.log --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=.ignore_readline_leaks.supp ./bin/minishell
+
+# Outputs valgrind debug logs to a log file
+# valgrind --log-file=logs/val.log --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=.ignore_readline_leaks.supp ./bin/minishell
 # Remove all comments in a file : \/\*(?:[^*]|[\r\n]|(\*+(?:[^*/]|[\r\n])))*\*\/
 
 # Sur Linux

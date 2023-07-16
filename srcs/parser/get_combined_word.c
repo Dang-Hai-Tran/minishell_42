@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:26:35 by datran            #+#    #+#             */
-/*   Updated: 2023/07/15 00:12:01 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/16 17:25:30 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,29 @@ char	*get_combined_heredoc_word(void)
  */
 char	*get_combined_word(void)
 {
-	char	*combined_word;
+	char	*cb_word;
 	char	*token;
 	char	*word;
 	char	*tmp;
-	char	next;
+	char	*next;
 
-	next = g_manager.command_line[g_manager.rc];
+	next = &g_manager.command_line[g_manager.rc];
 	token = match(T_WORD);
 	if (!token)
 		return (NULL);
-	combined_word = syntax_word(token);
-	while (!ft_isspace(next) && fetch_token(GET).type == T_WORD)
+	cb_word = syntax_word(token);
+	if (ft_strchr("\"\'", *next) && *(next - 1) == '$' && *(next - 2) != '$')
+		ft_strlcpy(cb_word, cb_word, ft_strlen(cb_word));
+	while (!ft_isspace(*next) && fetch_token(GET).type == T_WORD)
 	{
-		next = g_manager.command_line[g_manager.rc];
+		next = &g_manager.command_line[g_manager.rc];
+		if (ft_strchr("\"\'", *next) && *(next - 1) == '$' && *(next - 2) != '$')
+			ft_strlcpy(cb_word, cb_word, ft_strlen(cb_word));
 		word = syntax_word(match(T_WORD));
-		tmp = combined_word;
-		combined_word = ft_strjoin(combined_word, word);
+		tmp = cb_word;
+		cb_word = ft_strjoin(cb_word, word);
 		free(word);
 		free(tmp);
 	}
-	return (combined_word);
+	return (cb_word);
 }

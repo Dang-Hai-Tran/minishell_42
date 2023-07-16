@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:56:07 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:57:53 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/16 12:58:39 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	perform_pwd(char **arguments)
 	int		exit_code;
 
 	exit_code = EXIT_SUCCESS;
-	if (*(arguments + 1) && check_option(*(arguments + 1)) == EXIT_FAILURE)
+	if (*(arguments + 1) && check_option(*(arguments + 1)) == true)
 		return (throw_error_usage("pwd", *(arguments + 1)));
 	cwd = getcwd(NULL, 0);
 	if (!cwd)

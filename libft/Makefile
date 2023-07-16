@@ -1,6 +1,6 @@
 PROJECT_NAME := Libft
 BIN_NAME  := libft.a
-CC        := clang
+CC        := gcc
 AR        := ar rcs
 ROOTDIR   := ../
 SRCDIR    := srcs

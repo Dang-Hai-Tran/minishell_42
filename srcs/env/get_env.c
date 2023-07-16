@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:55:38 by datran            #+#    #+#             */
-/*   Updated: 2023/07/15 00:21:51 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/16 12:35:55 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ t_env	*get_env(char *identifier)
 	len = ft_strlen(identifier);
 	while (ptr)
 	{
-		if (ft_strlen(ptr->name) == len && ft_strncmp(identifier, ptr->name,
-				len) == 0)
+		if (ft_strncmp(identifier, ptr->name, len + 1) == 0)
 			return (ptr);
 		ptr = ptr->next;
 	}

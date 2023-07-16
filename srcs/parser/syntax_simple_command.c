@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:58:21 by datran            #+#    #+#             */
-/*   Updated: 2023/07/15 13:05:42 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/16 14:47:23 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	syntax_simple_command(t_simple_command **simple_command)
 	int		ac;
 	char	**argv;
 	char	*tmp;
+	char	*home_dir;
 
 	ac = 0;
 	argv = init_simple_command(simple_command, &ac);
@@ -65,10 +66,11 @@ int	syntax_simple_command(t_simple_command **simple_command)
 	{
 		argv = sh_ptrrealloc(argv, ac, ac + 2);
 		argv[ac] = get_combined_word();
-		if (!ft_strncmp(argv[ac], "~", 2))
+		if (!ft_strncmp(argv[ac], "~", 2) || !ft_strncmp(argv[ac], "~/", 2))
 		{
 			tmp = argv[ac];
-			argv[ac] = ft_strdup(get_env("HOME")->value);
+			home_dir = get_env("HOME")->value;
+			argv[ac] = ft_strjoin(home_dir, argv[ac] + 1);
 			free(tmp);
 		}
 		ac++;

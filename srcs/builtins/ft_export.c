@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:54:28 by datran            #+#    #+#             */
-/*   Updated: 2023/07/10 14:34:54 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:01:38 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
  */
 static void	print_environment_with_quotes(void)
 {
-	t_env	*env_current;
+	t_env	*current_env;
 
-	env_current = g_manager.env;
-	while (env_current)
+	current_env = g_manager.env;
+	while (current_env)
 	{
 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
-		ft_putstr_fd(env_current->name, STDOUT_FILENO);
-		if (env_current->value)
+		ft_putstr_fd(current_env->name, STDOUT_FILENO);
+		if (current_env->value)
 		{
 			write(STDOUT_FILENO, "=\"", 2);
-			ft_putstr_fd(env_current->value, STDOUT_FILENO);
+			ft_putstr_fd(current_env->value, STDOUT_FILENO);
 			write(STDOUT_FILENO, "\"", 1);
 		}
 		write(STDOUT_FILENO, "\n", 1);
-		env_current = env_current->next;
+		current_env = current_env->next;
 	}
 }
 
@@ -95,9 +95,9 @@ int	perform_export(char **arguments)
 	arguments++;
 	while (*arguments)
 	{
-		if (check_option(*arguments) == EXIT_FAILURE)
+		if (check_option(*arguments) == true)
 			exit_code = throw_error_usage("export", *arguments) + 1;
-		else if (valid_env_name(*arguments) == EXIT_FAILURE)
+		else if (valid_env_name(*arguments) == false)
 			exit_code = throw_error_env("export", *arguments);
 		else
 			execute_export(*arguments);

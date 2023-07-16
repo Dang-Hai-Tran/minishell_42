@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/10 12:55:06 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/16 12:49:13 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@
  */
 int	env_command(char **argv)
 {
-	t_env	*current_env_var;
+	t_env	*current_env;
 
-	current_env_var = g_manager.env;
+	current_env = g_manager.env;
 	if (*(argv + 1))
 		return (throw_error_usage("env", *(argv + 1)));
-	while (current_env_var)
+	while (current_env)
 	{
-		if (current_env_var->value)
+		if (current_env->value)
 		{
-			ft_putstr_fd(current_env_var->name, STDOUT_FILENO);
+			ft_putstr_fd(current_env->name, STDOUT_FILENO);
 			write(STDOUT_FILENO, "=", 1);
-			ft_putstr_fd(current_env_var->value, STDOUT_FILENO);
+			ft_putstr_fd(current_env->value, STDOUT_FILENO);
 			write(STDOUT_FILENO, "\n", 1);
 		}
-		current_env_var = current_env_var->next;
+		current_env = current_env->next;
 	}
 	return (EXIT_SUCCESS);
 }

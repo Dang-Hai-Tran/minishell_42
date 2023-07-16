@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_in_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 17:00:11 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:32:11by dcolin           ###   ########.fr       */
+/*   Created: 2023/07/16 17:19:37 by datran            #+#    #+#             */
+/*   Updated: 2023/07/16 17:19:39 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 /**
  * Opens a file in read mode and redirects STDIN to it.
  * If any of the operations fail, it throws an error.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:56:46 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:58:36 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/16 13:02:01 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	perform_unset(char **arguments)
 	arguments++;
 	while (*arguments)
 	{
-		if (check_option(*arguments) == EXIT_FAILURE)
+		if (check_option(*arguments) == true)
 			exit_code = throw_error_usage("unset", *arguments) + 1;
 		else if (ft_strchr(*arguments, '='))
 			exit_code = throw_error_env("unset", *arguments);
-		else if (valid_env_name(*arguments) == EXIT_FAILURE)
+		else if (valid_env_name(*arguments) == false)
 			exit_code = throw_error_env("unset", *arguments);
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:09 by datran            #+#    #+#             */
-/*   Updated: 2023/07/12 16:58:01 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/16 12:48:12 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @return 1 if the option is valid.
  * @return 0 otherwise.
  */
-static int	is_echo_option_valid(char *option)
+static int	check_echo_option(char *option)
 {
 	int	flag;
 	int	len;
@@ -57,18 +57,18 @@ static int	is_echo_option_valid(char *option)
  */
 int	echo_command(char **argv)
 {
-	int	is_newline_suppressed;
+	int	has_newline;
 
-	is_newline_suppressed = 0;
+	has_newline = 0;
 	argv++;
 	if (!*argv)
 	{
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		return (EXIT_SUCCESS);
 	}
-	if (is_echo_option_valid(*argv))
+	if (check_echo_option(*argv))
 	{
-		is_newline_suppressed = 1;
+		has_newline = 1;
 		if (!*(argv + 1))
 			return (EXIT_SUCCESS);
 		argv++;
@@ -80,7 +80,7 @@ int	echo_command(char **argv)
 			ft_putstr_fd(" ", STDOUT_FILENO);
 		argv++;
 	}
-	if (!is_newline_suppressed)
+	if (!has_newline)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }

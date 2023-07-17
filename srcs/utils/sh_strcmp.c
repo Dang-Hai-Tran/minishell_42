@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:35:09 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:30:09 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/17 10:16:33 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	sh_strcmp(char *s1, char *s2)
 
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
-	if (s1_len > s2_len)
+	if (s1_len >= s2_len)
 		n = s1_len;
 	else
 		n = s2_len;

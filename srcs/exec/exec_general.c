@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_general.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:47:37 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:09:06 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/17 10:40:23 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
  *
  * @return The appropriate exit code based on the nature of the error.
  */
-static int	error_execve_sys(char *argv)
+static int	error_execve_sys(char **argv)
 {
 	int	exit_code;
 
 	exit_code = EXIT_FAILURE;
 	if (errno == ENOENT)
 	{
-		throw_error(argv, NULL, strerror(errno));
+		throw_error(*argv, NULL, strerror(errno));
 		exit_code = EXIT_ENOENT;
 	}
 	else if (errno == EACCES)
 	{
-		throw_error(argv, NULL, strerror(errno));
+		throw_error(*argv, NULL, strerror(errno));
 		exit_code = EXIT_EACCES;
 	}
 	return (exit_code);
@@ -46,14 +46,14 @@ static int	error_execve_sys(char *argv)
  *
  * @return The exit code indicating the command not found error.
  */
-static int	error_execve_local(char *argv)
+static int	error_execve_local(char **argv)
 {
 	int	exit_code;
 
 	exit_code = EXIT_FAILURE;
 	if (errno == ENOENT || errno == EACCES)
 	{
-		throw_error(argv, NULL, "command not found");
+		throw_error(*argv, NULL, "command not found");
 		exit_code = EXIT_ENOENT;
 	}
 	return (exit_code);
@@ -77,15 +77,19 @@ static int	exec_file_name(char *filename, char **argv, char **envp)
 		if (sh_cmd_is_dir(filename))
 		{
 			throw_error(filename, NULL, "Is a directory");
+			free(filename);
+			free_str_arr(envp);
 			return (EXIT_EACCES);
 		}
 		execve(filename, argv, envp);
 		free(filename);
-		return (error_execve_sys(*argv));
+		free_str_arr(envp);
+		return (error_execve_sys(argv));
 	}
 	execve(filename, argv, envp);
 	free(filename);
-	return (error_execve_local(*argv));
+	free_str_arr(envp);
+	return (error_execve_local(argv));
 }
 
 /**
@@ -103,7 +107,6 @@ int	exec_general(char **argv)
 	char	**envp;
 	char	*filename;
 
-	filename = NULL;
 	envp = sh_get_string_env();
 	if (ft_strchr(*argv, '/') == NULL)
 	{
@@ -115,6 +118,7 @@ int	exec_general(char **argv)
 	if (filename == NULL)
 	{
 		throw_error(*argv, NULL, "command not found");
+		free_str_arr(envp);
 		return (EXIT_ENOENT);
 	}
 	return (exec_file_name(filename, argv, envp));

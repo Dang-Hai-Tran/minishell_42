@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh_file_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:36:00 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:30:35 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/16 19:53:35 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ char	*sh_find_path(char *cmd)
 		i++;
 	}
 	free_path(path);
-	return (ft_strdup(cmd));
+	return (NULL);
 }

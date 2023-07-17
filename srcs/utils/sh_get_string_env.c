@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh_get_string_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:16:15 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:29:45 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/16 19:14:22 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ char	**sh_get_string_env(void)
 		ptr = ptr->next;
 		i++;
 	}
+	ret[i] = NULL;
 	return (ret);
 }

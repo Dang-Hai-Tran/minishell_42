@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:12:44 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 16:20:01 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/16 22:04:38 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	*sh_realloc(void *ptr, size_t size);
 bool	sh_cmd_is_dir(char *cmd);
 char	**sh_get_string_env(void);
 void	sh_putline_heredoc(char *line, int fd);
+void	free_str_arr(char **env);
+void	print_str_arr(char **str);
 
 #endif

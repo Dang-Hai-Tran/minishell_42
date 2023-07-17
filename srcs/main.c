@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/15 17:25:58 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/17 01:17:35 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_manager	g_manager;
  * @param ast The abstract syntax tree to free.
  * @param std_fd The standard file descriptors to reset.
  */
-static void	reset_minishell(t_ast *ast, int std_fd[3])
+static void	reset_minishell(int std_fd[3])
 {
-	free_ast(ast);
+	free_ast(g_manager.ast);
 	free(g_manager.token.value);
 	reset_std_fd(std_fd);
 }
@@ -63,14 +63,19 @@ void	free_manager(void)
  * @param envp The environment variables array.
  * @param std_fd The standard file descriptors to backup.
  */
-static void	init_minishell(int argc, char **argv, char **envp, int std_fd[3])
+static void	init_env(int argc, char **argv, char **envp, int std_fd[3])
 {
+	char	*name;
+	char	*value;
+
 	if (argc > 1)
-		throw_error_exit(argv[1], strerror(ENOENT), EXIT_ENOENT);
+		throw_error_exit(argv[1], "invalid arguments", 1);
 	backup_std_fd(std_fd);
 	while (*envp)
 	{
-		add_env(get_env_name(*envp), get_env_value(*envp));
+		name = get_env_name(*envp);
+		value = get_env_value(*envp);
+		add_env(name, value);
 		envp++;
 	}
 }
@@ -91,7 +96,7 @@ int	main(int argc, char **argv, char **envp)
 	int				std_fd[3];
 	char			*command_line;
 
-	init_minishell(argc, argv, envp, std_fd);
+	init_env(argc, argv, envp, std_fd);
 	while (true)
 	{
 		init_signal();
@@ -112,9 +117,10 @@ int	main(int argc, char **argv, char **envp)
 			g_manager.ast = syntax_analyzer();
 			if (g_manager.ast && g_manager.exit_code == EXIT_SUCCESS)
 				exec_command_line(&g_manager.ast);
-			reset_minishell(g_manager.ast, std_fd);
+			reset_minishell(std_fd);
 		}
 		free(command_line);
 	}
+	free_env(g_manager.env);
 	return (EXIT_SUCCESS);
 }

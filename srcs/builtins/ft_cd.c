@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 12:57:47 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/17 10:19:04 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	change_directory(char **argv)
 	int		exit_code;
 	t_env	*old_pwd;
 
-	if (*(argv + 2))
-		return (throw_error("cd", NULL, "too many arguments"));
 	if (!*(argv + 1) || !**(argv + 1) || !ft_strncmp(*(argv + 1), "--", 3))
 		return (cd_home());
+	if (*(argv + 2))
+		return (throw_error("cd", NULL, "too many arguments"));
 	if (!ft_strncmp(*(argv + 1), "-", 2))
 	{
 		old_pwd = get_env("OLDPWD");

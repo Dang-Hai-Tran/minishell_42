@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:38:46 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:00:23 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/16 21:08:49 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_env_value(char *argv)
 	len = ft_strlen(ptr) + 1;
 	value = (char *)ft_calloc(len, sizeof(char));
 	if (!value)
-		exit(EXIT_FAILURE);
+		return (NULL);
 	ft_strlcpy(value, ptr, len);
 	return (value);
 }

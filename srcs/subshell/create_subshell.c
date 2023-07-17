@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_subshell.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:06:41 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:28:51 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/17 09:40:14 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ pid_t	create_subshell(t_pipe_line *pipe_line)
 		else
 			close_pipe_fd(pipe_fd);
 		exec_ast(pipe_line->command);
+		free_manager();
 		exit(g_manager.exit_code);
 	}
 	connect_pipe(pipe_fd, READ);

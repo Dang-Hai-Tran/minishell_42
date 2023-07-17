@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:04 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 15:51:36 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/16 23:15:39 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_token	fetch_token(t_fetch_type type)
 	if (type == GET)
 		return (g_manager.token);
 	else if (type == UPDATE)
+	{
 		g_manager.token = get_token();
+	}
 	return (g_manager.token);
 }

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/07/14 22:54:28 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/16 21:33:44 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*extract_env_name(char *token)
 	int		nc;
 
 	nc = 0;
-	name = ft_strdup("");
+	name = ft_calloc(1, sizeof(char));
 	while (ft_isalnum(*token) || (*token) == '_')
 	{
 		name = sh_realloc(name, nc + 2);
@@ -35,7 +35,7 @@ char	*extract_env_name(char *token)
 		nc++;
 		token++;
 	}
-	name[nc] = '\0';
+	name[nc] = 0;
 	return (name);
 }
 

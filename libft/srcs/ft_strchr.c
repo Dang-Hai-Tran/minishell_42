@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:11:05 by datran            #+#    #+#             */
-/*   Updated: 2022/11/21 16:08:10 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/17 00:17:32 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,5 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)s);
 		s++;
 	}
-	if (c == 0)
-		return ((char *)s);
 	return (0);
 }

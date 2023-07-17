@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:58:21 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 14:47:23 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/17 10:26:15 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static char	**init_simple_command(t_simple_command **simple_command, int *ac)
 	{
 		*simple_command = ft_calloc(1, sizeof(t_simple_command));
 		(*simple_command)->exec_path = get_combined_word();
-		argv = ft_calloc((*ac) + 2, sizeof(char *));
-		argv[(*ac)] = (*simple_command)->exec_path;
+		argv = ft_calloc(2, sizeof(char *));
+		argv[0] = (*simple_command)->exec_path;
 		(*ac)++;
 	}
 	else

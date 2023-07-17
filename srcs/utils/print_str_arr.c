@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   print_str_arr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 11:05:25 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 22:55:11 by datran           ###   ########.fr       */
+/*   Created: 2023/07/16 22:00:57 by datran            #+#    #+#             */
+/*   Updated: 2023/07/16 22:03:56 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	print_str_arr(char **str)
 {
-	char	*sub;
-	size_t	sub_len;
-	size_t	slen;
+	int	i;
 
-	slen = ft_strlen(s);
-	if (slen <= (size_t)start)
-		return (ft_strdup(""));
-	if (slen - start < len)
-		sub_len = slen - start;
-	else
-		sub_len = len;
-	sub = (char *)malloc(sub_len + 1);
-	if (!s || !sub)
-		return (NULL);
-	ft_strlcpy(sub, s + start, sub_len + 1);
-	return (sub);
+	i = 0;
+	while (str[i])
+	{
+		printf("%s || ", str[i]);
+		i++;
+	}
+	printf("%s", "\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_simple_command.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:20:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 12:06:00 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/17 01:07:07 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@
  */
 void	free_simple_command(t_simple_command *simple_command)
 {
-	int	ac;
+	int		i;
+	char **argv;
 
-	ac = -1;
-	while (simple_command->argv[++ac])
-		free(simple_command->argv[ac]);
-	free(simple_command->argv);
+	i = 0;
+	argv = simple_command->argv;
+	while (argv[i] != NULL)
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
 	free(simple_command);
 }

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:54:28 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 13:01:38 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/17 12:10:24 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	execute_export(char *argument)
 {
 	char	*name;
 	char	*value;
+	char	*tmp;
 	t_env	*env_found;
 
 	name = get_env_name(argument);
@@ -56,16 +57,13 @@ static void	execute_export(char *argument)
 	env_found = get_env(name);
 	if (env_found)
 	{
-		if (value)
-		{
-			if (env_found->value)
-				free(env_found->value);
-			env_found->value = value;
-		}
+		tmp = env_found->value;
+		env_found->value = value;
+		free(tmp);
 		free(name);
 	}
 	else
-		add_env(name, get_env_value(argument));
+		add_env(name, value);
 }
 
 /**

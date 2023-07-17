@@ -1,33 +1,47 @@
-==633023== Memcheck, a memory error detector
-==633023== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==633023== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==633023== Command: ./bin/minishell
-==633023== Parent PID: 459281
-==633023== 
-==633023== 
-==633023== HEAP SUMMARY:
-==633023==     in use at exit: 208,261 bytes in 230 blocks
-==633023==   total heap usage: 609 allocs, 379 frees, 233,322 bytes allocated
-==633023== 
-==633023== 2 bytes in 1 blocks are definitely lost in loss record 1 of 68
-==633023==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==633023==    by 0x10EDC3: ft_substr (ft_substr.c:28)
-==633023==    by 0x10DE9F: get_token (token.c:37)
-==633023==    by 0x10DF57: fetch_token (token.c:58)
-==633023==    by 0x10DBF7: match (syntax_analyzer.c:28)
-==633023==    by 0x10C843: syntax_io_redirect (syntax_io_redirect.c:31)
-==633023==    by 0x10D70B: syntax_redirects (syntax_redirects.c:44)
-==633023==    by 0x10DDA7: syntax_command (syntax_command.c:58)
-==633023==    by 0x10D593: syntax_pipe_line (syntax_pipe_line.c:51)
-==633023==    by 0x10DC73: syntax_analyzer (syntax_analyzer.c:55)
-==633023==    by 0x109C5B: main (main.c:117)
-==633023== 
-==633023== LEAK SUMMARY:
-==633023==    definitely lost: 2 bytes in 1 blocks
-==633023==    indirectly lost: 0 bytes in 0 blocks
-==633023==      possibly lost: 0 bytes in 0 blocks
-==633023==    still reachable: 0 bytes in 0 blocks
-==633023==         suppressed: 208,259 bytes in 229 blocks
-==633023== 
-==633023== For lists of detected and suppressed errors, rerun with: -s
-==633023== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==833045== Memcheck, a memory error detector
+==833045== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==833045== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==833045== Command: ./bin/minishell
+==833045== Parent PID: 394157
+==833045== 
+==833045== 
+==833045== HEAP SUMMARY:
+==833045==     in use at exit: 208,267 bytes in 231 blocks
+==833045==   total heap usage: 619 allocs, 388 frees, 233,560 bytes allocated
+==833045== 
+==833045== 2 bytes in 1 blocks are definitely lost in loss record 1 of 69
+==833045==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==833045==    by 0x10DFD3: ft_calloc (ft_calloc.c:21)
+==833045==    by 0x10DE67: get_token (token.c:37)
+==833045==    by 0x10DF5B: fetch_token (token.c:60)
+==833045==    by 0x10DBC7: match (syntax_analyzer.c:28)
+==833045==    by 0x10C81F: syntax_io_redirect (syntax_io_redirect.c:31)
+==833045==    by 0x10D6DB: syntax_redirects (syntax_redirects.c:44)
+==833045==    by 0x10DD77: syntax_command (syntax_command.c:58)
+==833045==    by 0x10D563: syntax_pipe_line (syntax_pipe_line.c:51)
+==833045==    by 0x10DC43: syntax_analyzer (syntax_analyzer.c:55)
+==833045==    by 0x109C53: main (main.c:119)
+==833045== 
+==833045== 5 bytes in 1 blocks are definitely lost in loss record 3 of 69
+==833045==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==833045==    by 0x10DFD3: ft_calloc (ft_calloc.c:21)
+==833045==    by 0x10DE67: get_token (token.c:37)
+==833045==    by 0x10DF5B: fetch_token (token.c:60)
+==833045==    by 0x10DBC7: match (syntax_analyzer.c:28)
+==833045==    by 0x10CA83: get_combined_word (get_combined_word.c:61)
+==833045==    by 0x10C917: syntax_io_redirect (syntax_io_redirect.c:44)
+==833045==    by 0x10D6DB: syntax_redirects (syntax_redirects.c:44)
+==833045==    by 0x10DD77: syntax_command (syntax_command.c:58)
+==833045==    by 0x10D563: syntax_pipe_line (syntax_pipe_line.c:51)
+==833045==    by 0x10DC43: syntax_analyzer (syntax_analyzer.c:55)
+==833045==    by 0x109C53: main (main.c:119)
+==833045== 
+==833045== LEAK SUMMARY:
+==833045==    definitely lost: 7 bytes in 2 blocks
+==833045==    indirectly lost: 0 bytes in 0 blocks
+==833045==      possibly lost: 0 bytes in 0 blocks
+==833045==    still reachable: 0 bytes in 0 blocks
+==833045==         suppressed: 208,260 bytes in 229 blocks
+==833045== 
+==833045== For lists of detected and suppressed errors, rerun with: -s
+==833045== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

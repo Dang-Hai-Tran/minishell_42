@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:04 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 23:15:39 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/17 11:37:11 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ t_token	get_token(void)
 		return (token);
 	if (flag == ERROR_FLAG)
 		g_manager.exit_code = EXIT_SYNTAXERR;
-	token.value = ft_substr(begin, 0, end - begin);
+	token.value = ft_calloc(end - begin + 1, sizeof(char));
+	if (!token.value)
+		return (token);
+	ft_strlcpy(token.value, begin, end - begin + 1);
 	g_manager.rc += end - begin;
 	return (token);
 }
@@ -54,8 +57,6 @@ t_token	fetch_token(t_fetch_type type)
 	if (type == GET)
 		return (g_manager.token);
 	else if (type == UPDATE)
-	{
 		g_manager.token = get_token();
-	}
 	return (g_manager.token);
 }

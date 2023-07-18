@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:03:50 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:06:05 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/18 17:14:07 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	exec_subshell(t_pipe_line *pipe_line)
 	pid_t	pid;
 
 	pid = create_subshell(pipe_line);
-	if (pid == ERROR_FLAG)
+	if (pid < 0)
 		return (ERROR_FLAG);
 	if (pipe_line->pipe_line && pipe_line->pipe_line->type == AST_PIPELINE)
 		exec_subshell(pipe_line->pipe_line->data);

@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:26:35 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 17:25:30 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/18 16:41:33 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ char	*get_combined_heredoc_word(void)
 	return (combined_word);
 }
 
+static void	check_dollar_quotes(char *cb_word, char *next)
+{
+	if (g_manager.rc >= 2)
+		if (ft_strchr("\"\'", *next) && *(next - 1) == '$' && *(next - 2) != '$')
+			ft_strlcpy(cb_word, cb_word, ft_strlen(cb_word));
+}
+
 /**
  * Combines the word tokens into a single string.
  *
@@ -62,13 +69,11 @@ char	*get_combined_word(void)
 	if (!token)
 		return (NULL);
 	cb_word = syntax_word(token);
-	if (ft_strchr("\"\'", *next) && *(next - 1) == '$' && *(next - 2) != '$')
-		ft_strlcpy(cb_word, cb_word, ft_strlen(cb_word));
+	check_dollar_quotes(cb_word, next);
 	while (!ft_isspace(*next) && fetch_token(GET).type == T_WORD)
 	{
 		next = &g_manager.command_line[g_manager.rc];
-		if (ft_strchr("\"\'", *next) && *(next - 1) == '$' && *(next - 2) != '$')
-			ft_strlcpy(cb_word, cb_word, ft_strlen(cb_word));
+		check_dollar_quotes(cb_word, next);
 		word = syntax_word(match(T_WORD));
 		tmp = cb_word;
 		cb_word = ft_strjoin(cb_word, word);

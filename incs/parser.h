@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:12:59 by datran            #+#    #+#             */
-/*   Updated: 2023/06/04 19:04:43 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/18 16:50:53 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ char	*replace_env(char *token);
 void	free_ast(t_ast *ast);
 void	free_simple_command(t_simple_command *simple_command);
 void	free_io_redirect(t_io_redirect *io_redirect);
+void	free_token(t_token *token);
 
 #endif

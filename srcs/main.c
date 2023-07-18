@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 12:41:21 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/18 17:30:21 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_manager	g_manager;
  */
 static void	reset_minishell(int std_fd[3])
 {
-	// free(g_manager.token.value);
+	free_token(&g_manager.token);
 	free_ast(g_manager.ast);
 	reset_std_fd(std_fd);
 }
@@ -50,7 +50,7 @@ static void	init_manager(char *command_line)
  */
 void	free_manager(void)
 {
-	// free(g_manager.token.value);
+	free_token(&g_manager.token);
 	free_ast(g_manager.ast);
 	free_env(g_manager.env);
 }

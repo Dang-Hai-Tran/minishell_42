@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:30:00 by datran            #+#    #+#             */
-/*   Updated: 2023/07/12 17:58:08 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/18 18:11:26 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ int	exit_command(char **argv)
 	//ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (*(argv + 1))
 	{
+		exit_code = validate_exit_arg(*(argv + 1));
 		if (*(argv + 2))
 			return (throw_error("exit", NULL, "too many arguments"));
-		exit_code = validate_exit_arg(*(argv + 1));
 	}
 	free_manager();
 	exit(exit_code % 256);

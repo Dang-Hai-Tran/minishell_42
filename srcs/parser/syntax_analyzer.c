@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analyzer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:03:34 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:20:52 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:22:53 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ char	*match(t_type type)
 	if (token.type == type)
 		return (token.value);
 	else
+	{
 		throw_error_syntax(token);
+		free_token(&token);
+	}
 	return (NULL);
 }
 

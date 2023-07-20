@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:53:09 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 10:22:26 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/20 11:57:50 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,24 @@ static int	check_echo_option(char *option)
 	return (flag);
 }
 
+static int	parse_argv(char ***ptr_argv, int *ptr_has_nl)
+{
+	(*ptr_argv)++;
+	if (!**ptr_argv)
+	{
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		return (0);
+	}
+	if (check_echo_option(**ptr_argv))
+	{
+		*ptr_has_nl = 1;
+		if (!*(*ptr_argv + 1))
+			return (0);
+		(*ptr_argv)++;
+	}
+	return (1);
+}
+
 /**
  * Implements the 'echo' shell command, which outputs its arguments to the 
  * standard output. The function supports the '-n' option, which suppresses
@@ -58,21 +76,12 @@ static int	check_echo_option(char *option)
 int	echo_command(char **argv)
 {
 	int	has_newline;
+	int	ret;
 
 	has_newline = 0;
-	argv++;
-	if (!*argv)
-	{
-		ft_putstr_fd("\n", STDOUT_FILENO);
+	ret = parse_argv(&argv, &has_newline);
+	if (!ret)
 		return (EXIT_SUCCESS);
-	}
-	if (check_echo_option(*argv))
-	{
-		has_newline = 1;
-		if (!*(argv + 1))
-			return (EXIT_SUCCESS);
-		argv++;
-	}
 	while (*argv)
 	{
 		ft_putstr_fd(*argv, STDOUT_FILENO);

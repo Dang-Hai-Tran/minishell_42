@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/18 17:30:21 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/20 10:57:05 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,7 @@ int	main(int argc, char **argv, char **envp)
 	while (true)
 	{
 		init_signal();
-		if (isatty(fileno(stdin)))
-			command_line = readline(PS1);
-		else
-		{
-			char *line;
-			line = ft_gnl(fileno(stdin));
-			command_line = ft_strtrim(line, "\n");
-			free(line);
-		}
+		command_line = readline(PS1);
 		sh_exit_eof(command_line);
 		if (command_line && *command_line)
 		{

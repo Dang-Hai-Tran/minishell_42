@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:05:26 by datran            #+#    #+#             */
-/*   Updated: 2023/07/12 17:56:57 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/20 10:56:36 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sh_exit_eof(char *command_line)
 {
 	if (!command_line)
 	{
-		//ft_putstr_fd("exit\n", STDERR_FILENO);
+		ft_putstr_fd("exit\n", STDERR_FILENO);
 		exit(EXIT_SUCCESS);
 	}
 }

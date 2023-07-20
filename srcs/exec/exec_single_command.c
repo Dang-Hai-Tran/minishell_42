@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:46:40 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 09:51:43 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/20 10:59:41 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static int	exec_single_general(t_simple_command *simple_command)
  */
 static int	exec_single_builtin(t_simple_command *simple_command)
 {
-
 	g_manager.exit_code = exec_builtin(simple_command->argv);
 	if (g_manager.exit_code == EXIT_SUCCESS)
 		return (SUCCESS_FLAG);

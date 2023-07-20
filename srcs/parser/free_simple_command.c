@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:20:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 01:07:07 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/20 11:00:31 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	free_simple_command(t_simple_command *simple_command)
 {
 	int		i;
-	char **argv;
+	char	**argv;
 
 	i = 0;
 	argv = simple_command->argv;

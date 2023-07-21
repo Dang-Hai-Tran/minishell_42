@@ -20,3 +20,22 @@ TEST
 73 not export before ""
 84-94 96 OK command not found exit_code 127
 
+axbrisse:
+Une seule variable d'environnement c'est mieux !
+exit sans argument retourne la derniere valeur
+ctrl+C dans le prompt retourne 130
+ctrl+C dans les enfants (SIG_IGN ou SIG_DFL), testez avec ./bin/minishell dans ./bin/minishell
+leaks avec Ctrl+D
+fd ouverts avec track-fds=yes
+mkdir lol ; cd lol ; rm -rf ../lol ; cd .. CRASH
+msh $ export _LOL=42
+msh $ echo $_LOL
+
+Pas teste:
+Set the $PATH to a multiple directory value (directory1:directory2) and ensure that directories are checked in order from left to right.
+
+Ctrl+C dans heredoc:
+msh $ cat << eof
+==93547== Warning: noted but unhandled ioctl 0x5412 with no size/direction hints.
+==93547==    This could cause spurious value errors to appear.
+==93547==    See README_MISSING_SYSCALL_OR_IOCTL for guidance on writing a proper wrapper.

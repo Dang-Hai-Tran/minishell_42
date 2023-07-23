@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:30:00 by datran            #+#    #+#             */
-/*   Updated: 2023/07/20 10:56:29 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/23 10:43:53 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	validate_exit_arg(char *arg)
 		throw_error("exit", ptr, "numeric argument required");
 		exit(2);
 	}
-	return (ft_atoi(arg));
+	return (ft_atoi(arg) % 256);
 }
 
 /**
@@ -113,7 +113,7 @@ int	exit_command(char **argv)
 {
 	int	exit_code;
 
-	exit_code = EXIT_SUCCESS;
+	exit_code = g_manager.exit_code;
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (*(argv + 1))
 	{

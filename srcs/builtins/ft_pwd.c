@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:56:07 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 12:58:39 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/22 22:47:47 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ int	perform_pwd(char **arguments)
 	exit_code = EXIT_SUCCESS;
 	if (*(arguments + 1) && check_option(*(arguments + 1)) == true)
 		return (throw_error_usage("pwd", *(arguments + 1)));
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		return (throw_error("pwd", NULL, strerror(errno)));
-	ft_putstr_fd(cwd, STDOUT_FILENO);
-	ft_putstr_fd("\n", STDOUT_FILENO);
-	free(cwd);
+	cwd = get_env("PWD")->value;
+	ft_putendl_fd(cwd, STDOUT_FILENO);
 	return (exit_code);
 }

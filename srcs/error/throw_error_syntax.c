@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:46:57 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 10:52:25 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/22 21:40:08 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	throw_error_syntax(t_token token)
 	else
 		ft_putstr_fd("newline", STDERR_FILENO);
 	ft_putendl_fd("'", STDERR_FILENO);
+	g_manager.syntax_error = true;
 	g_manager.exit_code = EXIT_SYNTAXERR;
 	return (ERROR_FLAG);
 }

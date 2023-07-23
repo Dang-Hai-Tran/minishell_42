@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/20 10:57:05 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/23 10:43:15 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	init_manager(char *command_line)
 {
 	g_manager.command_line = command_line;
 	g_manager.rc = 0;
-	g_manager.quote_error = 0;
+	g_manager.syntax_error = false;
 	g_manager.token.type = T_NULL;
 	g_manager.token.value = NULL;
 }
@@ -53,6 +53,9 @@ void	free_manager(void)
 	free_token(&g_manager.token);
 	free_ast(g_manager.ast);
 	free_env(g_manager.env);
+	close(g_manager.std_fd[READ]);
+	close(g_manager.std_fd[WRITE]);
+	close(g_manager.std_fd[ERROR]);
 }
 
 /**
@@ -95,10 +98,10 @@ static void	init_env(int argc, char **argv, char **envp, int std_fd[3])
  */
 int	main(int argc, char **argv, char **envp)
 {
-	int				std_fd[3];
 	char			*command_line;
 
-	init_env(argc, argv, envp, std_fd);
+	init_env(argc, argv, envp, g_manager.std_fd);
+	g_manager.exit_code = 0;
 	while (true)
 	{
 		init_signal();
@@ -109,9 +112,9 @@ int	main(int argc, char **argv, char **envp)
 			add_history(command_line);
 			init_manager(command_line);
 			g_manager.ast = syntax_analyzer();
-			if (g_manager.ast && g_manager.exit_code == EXIT_SUCCESS)
+			if (g_manager.ast && !g_manager.syntax_error)
 				exec_command_line(&g_manager.ast);
-			reset_minishell(std_fd);
+			reset_minishell(g_manager.std_fd);
 		}
 		free(command_line);
 	}

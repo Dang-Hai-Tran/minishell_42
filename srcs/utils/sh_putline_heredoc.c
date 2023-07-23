@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh_putline_heredoc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:55:31 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:29:29 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/23 11:21:51 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,4 @@ void	sh_putline_heredoc(char *line, int fd)
 			free(word);
 		}
 	}
-	ft_putchar_fd('\n', fd);
 }

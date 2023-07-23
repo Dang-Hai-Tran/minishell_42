@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 00:02:22 by datran            #+#    #+#             */
-/*   Updated: 2023/07/14 23:22:51 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/22 21:36:53 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	get_quote(t_token *token, char **end)
 	{
 		throw_error("syntax error", NULL, "unexpected end of file");
 		*end = g_manager.command_line + ft_strlen(g_manager.command_line);
-		g_manager.quote_error = 1;
+		g_manager.syntax_error = 1;
 	}
 	else
 		(*end)++;
@@ -118,7 +118,7 @@ int	lexical_analyzer(t_token *token, char **begin, char **end)
 		get_pipe(token, end);
 	else
 		get_word(token, end);
-	if (g_manager.quote_error)
+	if (g_manager.syntax_error)
 		return (ERROR_FLAG);
 	else
 		return (SUCCESS_FLAG);

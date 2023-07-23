@@ -22,10 +22,10 @@ TEST
 
 axbrisse:
 Une seule variable d'environnement c'est mieux !
-exit sans argument retourne la derniere valeur
-ctrl+C dans le prompt retourne 130
-ctrl+C dans les enfants (SIG_IGN ou SIG_DFL), testez avec ./bin/minishell dans ./bin/minishell
-leaks avec Ctrl+D
+exit sans argument retourne la derniere valeur  OK
+ctrl+C dans le prompt retourne 130  OK
+ctrl+C dans les enfants (SIG_IGN ou SIG_DFL), testez avec ./bin/minishell dans ./bin/minishell  OK
+leaks avec Ctrl+D   OK
 fd ouverts avec track-fds=yes
 mkdir lol ; cd lol ; rm -rf ../lol ; cd .. CRASH
 msh $ export _LOL=42

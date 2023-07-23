@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:46:40 by datran            #+#    #+#             */
-/*   Updated: 2023/07/20 10:59:41 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/23 12:44:55 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	exec_single_general(t_simple_command *simple_command)
 {
 	pid_t	pid;
 
-	if (simple_command && !sh_strcmp(*(simple_command->argv), "./minishell"))
+	if (simple_command && !sh_strcmp(*(simple_command->argv), \
+	"./bin/minishell"))
 		multishell_signal();
 	else
 		change_signal();

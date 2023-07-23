@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_signal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:05:15 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:25:13 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/23 01:41:40 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@
  */
 static void	handle_sigint_heredoc(int signum)
 {
+	int		ret;
+
 	if (signum != SIGINT)
 		return ;
-	ioctl(STDIN_FILENO, TIOCSTI, "\n");
-	g_manager.exit_code = 1;
+	ret = ioctl(STDIN_FILENO, TIOCSTI, "\n");
+	if (ret == -1)
+		throw_error("ioctl", NULL, strerror(errno));
+	g_manager.exit_code = 130;
+	g_manager.end_heredoc = true;
 	return ;
 }
 

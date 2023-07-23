@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 12:25:03 by datran            #+#    #+#             */
-/*   Updated: 2023/07/18 17:36:42 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/23 09:28:12 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  */
 int	backup_std_fd(int std_fd[3])
 {
-	std_fd[READ] = dup2(STDIN_FILENO, BACKUP_FD);
+	std_fd[READ] = dup(STDIN_FILENO);
 	std_fd[WRITE] = dup(STDOUT_FILENO);
 	std_fd[ERROR] = dup(STDERR_FILENO);
 	if (std_fd[READ] == -1 || std_fd[WRITE] == -1 || std_fd[ERROR] == -1)

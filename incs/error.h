@@ -6,14 +6,14 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:12:36 by datran            #+#    #+#             */
-/*   Updated: 2023/06/26 14:18:12 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/22 21:35:39 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-# define ERROR_FLAG -1
+# define ERROR_FLAG 1
 # define SUCCESS_FLAG 0
 # define EXIT_EACCES 126
 # define EXIT_ENOENT 127

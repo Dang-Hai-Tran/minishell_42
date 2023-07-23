@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_signal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: colin <colin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 17:09:03 by datran            #+#    #+#             */
-/*   Updated: 2023/07/06 13:27:20 by colin            ###   ########.fr       */
+/*   Updated: 2023/07/22 21:42:15 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	handle_sigint(int signum)
 	rl_replace_line("", 1);
 	rl_on_new_line();
 	rl_redisplay();
-	g_manager.exit_code = 1;
+	g_manager.exit_code = 130;
 }
 
 /**

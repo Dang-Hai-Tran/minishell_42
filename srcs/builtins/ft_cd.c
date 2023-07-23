@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:29:51 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 10:19:04 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/22 22:45:32 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static int	change_pwd(t_env *pwd)
 		return (EXIT_FAILURE);
 	tmp = pwd->value;
 	pwd->value = getcwd(NULL, 0);
-	if (!pwd->value)
-		return (throw_error_exit("getcwd", strerror(errno), EXIT_FAILURE));
 	if (tmp)
 		free(tmp);
 	return (EXIT_SUCCESS);

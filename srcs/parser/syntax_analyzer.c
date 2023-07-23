@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:03:34 by datran            #+#    #+#             */
-/*   Updated: 2023/07/18 18:22:53 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/22 23:16:30 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ t_ast	*syntax_analyzer(void)
 	token = fetch_token(GET);
 	if (token.type == T_NULL)
 		return (ast);
-	if (syntax_pipe_line(&ast) == SUCCESS_FLAG \
-	&& g_manager.quote_error == SUCCESS_FLAG)
-		g_manager.exit_code = EXIT_SUCCESS;
+	if (syntax_pipe_line(&ast) == SUCCESS_FLAG)
+		g_manager.syntax_error = false;
 	return (ast);
 }

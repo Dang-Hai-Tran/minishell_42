@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:59:05 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 12:56:16 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/22 21:52:58 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
  */
 int	check_option(char *arg)
 {
-	int	exit_code;
+	int	is_option;
 
 	if (*arg == '-')
-		exit_code = true;
+		is_option = true;
 	else
-		exit_code = false;
-	return (exit_code);
+		is_option = false;
+	return (is_option);
 }

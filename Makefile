@@ -1,6 +1,6 @@
 PROJECT_NAME := Minishell
 BIN_NAME  := minishell
-CC        := gcc
+CC        := cc
 ROOTDIR   := .
 SRCDIR    := srcs
 HEADERDIR := incs

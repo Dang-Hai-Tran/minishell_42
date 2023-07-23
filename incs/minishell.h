@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: copeugne <copeugne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 17:05:34 by datran            #+#    #+#             */
-/*   Updated: 2023/07/10 13:00:34 by copeugne         ###   ########.fr       */
+/*   Updated: 2023/07/23 09:57:08 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ typedef struct s_manager
 	t_token				token;
 	char				*command_line;
 	int					rc;
-	int					quote_error;
+	bool				syntax_error;
+	bool				end_heredoc;
 	int					exit_code;
+	int					std_fd[3];
 }	t_manager;
 
 extern t_manager		g_manager;

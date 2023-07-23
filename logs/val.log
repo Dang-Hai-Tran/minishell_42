@@ -1,20 +1,40 @@
-==13621== Memcheck, a memory error detector
-==13621== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==13621== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==13621== Command: ./bin/minishell
-==13621== Parent PID: 1940
-==13621== 
-==13621== 
-==13621== HEAP SUMMARY:
-==13621==     in use at exit: 208,439 bytes in 241 blocks
-==13621==   total heap usage: 689 allocs, 448 frees, 234,372 bytes allocated
-==13621== 
-==13621== LEAK SUMMARY:
-==13621==    definitely lost: 0 bytes in 0 blocks
-==13621==    indirectly lost: 0 bytes in 0 blocks
-==13621==      possibly lost: 0 bytes in 0 blocks
-==13621==    still reachable: 0 bytes in 0 blocks
-==13621==         suppressed: 208,439 bytes in 241 blocks
-==13621== 
-==13621== For lists of detected and suppressed errors, rerun with: -s
-==13621== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==233630== Memcheck, a memory error detector
+==233630== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==233630== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==233630== Command: /usr/bin/cat
+==233630== Parent PID: 233529
+==233630== 
+==233630== 
+==233630== FILE DESCRIPTORS: 9 open (0 std) at exit.
+==233630== Open file descriptor 99: /home/datran/.vscode-server/bin/74f6148eb9ea00507ec113ec51c489d6ffb4b771/vscode-remote-lock.datran.74f6148eb9ea00507ec113ec51c489d6ffb4b771
+===233529== 
+==233529== FILE DESCRIPTORS: 8 open (3 std) at exit.
+==233529== Open file descriptor 99: /home/datran/.vscode-server/bin/74f6148eb9ea00507ec113ec51c489d6ffb4b771/vscode-remote-lock.datran.74f6148eb9ea00507ec113ec51c489d6ffb4b771
+==233529==    <inherited from parent>
+==233529== 
+==233529== Open file descriptor 24: /dev/ptmx
+==233529==    <inherited from parent>
+==233529== 
+==233529== Open file descriptor 20: /home/datran/.vscode-server/data/logs/20230723T092324/remoteagent.log
+==233529==    <inherited from parent>
+==233529== 
+==233529== Open file descriptor 19: /home/datran/.vscode-server/data/logs/20230723T092324/ptyhost.log
+==233529==    <inherited from parent>
+==233529== 
+==233529== Open file descriptor 3: /home/datran/42-Projects/minishell/logs/val.log
+==233529==    <inherited from parent>
+==233529== 
+==233529== 
+==233529== HEAP SUMMARY:
+==233529==     in use at exit: 208,349 bytes in 235 blocks
+==233529==   total heap usage: 735 allocs, 500 frees, 234,998 bytes allocated
+==233529== 
+==233529== LEAK SUMMARY:
+==233529==    definitely lost: 0 bytes in 0 blocks
+==233529==    indirectly lost: 0 bytes in 0 blocks
+==233529==      possibly lost: 0 bytes in 0 blocks
+==233529==    still reachable: 0 bytes in 0 blocks
+==233529==         suppressed: 208,349 bytes in 235 blocks
+==233529== 
+==233529== For lists of detected and suppressed errors, rerun with: -s
+==233529== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

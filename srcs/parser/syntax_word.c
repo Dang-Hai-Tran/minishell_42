@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:55:03 by datran            #+#    #+#             */
-/*   Updated: 2023/07/16 21:33:44 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/23 12:45:48 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,14 @@ char	*replace_env(char *token)
 	char	*env_ptr;
 
 	env_ptr = ft_strchr(token, '$');
-	while (env_ptr && *(env_ptr + 1) && !(*(env_ptr + 1) == '?'
-			|| ft_isalpha(*(env_ptr + 1)) || *(env_ptr + 1) == '$'))
+	while (env_ptr && *(env_ptr + 1) && !(ft_isalpha(*(env_ptr + 1)) \
+	||ft_strchr("$?_", *(env_ptr + 1))))
 		env_ptr = ft_strchr(env_ptr + 1, '$');
 	if (!env_ptr)
 		return (ft_strdup(token));
 	else if (*(env_ptr + 1) == '?' || *(env_ptr + 1) == '$')
 		word = replace_env_sc(token, env_ptr);
-	else if (ft_isalpha(*(env_ptr + 1)))
+	else if (ft_isalpha(*(env_ptr + 1)) || *(env_ptr + 1) == '_')
 		word = replace_env_name(token, env_ptr);
 	else
 		word = ft_strdup(token);

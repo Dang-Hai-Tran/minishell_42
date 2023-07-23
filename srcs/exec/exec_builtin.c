@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:46:55 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 10:22:53 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/23 12:44:36 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	exec_builtin(char **argv)
 	if (!ft_strncmp(*argv, "unset", 6))
 		return (perform_unset(argv));
 	if (!ft_strncmp(*argv, "exit", 5))
-		exit_command(argv);
+		return (exit_command(argv));
 	return (EXIT_FAILURE);
 }

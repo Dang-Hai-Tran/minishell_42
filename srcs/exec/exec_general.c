@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:47:37 by datran            #+#    #+#             */
-/*   Updated: 2023/07/17 10:40:23 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/26 12:51:24 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	exec_general(char **argv)
 	char	**envp;
 	char	*filename;
 
+	filename = NULL;
 	envp = sh_get_string_env();
 	if (ft_strchr(*argv, '/') == NULL)
 	{

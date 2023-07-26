@@ -1,25 +1,3 @@
-- Write documentations for all functions
-- Fix memory leak  ok
-- Fix expansion in heredoc
-- echo $$
-- cd plusieur arguments
-- echo +100
-- 
-
-TEST
-**Parsing
-15 $seul
-24-30 OK dont need parsing \
-66 $seul
-**Parsing Hell
-1 5-9 OK exit_code = 127
-12 14 15 OK heredoc
-13 OK no error exit_code = 127
-23 OK
-30 72 OK dont need add \ when export
-73 not export before ""
-84-94 96 OK command not found exit_code 127
-
 axbrisse:
 Une seule variable d'environnement c'est mieux !
 exit sans argument retourne la derniere valeur  OK

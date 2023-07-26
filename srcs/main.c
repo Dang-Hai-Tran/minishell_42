@@ -6,7 +6,7 @@
 /*   By: datran <datran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:06:49 by datran            #+#    #+#             */
-/*   Updated: 2023/07/23 10:43:15 by datran           ###   ########.fr       */
+/*   Updated: 2023/07/26 13:51:53 by datran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ static void	reset_minishell(int std_fd[3])
  *
  * @param command_line The command line string.
  */
-static void	init_manager(char *command_line)
+static void	init_manager()
 {
-	g_manager.command_line = command_line;
 	g_manager.rc = 0;
 	g_manager.syntax_error = false;
 	g_manager.token.type = T_NULL;
 	g_manager.token.value = NULL;
+	g_manager.ast = NULL;
+	g_manager.command_line = NULL;
 }
 
 /**
@@ -106,11 +107,12 @@ int	main(int argc, char **argv, char **envp)
 	{
 		init_signal();
 		command_line = readline(PS1);
+		init_manager();
 		sh_exit_eof(command_line);
 		if (command_line && *command_line)
 		{
 			add_history(command_line);
-			init_manager(command_line);
+			g_manager.command_line = command_line;
 			g_manager.ast = syntax_analyzer();
 			if (g_manager.ast && !g_manager.syntax_error)
 				exec_command_line(&g_manager.ast);
